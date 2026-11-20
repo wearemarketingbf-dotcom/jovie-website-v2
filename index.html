@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JOVIE · Noon to midnight</title>
+<meta name="description" content="Mediterranean dining over olive wood in Karachi · open every day 12 pm to 12 am">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#231F20">
+<meta property="og:title" content="JOVIE · Noon to midnight">
+<meta property="og:description" content="Six small rituals and one olive-wood fire · every day in Karachi">
+<meta property="og:image" content="assets/gather.webp">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Source+Sans+3:wght@300;400;600&display=swap">
+<link rel="preload" as="image" href="assets/hero-poster.webp">
+<style>
+@property --fg{syntax:'<color>';inherits:true;initial-value:#F6F2EF}
+@property --mut{syntax:'<color>';inherits:true;initial-value:rgba(246,242,239,.68)}
+@property --acc{syntax:'<color>';inherits:true;initial-value:#D9A47C}
+@property --line{syntax:'<color>';inherits:true;initial-value:rgba(246,242,239,.18)}
+:root{
+  --x:#231F20;--d:#56351E;--t:#A26542;--o:#685C3F;--s:#BC9D81;--g:#F6F2EF;
+  --bg:#231F20;--fg:#231F20;--mut:rgba(35,31,32,.66);--acc:#A26542;--line:rgba(35,31,32,.16);
+  --serif:'Bellefair','Cormorant Garamond',Georgia,serif;
+  --sans:'Source Sans 3','Helvetica Neue',Arial,sans-serif;
+  --pad:clamp(20px,4.4vw,72px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+  transition:--fg .6s,--mut .6s,--acc .6s,--line .6s;
+}
+:root.dk{--fg:#F6F2EF;--mut:rgba(246,242,239,.68);--acc:#D9A47C;--line:rgba(246,242,239,.18);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--fg);font:300 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,canvas{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--g);color:var(--x);padding:10px 16px}
+.skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.disp{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:.92;margin:0}
+.lab{font:600 12px/1.3 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--acc);margin:0}
+.lab b{font-weight:600;color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 26px;border-radius:999px;border:1px solid currentColor;background:transparent;text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s}
+.btn svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-fill{background:var(--t);border-color:var(--t);color:var(--g)}
+.btn-fill:hover{background:var(--g);border-color:var(--g);color:var(--x)}
+.btn-ghost:hover{background:var(--fg);color:var(--bg)}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:28px;padding:18px var(--pad);padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px));padding-top:calc(18px + env(safe-area-inset-top,0px));color:var(--fg);transition:background .5s,backdrop-filter .5s,padding .4s}
+.hdr.solid{background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:12px}
+.hdr .logo{display:block;width:118px;height:42px;color:var(--fg)}
+.hdr .logo svg{width:100%;height:100%;fill:currentColor}
+.nav{display:flex;gap:30px;margin-left:auto}
+.nav a{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;opacity:.86;position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.status{display:flex;align-items:center;gap:10px;font:400 13px/1.2 var(--sans);letter-spacing:.04em;white-space:nowrap}
+.status i{width:8px;height:8px;border-radius:50%;background:#8DB37A;box-shadow:0 0 0 0 rgba(141,179,122,.6);animation:pulse 2.4s infinite}
+.status.closed i{background:var(--s);animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(141,179,122,.55)}70%{box-shadow:0 0 0 10px rgba(141,179,122,0)}100%{box-shadow:0 0 0 0 rgba(141,179,122,0)}}
+.hdr .btn{height:44px;padding:0 20px}
+.burger{display:none;width:44px;height:44px;border:0;background:none;padding:0;margin-left:auto;cursor:pointer}
+.burger span{display:block;width:26px;height:1.5px;background:currentColor;margin:6px auto;transition:transform .4s var(--ease)}
+.drawer{position:fixed;inset:0;z-index:49;background:var(--x);color:var(--g);display:flex;flex-direction:column;justify-content:center;gap:10px;padding:96px var(--pad) 40px;transform:translateY(-100%);transition:transform .7s var(--ease)}
+.drawer.open{transform:none}
+.drawer a{font:400 clamp(44px,12vw,72px)/1.05 var(--serif);text-decoration:none}
+.drawer .status{margin-top:28px}
+@media (max-width:1080px){.nav{display:none}.hdr .status{display:none}.burger{display:block}.hdr>.btn{display:none}}
+
+/* dial */
+.dial{position:fixed;right:max(var(--pad),env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:12px;padding:8px 18px 8px 8px;border-radius:999px;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--fg);opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;pointer-events:none}
+.dial.on{opacity:1;transform:none}
+.dial svg{width:46px;height:46px;overflow:visible}
+.dial .ring{fill:none;stroke:var(--line);stroke-width:1}
+.dial .tick{stroke:var(--mut);stroke-width:1}
+.dial .hand{stroke:var(--acc);stroke-width:1.6;stroke-linecap:round;transform-origin:29px 29px}
+.dial .arc{fill:none;stroke:var(--acc);stroke-width:1.6;stroke-linecap:round;transform:rotate(-90deg);transform-origin:29px 29px}
+.dial p{margin:0;font:400 20px/1 var(--serif);min-width:4.6em}
+.dial small{display:block;font:600 10px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-top:4px}
+@media (max-width:700px){.dial{padding:6px 14px 6px 6px}.dial svg{width:36px;height:36px}.dial p{font-size:17px}}
+
+/* hero */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:var(--g);background:var(--x)}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:drift 30s linear infinite alternate}
+@keyframes drift{to{transform:scale(1.12)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,31,32,.55) 0%,rgba(35,31,32,0) 28%,rgba(35,31,32,.15) 52%,rgba(35,31,32,.86) 100%)}
+.hero-in{position:absolute;z-index:2;left:max(var(--pad),env(safe-area-inset-left,0px));right:max(var(--pad),env(safe-area-inset-right,0px));bottom:clamp(96px,14vh,150px)}
+.hero h1{font-size:clamp(72px,14.2vw,248px);line-height:.84;letter-spacing:-.025em}
+.hero h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .l>span{display:inline-block;transform:translateY(105%);animation:rise 1.4s var(--ease) forwards}
+.hero h1 .l:nth-child(2)>span{animation-delay:.14s}
+.hero h1 .l2{padding-left:clamp(36px,13vw,240px)}
+.hero h1 .sym{display:inline-block;width:.4em;height:.4em;vertical-align:.14em;margin:0 0 0 .14em;fill:var(--t)}
+@keyframes rise{to{transform:none}}
+.hero-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px;margin-top:clamp(22px,3.4vh,40px);opacity:0;animation:fade 1.2s .7s forwards}
+.hero-row p{margin:0;max-width:44ch;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:rgba(246,242,239,.86)}
+.hero-row .acts{display:flex;flex-wrap:wrap;gap:12px}
+.hero .btn-ghost{color:var(--g)}
+.hero .btn-ghost:hover{background:var(--g);color:var(--x)}
+@keyframes fade{to{opacity:1}}
+.hero-k{margin-bottom:22px;color:var(--s);opacity:0;animation:fade 1s .3s forwards}
+.day-bar{position:absolute;z-index:2;left:max(var(--pad),env(safe-area-inset-left,0px));right:max(var(--pad),env(safe-area-inset-right,0px));bottom:calc(30px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:18px;font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(246,242,239,.72);opacity:0;animation:fade 1s 1s forwards}
+.day-bar span.ln{flex:1;height:1px;background:rgba(246,242,239,.28);position:relative;overflow:hidden}
+.day-bar span.ln::after{content:"";position:absolute;inset:0;background:var(--s);transform-origin:left;transform:scaleX(.02);animation:sun 6s 1.2s var(--ease) forwards}
+@keyframes sun{to{transform:scaleX(.5)}}
+
+/* sections */
+section{position:relative}
+.wrap{padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
+.stamp{display:flex;align-items:center;gap:14px}
+.stamp::before{content:"";width:34px;height:1px;background:var(--acc)}
+
+/* day */
+.day{padding-block:clamp(120px,22vh,240px) clamp(110px,18vh,200px)}
+.day .stamp{margin-bottom:clamp(34px,6vh,64px)}
+.manifesto{font:400 clamp(38px,6.2vw,104px)/1.02 var(--serif);letter-spacing:-.015em;margin:0;max-width:16ch}
+.manifesto .w{opacity:.14;transition:opacity .5s}
+.manifesto .w.on{opacity:1}
+.manifesto em{font-style:normal;color:var(--acc)}
+.day-foot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:clamp(70px,12vh,130px);border-top:1px solid var(--line);padding-top:26px}
+.day-foot div{min-width:0}
+.day-foot b{display:block;font:400 clamp(34px,4vw,60px)/1 var(--serif);margin-bottom:10px}
+.day-foot span{color:var(--mut);font-size:15px}
+@media (max-width:700px){.day-foot{grid-template-columns:1fr}}
+
+/* rituals */
+.rituals{height:auto}
+.rit-pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.rit-track{display:flex;height:100%;will-change:transform}
+.rit-intro{flex:0 0 auto;width:min(46vw,640px);display:flex;flex-direction:column;justify-content:center;padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:clamp(40px,6vw,110px)}
+.rit-intro h2{font-size:clamp(64px,8.6vw,150px)}
+.rit-intro p{max-width:30ch;color:var(--mut);margin:28px 0 0}
+.rit-meter{display:flex;align-items:center;gap:16px;margin-top:46px;font:400 20px/1 var(--serif)}
+.rit-meter .bar{width:140px;height:1px;background:var(--line);position:relative}
+.rit-meter .bar i{position:absolute;inset:0;background:var(--acc);transform-origin:left;transform:scaleX(.0)}
+.rit{flex:0 0 auto;width:min(78vw,1180px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);align-items:center;gap:clamp(28px,4vw,72px);padding-right:clamp(40px,6vw,110px)}
+.rit-txt{position:relative;min-width:0}
+.rit-num{font:400 clamp(150px,24vh,300px)/.8 var(--serif);color:transparent;-webkit-text-stroke:1px var(--acc);margin:0 0 6px;display:block}
+.rit h3{font-size:clamp(52px,6vw,104px);margin:0}
+.rit .line{font:400 clamp(24px,2.2vw,34px)/1.15 var(--serif);margin:22px 0 14px}
+.rit .body{color:var(--mut);max-width:32ch;margin:0}
+.rit .where{margin-top:26px}
+.rit-img{position:relative;height:min(72svh,780px);aspect-ratio:1200/1494;max-width:100%;overflow:hidden;border-radius:2px;justify-self:end;outline:1px solid var(--acc);outline-offset:14px}
+.rit-img img{width:118%;height:100%;object-fit:cover;max-width:none;transform:translateX(var(--px,0%));will-change:transform}
+.rit-img figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px;font:600 11px/1.4 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--g);background:linear-gradient(transparent,rgba(35,31,32,.6))}
+.rit-end{flex:0 0 auto;width:min(60vw,820px);display:flex;flex-direction:column;justify-content:center;gap:32px;padding-right:var(--pad)}
+.rit-end p{font:400 clamp(44px,5vw,84px)/1 var(--serif);margin:0}
+@media (max-width:899px),(prefers-reduced-motion:reduce){
+  .rituals{height:auto!important;padding-block:110px 90px}
+  .rit-pin{position:static;height:auto;overflow:visible}
+  .rit-track{flex-direction:column;transform:none!important;gap:90px}
+  .rit-intro{width:auto;padding-right:var(--pad)}
+  .rit{width:auto;grid-template-columns:1fr;padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
+  .rit-img{justify-self:stretch;height:auto;width:calc(100% - 28px);margin:14px!important}
+  .rit-img img{width:100%;transform:none}
+  .rit-num{font-size:120px}
+  .rit-end{width:auto;padding-left:max(var(--pad),env(safe-area-inset-left,0px))}
+  .rit-meter{display:none}
+}
+
+/* fire */
+.fire{height:220svh;color:var(--g)}
+.fire-pin{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--x)}
+.fire canvas,.fire .fp{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fire-pin::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(35,31,32,.05),rgba(35,31,32,.78) 78%),linear-gradient(180deg,rgba(35,31,32,.6),transparent 30%,transparent 70%,rgba(35,31,32,.75))}
+.ticker{position:absolute;z-index:2;left:0;top:50%;white-space:nowrap;font:400 clamp(120px,22vw,380px)/1 var(--serif);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(246,242,239,.42);transform:translate3d(0,-50%,0);will-change:transform;pointer-events:none}
+.fire-cap{position:absolute;z-index:3;left:max(var(--pad),env(safe-area-inset-left,0px));right:max(var(--pad),env(safe-area-inset-right,0px));bottom:clamp(60px,10vh,110px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:30px}
+.fire-cap h2{font-size:clamp(54px,7vw,120px)}
+.fire-cap ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;font:400 clamp(22px,2vw,30px)/1.1 var(--serif)}
+.fire-cap li{display:flex;align-items:center;gap:14px}
+.fire-cap li svg{width:16px;height:16px;fill:var(--s);flex:none}
+.fire .lab{color:var(--s);margin-bottom:18px}
+
+/* menu */
+.menu{padding-block:clamp(120px,18vh,200px)}
+.menu-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:40px;align-items:end;margin-bottom:clamp(60px,9vh,100px)}
+.menu-head h2{font-size:clamp(60px,8vw,140px);margin-top:22px}
+.menu-head p{color:var(--mut);max-width:34ch;margin:0;justify-self:end}
+.courses{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.course{display:grid;grid-template-columns:minmax(150px,.32fr) minmax(0,1fr);gap:30px;padding:28px 0 30px;border-bottom:1px solid var(--line);align-items:baseline}
+.course .lab{color:var(--acc)}
+.course .lab small{display:block;font:400 26px/1 var(--serif);letter-spacing:0;text-transform:none;color:var(--fg);margin-bottom:8px}
+.dishes{display:flex;flex-wrap:wrap;gap:6px 0;margin:0;padding:0;list-style:none;font:400 clamp(30px,3.5vw,58px)/1.12 var(--serif)}
+.dish{display:inline-flex;align-items:center;cursor:default;transition:color .3s}
+.dish+.dish::before{content:"";width:.16em;height:.16em;border-radius:50%;background:var(--acc);margin:0 .42em;opacity:.8}
+.courses:hover .dish{color:var(--mut)}
+.courses .dish:hover{color:var(--fg)}
+.menu-note{margin-top:40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;color:var(--mut)}
+.peek{position:fixed;left:0;top:0;z-index:30;width:250px;aspect-ratio:1200/1494;border-radius:140px 140px 4px 4px;overflow:hidden;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0) scale(.9);transition:opacity .35s,transform .35s var(--ease)}
+.peek.on{opacity:1}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media (max-width:800px){.menu-head{grid-template-columns:1fr}.menu-head p{justify-self:start}.course{grid-template-columns:1fr;gap:12px}}
+@media (hover:none){.peek{display:none}.courses:hover .dish{color:inherit}}
+
+/* room */
+.room{padding-block:clamp(110px,16vh,180px) clamp(110px,16vh,180px)}
+.room-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:clamp(44px,7vh,80px)}
+.room-head h2{font-size:clamp(56px,7.4vw,128px);margin-top:22px;max-width:12ch}
+.room-head p{color:var(--mut);max-width:30ch;margin:0}
+.mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(150px,15vw,250px);gap:clamp(10px,1.2vw,18px)}
+.tile{position:relative;margin:0;overflow:hidden;border-radius:4px;min-width:0}
+.tile img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease)}
+.tile:hover img{transform:scale(1.1)}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:clamp(14px,1.6vw,24px);color:var(--g);background:linear-gradient(transparent,rgba(35,31,32,.72));display:flex;flex-direction:column;gap:4px}
+.tile figcaption b{font:400 clamp(22px,2vw,32px)/1 var(--serif)}
+.tile figcaption span{font-size:14px;color:rgba(246,242,239,.82)}
+.t1{grid-column:span 7;grid-row:span 2}.t2{grid-column:span 5;grid-row:span 2}
+.t3,.t5,.t7{grid-column:span 4;grid-row:span 2}
+.t6{grid-column:span 12;grid-row:span 3}
+@media (max-width:800px){.mosaic{grid-template-columns:1fr;grid-auto-rows:auto}.tile{grid-column:auto!important;grid-row:auto!important;aspect-ratio:16/10}}
+
+/* gather */
+.gather{min-height:100svh;display:flex;align-items:flex-end;color:var(--g);overflow:hidden}
+.gather img{position:absolute;inset:0;width:100%;height:118%;object-fit:cover;transform:translateY(var(--gy,0px));will-change:transform}
+.gather::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(35,31,32,.86),rgba(35,31,32,.35) 55%,rgba(35,31,32,.1)),linear-gradient(0deg,rgba(35,31,32,.6),transparent 50%)}
+.gather-in{position:relative;z-index:2;padding-block:clamp(110px,18vh,190px);max-width:900px}
+.gather .lab{color:var(--s)}
+.gather h2{font-size:clamp(58px,8vw,138px);margin:22px 0 26px}
+.gather p{max-width:36ch;color:rgba(246,242,239,.86);margin:0 0 34px;font-size:18px}
+.gather .btn{color:var(--g)}
+.gather .btn:hover{background:var(--g);color:var(--x)}
+
+/* reserve */
+.reserve{padding-block:clamp(120px,18vh,200px)}
+.reserve-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(40px,7vh,80px)}
+.reserve-head h2{font-size:clamp(60px,8vw,140px);margin-top:22px}
+.reserve-head p{color:var(--mut);max-width:30ch;margin:0}
+.sentence{font:400 clamp(30px,4.2vw,70px)/1.42 var(--serif);letter-spacing:-.01em;max-width:1240px}
+.sentence p{margin:0}
+.fill{display:inline-block;vertical-align:baseline;position:relative;margin:0 .14em}
+.fill input,.fill select{appearance:none;-webkit-appearance:none;border:0;border-bottom:1px solid var(--acc);background:transparent;font:inherit;line-height:1.1;padding:0 .1em .04em;border-radius:0;color:var(--acc);min-width:1.4em;max-width:86vw;cursor:pointer;transition:border-color .3s,color .3s}
+.fill select{padding-right:.7em;background:linear-gradient(45deg,transparent 50%,var(--acc) 50%) right .12em top 55%/.22em .22em no-repeat,linear-gradient(-45deg,transparent 50%,var(--acc) 50%) right 0 top 55%/.22em .22em no-repeat}
+.fill select option{font:400 17px var(--sans);color:var(--x);background:var(--g)}
+.fill input::placeholder{color:var(--mut);opacity:1}
+.fill input[type=date]{width:6.4em;max-width:none}
+.fill input[type=date]::-webkit-calendar-picker-indicator{width:.5em;height:.5em;opacity:.7;cursor:pointer;filter:invert(.6) sepia(1) saturate(3) hue-rotate(-20deg)}
+.fill select{width:auto}
+.fill input:focus,.fill select:focus{outline:none;border-bottom-width:2px;color:var(--fg)}
+.fill.bad input,.fill.bad select{border-bottom-color:#E07A5F;color:#E07A5F}
+.notes{margin-top:22px!important;font:300 18px/1.5 var(--sans)!important}
+.notes input{width:100%;max-width:640px;border:0;border-bottom:1px solid var(--line);background:transparent;padding:10px 0;font:inherit}
+.notes input:focus{outline:none;border-bottom-color:var(--acc)}
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:44px}
+.send .msg{font-size:15px;color:var(--mut);margin:0}
+.send .msg.err{color:#E8957E}
+.done{display:none}
+.reserve.ok .sentence,.reserve.ok .send,.reserve.ok .notes{display:none}
+.reserve.ok .done{display:block}
+.done h3{font-size:clamp(56px,7vw,120px);margin:0 0 18px}
+.done p{color:var(--mut);font-size:18px;max-width:46ch}
+.done .btn{margin-top:20px}
+
+/* visit */
+.visit{padding-block:clamp(110px,16vh,170px) 0;overflow:hidden}
+.visit h2{font-size:clamp(70px,11vw,190px)}
+.visit-sub{font:400 clamp(26px,2.6vw,40px)/1.1 var(--serif);color:var(--mut);margin:14px 0 0}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:clamp(60px,10vh,110px);border-top:1px solid var(--line);padding-top:30px}
+.cols div{min-width:0}
+.cols .lab{margin-bottom:14px}
+.cols p{margin:0;font:400 24px/1.3 var(--serif)}
+.cols a{text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .3s}
+.cols a:hover{border-color:var(--acc)}
+.cols ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font:400 24px/1.3 var(--serif)}
+.mega{display:block;width:100%;margin-top:clamp(70px,12vh,140px);color:var(--acc);opacity:.22}
+.mega svg{width:100%;height:auto;fill:currentColor;display:block}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px calc(96px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--mut);border-top:1px solid var(--line)}
+@media (max-width:900px){.cols{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.cols{grid-template-columns:1fr}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  .manifesto .w{opacity:1}
+  .fire{height:auto}.fire-pin{position:relative}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sym" viewBox="898 436 124 120"><g><g transform="translate(0 0) scale(1)"><path d="M 972.78125 526.203125 L 973.980469 525.214844 C 978.652344 521.164062 981.527344 515.421875 981.964844 509.253906 C 983.082031 495.09375 972.914062 486.863281 965.871094 476.195312 C 962.09375 470.464844 959.40625 463.578125 959.183594 456.6875 C 959.144531 455.476562 959.300781 454.199219 959.277344 452.980469 L 959.15625 452.855469 C 953.59375 461.066406 950.492188 468.808594 952.3125 479.015625 C 953.875 487.769531 958.964844 493.300781 964.3125 499.964844 C 970.488281 507.652344 973.265625 516.3125 972.78125 526.203125 M 966.320312 440.539062 L 966.535156 440.589844 C 966.550781 440.863281 966.578125 440.796875 966.496094 441.007812 C 965.710938 443.097656 965.007812 445.21875 964.378906 447.363281 C 961.03125 459.253906 965.320312 469.792969 972.757812 478.929688 C 981.742188 489.964844 989.132812 500.714844 984.734375 515.753906 C 982.785156 522.398438 978.257812 527.980469 972.160156 531.253906 C 971.210938 536.335938 968.746094 541.007812 965.089844 544.664062 C 960.265625 549.398438 954.460938 551.167969 947.824219 551.105469 C 950.054688 546.085938 952.664062 547.417969 956.871094 545.472656 C 962.660156 542.792969 965.238281 538.914062 967.429688 533.257812 C 966.417969 533.535156 965.390625 533.761719 964.359375 533.945312 C 950.828125 536.335938 936.875 528.398438 934.5625 514.304688 C 933.183594 505.90625 936.125 498.289062 940.90625 491.480469 C 942.335938 489.480469 943.566406 488.308594 945.324219 486.5625 C 946.214844 492.808594 948.441406 498.964844 953.625 502.820312 C 955.355469 504.152344 957.265625 505.1875 958.976562 506.550781 C 962.027344 508.976562 963.53125 512.894531 960.746094 516.1875 C 958.554688 510.179688 956.257812 509.84375 951.691406 506.472656 C 947.71875 503.597656 944.777344 499.515625 943.304688 494.835938 C 941.976562 497.164062 940.894531 498.839844 939.925781 501.429688 C 937.890625 506.886719 937.4375 512.894531 939.875 518.296875 C 942.1875 523.414062 946.671875 527.1875 951.886719 529.113281 C 957.324219 531.0625 963.304688 530.8125 968.554688 528.417969 C 969.097656 523.011719 968.9375 519.785156 967.519531 514.464844 C 964.410156 502.714844 953.96875 496.816406 949.902344 485.398438 C 944.796875 471.066406 949.554688 456.976562 959.492188 446.15625 C 961.367188 444.117188 963.714844 441.5 966.320312 440.539062 "/><path d="M 973.671875 443.628906 C 977.035156 444.234375 982.902344 446.632812 985.9375 448.222656 C 998.890625 455.023438 1008.609375 466.691406 1012.957031 480.660156 C 1017.222656 494.363281 1015.878906 509.199219 1009.222656 521.910156 C 1002.324219 534.964844 990.535156 544.75 976.4375 549.125 L 974.070312 549.820312 L 974.097656 545.597656 C 978.601562 544.21875 981.730469 543.078125 985.878906 540.660156 C 997.601562 533.859375 1006.167969 522.703125 1009.710938 509.617188 C 1013.148438 496.671875 1011.273438 482.886719 1004.503906 471.324219 C 997.226562 458.953125 986.429688 451.035156 972.613281 447.453125 C 973.003906 446.144531 973.351562 444.960938 973.671875 443.628906 "/><path d="M 947.871094 443.359375 C 947.992188 443.707031 947.914062 446.914062 947.914062 447.4375 C 945.472656 447.878906 941.769531 449.230469 939.5 450.21875 C 926.996094 455.660156 917.191406 465.875 912.261719 478.589844 C 907.5 490.835938 907.75 504.460938 912.953125 516.523438 C 917.589844 527.117188 925.605469 535.875 935.75 541.429688 C 938.421875 542.878906 941.09375 543.917969 943.917969 545.023438 C 943.164062 546.152344 942.453125 547.304688 941.78125 548.480469 L 940.542969 548.054688 C 936.875 546.632812 933.363281 544.835938 930.0625 542.691406 C 917.796875 534.789062 909.15625 522.351562 906.035156 508.097656 C 903.039062 493.976562 905.769531 479.242188 913.628906 467.132812 C 921.464844 455.003906 933.769531 446.460938 947.871094 443.359375 "/></g></g></symbol>
+    <symbol id="logo" viewBox="832 532 330 116"><g><g transform="translate(64.4 163.44) scale(0.86)"><path d="M 972.78125 526.203125 L 973.980469 525.214844 C 978.652344 521.164062 981.527344 515.421875 981.964844 509.253906 C 983.082031 495.09375 972.914062 486.863281 965.871094 476.195312 C 962.09375 470.464844 959.40625 463.578125 959.183594 456.6875 C 959.144531 455.476562 959.300781 454.199219 959.277344 452.980469 L 959.15625 452.855469 C 953.59375 461.066406 950.492188 468.808594 952.3125 479.015625 C 953.875 487.769531 958.964844 493.300781 964.3125 499.964844 C 970.488281 507.652344 973.265625 516.3125 972.78125 526.203125 M 966.320312 440.539062 L 966.535156 440.589844 C 966.550781 440.863281 966.578125 440.796875 966.496094 441.007812 C 965.710938 443.097656 965.007812 445.21875 964.378906 447.363281 C 961.03125 459.253906 965.320312 469.792969 972.757812 478.929688 C 981.742188 489.964844 989.132812 500.714844 984.734375 515.753906 C 982.785156 522.398438 978.257812 527.980469 972.160156 531.253906 C 971.210938 536.335938 968.746094 541.007812 965.089844 544.664062 C 960.265625 549.398438 954.460938 551.167969 947.824219 551.105469 C 950.054688 546.085938 952.664062 547.417969 956.871094 545.472656 C 962.660156 542.792969 965.238281 538.914062 967.429688 533.257812 C 966.417969 533.535156 965.390625 533.761719 964.359375 533.945312 C 950.828125 536.335938 936.875 528.398438 934.5625 514.304688 C 933.183594 505.90625 936.125 498.289062 940.90625 491.480469 C 942.335938 489.480469 943.566406 488.308594 945.324219 486.5625 C 946.214844 492.808594 948.441406 498.964844 953.625 502.820312 C 955.355469 504.152344 957.265625 505.1875 958.976562 506.550781 C 962.027344 508.976562 963.53125 512.894531 960.746094 516.1875 C 958.554688 510.179688 956.257812 509.84375 951.691406 506.472656 C 947.71875 503.597656 944.777344 499.515625 943.304688 494.835938 C 941.976562 497.164062 940.894531 498.839844 939.925781 501.429688 C 937.890625 506.886719 937.4375 512.894531 939.875 518.296875 C 942.1875 523.414062 946.671875 527.1875 951.886719 529.113281 C 957.324219 531.0625 963.304688 530.8125 968.554688 528.417969 C 969.097656 523.011719 968.9375 519.785156 967.519531 514.464844 C 964.410156 502.714844 953.96875 496.816406 949.902344 485.398438 C 944.796875 471.066406 949.554688 456.976562 959.492188 446.15625 C 961.367188 444.117188 963.714844 441.5 966.320312 440.539062 "/><path d="M 973.671875 443.628906 C 977.035156 444.234375 982.902344 446.632812 985.9375 448.222656 C 998.890625 455.023438 1008.609375 466.691406 1012.957031 480.660156 C 1017.222656 494.363281 1015.878906 509.199219 1009.222656 521.910156 C 1002.324219 534.964844 990.535156 544.75 976.4375 549.125 L 974.070312 549.820312 L 974.097656 545.597656 C 978.601562 544.21875 981.730469 543.078125 985.878906 540.660156 C 997.601562 533.859375 1006.167969 522.703125 1009.710938 509.617188 C 1013.148438 496.671875 1011.273438 482.886719 1004.503906 471.324219 C 997.226562 458.953125 986.429688 451.035156 972.613281 447.453125 C 973.003906 446.144531 973.351562 444.960938 973.671875 443.628906 "/><path d="M 947.871094 443.359375 C 947.992188 443.707031 947.914062 446.914062 947.914062 447.4375 C 945.472656 447.878906 941.769531 449.230469 939.5 450.21875 C 926.996094 455.660156 917.191406 465.875 912.261719 478.589844 C 907.5 490.835938 907.75 504.460938 912.953125 516.523438 C 917.589844 527.117188 925.605469 535.875 935.75 541.429688 C 938.421875 542.878906 941.09375 543.917969 943.917969 545.023438 C 943.164062 546.152344 942.453125 547.304688 941.78125 548.480469 L 940.542969 548.054688 C 936.875 546.632812 933.363281 544.835938 930.0625 542.691406 C 917.796875 534.789062 909.15625 522.351562 906.035156 508.097656 C 903.039062 493.976562 905.769531 479.242188 913.628906 467.132812 C 921.464844 455.003906 933.769531 446.460938 947.871094 443.359375 "/></g><g transform="translate(92 -12) scale(1)"><path d="M 919.972656 609.914062 C 922.09375 609.632812 923.707031 609.324219 925.609375 608.257812 C 931.859375 604.742188 933.945312 597.398438 934.023438 590.6875 C 934.152344 579.730469 927.902344 566.609375 915.050781 568.089844 C 894.269531 570.972656 897.398438 608.011719 917.167969 609.886719 C 918.070312 609.972656 919.0625 609.949219 919.972656 609.914062 M 916.574219 565.382812 C 929.621094 564.867188 940.609375 575.03125 941.105469 588.078125 C 941.601562 601.125 931.421875 612.097656 918.375 612.574219 C 905.355469 613.050781 894.410156 602.894531 893.914062 589.878906 C 893.417969 576.859375 903.558594 565.898438 916.574219 565.382812 "/><path d="M 1029.679688 565.960938 C 1038.796875 565.761719 1048.644531 565.949219 1057.820312 565.949219 C 1057.921875 567.460938 1058.695312 572.359375 1058.546875 573.4375 C 1058.125 573.667969 1058.066406 573.722656 1057.570312 573.785156 C 1057.292969 573.378906 1057.050781 572.578125 1056.789062 572.066406 C 1054.800781 568.140625 1050.28125 568.660156 1046.34375 568.671875 L 1038.5625 568.691406 L 1038.558594 586.828125 C 1041.382812 586.726562 1049.476562 587.453125 1051.457031 585.878906 C 1052.378906 585.144531 1052.390625 583.835938 1053.273438 583.125 L 1053.453125 583.164062 C 1053.832031 583.84375 1053.8125 592.195312 1053.652344 593.113281 C 1053.371094 593.363281 1053.265625 593.3125 1052.835938 593.40625 C 1052.753906 593.371094 1052.660156 593.367188 1052.597656 593.304688 C 1052.429688 593.144531 1052.246094 591.234375 1051.40625 590.449219 C 1049.8125 588.957031 1041.121094 589.484375 1038.5625 589.492188 C 1038.605469 591.601562 1038.566406 593.851562 1038.566406 595.976562 C 1038.5625 599.882812 1038.445312 604.792969 1038.664062 608.652344 C 1042.121094 609.242188 1050.195312 609.128906 1053.78125 608.699219 C 1057.597656 608.25 1058.757812 605.902344 1060.65625 603.203125 L 1060.898438 603.160156 C 1061.285156 603.285156 1061.4375 603.296875 1061.710938 603.597656 C 1061.601562 604.484375 1060.949219 606.191406 1060.640625 607.15625 C 1060.160156 608.648438 1059.71875 610.152344 1059.308594 611.667969 C 1056.453125 611.617188 1030.300781 611.824219 1029.738281 611.464844 C 1029.722656 610.417969 1031.929688 609.671875 1032.148438 608.921875 C 1032.941406 606.199219 1032.597656 601.335938 1032.59375 598.621094 L 1032.59375 583.679688 L 1032.605469 575.023438 C 1032.609375 571.652344 1033.328125 568.164062 1029.921875 566.925781 C 1029.609375 566.8125 1029.6875 566.261719 1029.679688 565.960938 "/><path d="M 972.050781 604.144531 C 972.601562 602.148438 974.5 597.664062 975.328125 595.558594 L 981.976562 578.695312 C 983.074219 575.898438 984.246094 573.257812 984.957031 570.324219 C 985.625 567.570312 982.566406 567.40625 983.03125 566.046875 C 984.25 565.898438 990.726562 565.90625 992.117188 566.003906 L 992.242188 566.207031 C 992.132812 567.367188 990.882812 567.402344 989.738281 568.597656 C 988.566406 569.992188 986.878906 574.617188 986.078125 576.582031 L 982.277344 585.925781 L 971.09375 612.886719 L 969.492188 612.882812 C 965.152344 602.753906 960.867188 592.601562 956.636719 582.421875 C 954.847656 578.152344 953.082031 573.453125 951.050781 569.273438 C 950.492188 568.125 949.394531 567.71875 948.410156 567.054688 C 948.050781 566.8125 948.15625 566.34375 948.148438 565.945312 C 949.746094 565.976562 958.894531 565.777344 959.726562 566.074219 C 959.90625 566.957031 958.199219 567.664062 957.953125 568.394531 C 957.457031 569.863281 958.789062 572.316406 959.351562 573.65625 L 961.910156 579.769531 L 968.351562 595.277344 C 969.546875 598.140625 970.960938 601.277344 972.050781 604.144531 "/><path d="M 870.1875 565.960938 L 877.5625 565.945312 C 878.773438 565.945312 880.847656 565.882812 881.988281 566.03125 C 882.246094 566.414062 882.195312 566.210938 882.183594 566.652344 C 881.628906 567.441406 879.746094 567.292969 879.414062 569.5625 C 879.019531 572.277344 879.175781 574.933594 879.179688 577.667969 L 879.179688 594 C 879.1875 596.523438 879.15625 599.234375 879.222656 601.738281 C 879.492188 612.25 872.984375 619.355469 862.167969 616.746094 C 860.390625 616.101562 859.59375 615.761719 858.289062 614.378906 C 858.5625 612.902344 859.546875 609.027344 861.296875 608.921875 L 861.472656 609.128906 C 861.492188 609.460938 861.523438 609.792969 861.570312 610.121094 C 862.054688 613.789062 864.9375 615.265625 868.449219 614.765625 C 871.929688 614.273438 872.640625 610.519531 872.90625 607.617188 C 873.234375 604.035156 873.191406 600.394531 873.195312 596.777344 L 873.199219 582.472656 C 873.199219 578.457031 873.34375 573.519531 872.980469 569.519531 C 872.878906 568.359375 871.371094 567.378906 870.472656 566.945312 C 870.128906 566.777344 870.203125 566.382812 870.1875 565.960938 "/><path d="M 1002.894531 565.949219 C 1004.34375 565.949219 1014.023438 565.824219 1014.652344 566.109375 C 1014.761719 567.0625 1012.46875 567.757812 1012.21875 568.613281 C 1011.386719 571.496094 1011.71875 576.453125 1011.71875 579.410156 L 1011.71875 594.566406 L 1011.714844 602.488281 C 1011.707031 605.742188 1011.042969 609.300781 1014.402344 610.671875 C 1014.738281 610.808594 1014.660156 611.339844 1014.667969 611.660156 C 1013.105469 611.65625 1003.453125 611.824219 1002.933594 611.4375 C 1002.992188 610.488281 1004.996094 609.8125 1005.230469 609.152344 C 1006.121094 606.636719 1005.777344 601.574219 1005.777344 598.996094 L 1005.785156 584.4375 L 1005.789062 575.011719 C 1005.785156 571.777344 1006.445312 568.316406 1003.191406 566.929688 C 1002.855469 566.785156 1002.914062 566.28125 1002.894531 565.949219 "/></g><g transform="translate(92 -12) scale(1)"><path d="M 889.707031 637.523438 C 891.476562 637.523438 892.816406 637.726562 894.261719 636.605469 C 895.074219 635.640625 895.539062 634.644531 895.3125 633.367188 C 894.761719 630.273438 892.109375 630.394531 889.761719 630.410156 C 889.570312 632.128906 889.714844 635.714844 889.707031 637.523438 M 887.84375 628.714844 C 890.570312 628.796875 893.503906 628.164062 895.667969 630.125 C 896.703125 631.070312 897.304688 632.394531 897.335938 633.796875 C 897.382812 635.488281 896.761719 636.664062 895.652344 637.851562 C 893.460938 639.644531 890.578125 639.242188 887.839844 639.21875 Z M 887.84375 628.714844 "/><path d="M 961.0625 633.917969 C 962.496094 633.9375 964.261719 634.136719 965.449219 633.390625 C 967.609375 630.113281 962.839844 630.414062 961.058594 630.429688 Z M 959.214844 628.722656 C 962.257812 628.773438 969.28125 627.648438 967.566406 633.445312 C 967.292969 634.371094 966.246094 634.894531 965.398438 635.222656 C 966.339844 636.53125 967.253906 637.855469 968.148438 639.199219 L 966.613281 639.214844 C 965.488281 639.1875 964.109375 636.582031 963.460938 635.589844 L 961.0625 635.566406 L 961.070312 639.238281 L 959.199219 639.207031 C 959.261719 635.765625 959.210938 632.171875 959.214844 628.722656 "/><path d="M 914.28125 628.71875 L 916.144531 628.722656 C 916.152344 631.832031 916.160156 634.941406 916.160156 638.050781 C 916.160156 638.605469 916.238281 638.914062 915.929688 639.21875 L 914.535156 639.203125 C 912.753906 636.988281 910.316406 633.992188 908.738281 631.703125 C 908.910156 633.789062 908.808594 637.054688 908.804688 639.226562 L 906.921875 639.214844 C 906.980469 635.789062 906.925781 632.1875 906.925781 628.75 L 908.699219 628.746094 C 910.253906 630.757812 912.628906 633.984375 914.277344 635.816406 C 914.296875 633.449219 914.296875 631.085938 914.28125 628.71875 "/><path d="M 933.542969 628.726562 L 935.40625 628.722656 C 935.375 630.160156 935.589844 638.449219 935.324219 639.164062 L 935.035156 639.203125 L 933.742188 639.203125 C 931.972656 636.703125 929.734375 634.226562 928.035156 631.679688 C 928.203125 634.019531 928.125 636.835938 928.125 639.214844 L 926.246094 639.210938 L 926.242188 628.730469 L 927.988281 628.726562 C 929.8125 631.089844 931.667969 633.546875 933.546875 635.855469 Z M 933.542969 628.726562 "/><path d="M 1003.714844 635.078125 L 1005.886719 635.066406 L 1007.355469 635.082031 C 1007.085938 634.464844 1005.773438 631.335938 1005.480469 630.957031 C 1004.890625 632.308594 1004.265625 633.714844 1003.714844 635.078125 M 1004.660156 628.625 L 1006.417969 628.605469 L 1011.125 639.210938 L 1009.140625 639.222656 C 1008.765625 638.460938 1008.378906 637.507812 1008.035156 636.71875 L 1006.316406 636.726562 L 1002.992188 636.734375 C 1002.675781 637.582031 1002.304688 638.394531 1001.941406 639.222656 C 1001.273438 639.21875 1000.59375 639.226562 999.929688 639.230469 C 1001.445312 636.265625 1003.222656 631.769531 1004.660156 628.625 "/><path d="M 943.816406 628.550781 C 945.929688 628.464844 946.816406 628.804688 948.484375 629.980469 L 947.25 631.410156 C 945.097656 629.765625 942.25 629.753906 941.195312 632.589844 C 940.824219 633.582031 940.863281 634.683594 941.308594 635.652344 C 942.453125 638.167969 944.832031 637.949219 946.957031 636.917969 L 946.96875 634.949219 L 944.277344 634.988281 L 944.289062 633.34375 C 945.777344 633.347656 947.265625 633.339844 948.753906 633.316406 L 948.75 637.832031 C 948.007812 638.425781 947.15625 638.871094 946.242188 639.144531 C 938.800781 641.332031 935.480469 630.390625 943.816406 628.550781 "/><path d="M 995.519531 628.730469 C 996.023438 628.71875 996.828125 628.621094 997.230469 628.855469 C 997.496094 629.242188 997.40625 629.65625 997.390625 630.152344 C 997.414062 632.332031 997.789062 637.121094 996.238281 638.171875 C 991.191406 641.589844 987.523438 637.71875 988.367188 632.382812 C 988.472656 631.710938 988.386719 629.363281 988.394531 628.75 L 990.285156 628.746094 C 990.28125 630.148438 989.851562 636.066406 991 636.808594 C 996.679688 640.480469 995.539062 631.6875 995.519531 628.730469 "/><path d="M 1027.773438 628.550781 C 1029.671875 628.492188 1030.621094 628.882812 1032.125 629.890625 L 1031.078125 631.3125 C 1029.773438 630.46875 1028.304688 629.953125 1026.730469 630.632812 C 1026.378906 630.785156 1026.363281 630.992188 1026.292969 631.316406 C 1026.914062 634.035156 1032.417969 632.382812 1032.386719 636.109375 C 1032.363281 638.722656 1030.375 639.34375 1028.152344 639.355469 C 1026.25 639.113281 1025.667969 638.800781 1024.128906 637.703125 L 1025.28125 636.320312 C 1026.097656 636.96875 1026.890625 637.4375 1027.9375 637.632812 C 1028.957031 637.820312 1030.515625 637.5 1030.667969 636.261719 C 1030.03125 634.621094 1024.914062 634.910156 1024.570312 632.257812 C 1024.273438 629.933594 1025.730469 628.960938 1027.773438 628.550781 "/><path d="M 976.714844 628.710938 L 985.277344 628.714844 L 985.277344 630.445312 C 984.183594 630.480469 983.003906 630.4375 981.90625 630.421875 L 981.910156 636.296875 L 981.914062 639.234375 C 981.339844 639.199219 980.636719 639.222656 980.054688 639.230469 C 980.015625 636.324219 980.039062 633.363281 980.03125 630.453125 C 978.917969 630.460938 977.804688 630.453125 976.6875 630.433594 Z M 976.714844 628.710938 "/><path d="M 1014.171875 628.746094 L 1016.054688 628.734375 L 1016.042969 637.53125 C 1017.664062 637.433594 1019.925781 637.503906 1021.59375 637.507812 C 1021.589844 638.085938 1021.691406 638.789062 1021.4375 639.210938 C 1019.039062 639.21875 1016.578125 639.257812 1014.1875 639.1875 Z M 1014.171875 628.746094 "/><path d="M 920.253906 628.710938 L 922.132812 628.714844 C 922.121094 631.011719 922.125 633.3125 922.136719 635.609375 C 922.140625 636.515625 922.1875 638.375 922.054688 639.222656 L 920.238281 639.21875 C 920.296875 635.769531 920.253906 632.171875 920.253906 628.710938 "/><path d="M 900.976562 628.734375 L 902.816406 628.722656 L 902.808594 639.207031 L 900.945312 639.207031 Z M 900.976562 628.734375 "/><path d="M 971.449219 628.71875 L 973.335938 628.730469 C 973.316406 630.015625 973.476562 638.582031 973.226562 639.21875 L 971.460938 639.222656 C 971.480469 635.722656 971.476562 632.21875 971.449219 628.71875 "/></g></g></symbol>
+    <symbol id="arr" viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <a class="logo" href="#top" aria-label="JOVIE Dining Rituals home"><svg><use href="#logo"/></svg></a>
+  <nav class="nav" aria-label="Main">
+    <a href="#day">The day</a>
+    <a href="#rituals">Rituals</a>
+    <a href="#menu">Menu</a>
+    <a href="#room">The room</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <p class="status" data-status aria-live="polite"><i></i><span>Karachi</span></p>
+  <a class="btn btn-fill" href="#reserve">Reserve</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a href="#day">The day</a>
+  <a href="#rituals">Rituals</a>
+  <a href="#menu">Menu</a>
+  <a href="#room">The room</a>
+  <a href="#reserve">Reserve</a>
+  <p class="status" data-status><i></i><span>Karachi</span></p>
+</div>
+
+<div class="dial" id="dial" aria-hidden="true">
+  <svg viewBox="0 0 58 58">
+    <circle class="ring" cx="29" cy="29" r="28"/>
+    <line class="tick" x1="29.00" y1="5.00" x2="29.00" y2="2.00"/><line class="tick" x1="41.00" y1="8.22" x2="42.50" y2="5.62"/><line class="tick" x1="49.78" y1="17.00" x2="52.38" y2="15.50"/><line class="tick" x1="53.00" y1="29.00" x2="56.00" y2="29.00"/><line class="tick" x1="49.78" y1="41.00" x2="52.38" y2="42.50"/><line class="tick" x1="41.00" y1="49.78" x2="42.50" y2="52.38"/><line class="tick" x1="29.00" y1="53.00" x2="29.00" y2="56.00"/><line class="tick" x1="17.00" y1="49.78" x2="15.50" y2="52.38"/><line class="tick" x1="8.22" y1="41.00" x2="5.62" y2="42.50"/><line class="tick" x1="5.00" y1="29.00" x2="2.00" y2="29.00"/><line class="tick" x1="8.22" y1="17.00" x2="5.62" y2="15.50"/><line class="tick" x1="17.00" y1="8.22" x2="15.50" y2="5.62"/>
+    <circle class="arc" id="arc" cx="29" cy="29" r="28" pathLength="100" stroke-dasharray="0 100"/>
+    <line class="hand" id="hand" x1="29" y1="29" x2="29" y2="9"/>
+  </svg>
+  <div><p id="dialTime">12:00 pm</p><small>At JOVIE</small></div>
+</div>
+
+<main id="main">
+<section class="hero" id="top" data-sky="#231F20" aria-labelledby="h1">
+  <img class="poster" src="assets/hero-poster.webp" alt="" fetchpriority="high">
+  <video id="heroVid" muted loop playsinline preload="none" poster="assets/hero-poster.webp" aria-hidden="true"></video>
+  <div class="hero-in">
+    <p class="lab hero-k">JOVIE · Dining Rituals · Karachi</p>
+    <h1 class="disp" id="h1"><span class="l"><span>Noon<svg class="sym" aria-hidden="true"><use href="#sym"/></svg></span></span><span class="l l2"><span>to midnight</span></span></h1>
+    <div class="hero-row">
+      <p>Mediterranean dining over olive wood<br>six small rituals every day from 12 pm to 12 am</p>
+      <div class="acts">
+        <a class="btn btn-fill" href="#reserve">Reserve a table<svg><use href="#arr"/></svg></a>
+        <a class="btn btn-ghost" href="#day">Begin the day</a>
+      </div>
+    </div>
+  </div>
+  <div class="day-bar" aria-hidden="true"><span>12 pm</span><span class="ln"></span><span>12 am</span></div>
+</section>
+
+<section class="day wrap" id="day" data-sky="#F6F2EF" aria-label="The day at JOVIE">
+  <p class="lab stamp">12 pm · The doors open</p>
+  <p class="manifesto" id="manifesto">We open the doors at noon and close them at midnight · in between there is one long table · an <em>olive-wood fire</em> · and six small rituals that nobody rushes</p>
+  <div class="day-foot">
+    <div class="rv"><b>12 hours</b><span>Open every day from noon to midnight</span></div>
+    <div class="rv"><b>6 rituals</b><span>From the first welcome to the last cup of tea</span></div>
+    <div class="rv"><b>1 fire</b><span>Olive wood at the heart of the kitchen</span></div>
+  </div>
+</section>
+
+<section class="rituals" id="rituals" data-sky="#ECE1D5" aria-labelledby="rit-title">
+  <div class="rit-pin">
+    <div class="rit-track" id="ritTrack">
+      <div class="rit-intro">
+        <p class="lab stamp">Afternoon into evening</p>
+        <h2 class="disp" id="rit-title" style="margin-top:26px">Six<br>rituals</h2>
+        <p>An evening at JOVIE moves in six small steps · keep scrolling and walk through them</p>
+        <div class="rit-meter" aria-hidden="true"><span id="ritNow">01</span><span class="bar"><i id="ritBar"></i></span><span>06</span></div>
+      </div>
+      <article class="rit" aria-label="Ritual 01 Arrive">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">01</span>
+          <h3 class="disp">Arrive</h3>
+          <p class="line">Come in and be welcome</p>
+          <p class="body">A warm hello at the door<br>and a cold mint lemonade</p>
+          <p class="lab where">Ritual 01 · The lobby</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-arrive.webp" alt="A couple is welcomed by a host under the terracotta arches of the JOVIE lobby" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The lobby</figcaption></figure>
+      </article>
+      <article class="rit" aria-label="Ritual 02 Starter">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">02</span>
+          <h3 class="disp">Starter</h3>
+          <p class="line">It starts with bread</p>
+          <p class="body">Hummus and mezze<br>with bread straight from the oven</p>
+          <p class="lab where">Ritual 02 · The dining hall</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-starter.webp" alt="Hands tear za’atar flatbread on a stone table" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The dining hall</figcaption></figure>
+      </article>
+      <article class="rit" aria-label="Ritual 03 Preparation">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">03</span>
+          <h3 class="disp">Preparation</h3>
+          <p class="line">Good things take time</p>
+          <p class="body">Pizza from the wood-fire oven<br>and grills over olive wood</p>
+          <p class="lab where">Ritual 03 · The wood-fire kitchen</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-preparation.webp" alt="A copper wood-fire oven glows in the open kitchen" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The wood-fire kitchen</figcaption></figure>
+      </article>
+      <article class="rit" aria-label="Ritual 04 Share">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">04</span>
+          <h3 class="disp">Share</h3>
+          <p class="line">Better together</p>
+          <p class="body">Platters for the middle of the table<br>everyone tastes everything</p>
+          <p class="lab where">Ritual 04 · The private dining room</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-share.webp" alt="Plates passed across a long table in the private dining room" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The private dining room</figcaption></figure>
+      </article>
+      <article class="rit" aria-label="Ritual 05 Dessert">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">05</span>
+          <h3 class="disp">Dessert</h3>
+          <p class="line">End on something sweet</p>
+          <p class="body">Kunafa · tiramisu<br>and a molten lava cake</p>
+          <p class="lab where">Ritual 05 · The juice bar</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-dessert.webp" alt="A pistachio dessert and fresh orange juice at the juice bar" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The juice bar</figcaption></figure>
+      </article>
+      <article class="rit" aria-label="Ritual 06 Stay">
+        <div class="rit-txt">
+          <span class="rit-num" aria-hidden="true">06</span>
+          <h3 class="disp">Stay</h3>
+          <p class="line">Stay a little longer</p>
+          <p class="body">Cappuccino and tea on the deck<br>nobody rushes the table</p>
+          <p class="lab where">Ritual 06 · The outdoor deck</p>
+        </div>
+        <figure class="rit-img" style="margin:0"><img src="assets/r-stay.webp" alt="Mint tea glasses on a stone table on the outdoor deck" width="1200" height="1494" loading="lazy" decoding="async"><figcaption>The outdoor deck</figcaption></figure>
+      </article>
+      <div class="rit-end">
+        <p>Your table is set<br>from noon</p>
+        <a class="btn btn-ghost" href="#reserve" style="align-self:flex-start">Reserve a table<svg><use href="#arr"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fire" id="fire" data-sky="#231F20" aria-labelledby="fire-title">
+  <div class="fire-pin">
+    <img class="fp" src="assets/fire-poster.webp" alt="The copper wood-fire oven glowing in the JOVIE kitchen" loading="lazy">
+    <canvas id="fireCv" aria-hidden="true"></canvas>
+    <div class="ticker" id="ticker" aria-hidden="true">olive wood · fire · time · olive wood · fire · time · olive wood · fire · time ·</div>
+    <div class="fire-cap">
+      <div>
+        <p class="lab">The fire</p>
+        <h2 class="disp" id="fire-title">Good things<br>take time</h2>
+      </div>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#sym"/></svg>Pizza from the wood-fire oven</li>
+        <li><svg aria-hidden="true"><use href="#sym"/></svg>Grills over olive wood</li>
+        <li><svg aria-hidden="true"><use href="#sym"/></svg>Bread straight from the oven</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="menu wrap" id="menu" data-sky="#56351E" aria-labelledby="menu-title">
+  <div class="menu-head">
+    <div class="rv">
+      <p class="lab stamp">Dinner</p>
+      <h2 class="disp" id="menu-title">A taste of<br>the table</h2>
+    </div>
+    <p class="rv">Familiar favourites and Italian classics cooked over the fire · the full menu waits at your table</p>
+  </div>
+  <ul class="courses" id="courses">
+    <li class="course rv"><p class="lab"><small>Arrive</small>Ritual 01</p><ul class="dishes"><li class="dish" data-img="assets/r-arrive.webp">Mint lemonade</li></ul></li>
+    <li class="course rv"><p class="lab"><small>Starter</small>Ritual 02</p><ul class="dishes"><li class="dish" data-img="assets/r-starter.webp">Hummus</li><li class="dish" data-img="assets/r-starter.webp">Mezze platter</li><li class="dish" data-img="assets/r-starter.webp">Bread from the oven</li></ul></li>
+    <li class="course rv"><p class="lab"><small>Preparation</small>Ritual 03</p><ul class="dishes"><li class="dish" data-img="assets/r-preparation.webp">Wood-fired Margherita</li><li class="dish" data-img="assets/r-preparation.webp">Beef pepper steak</li><li class="dish" data-img="assets/r-preparation.webp">Shish tawook</li><li class="dish" data-img="assets/r-preparation.webp">Lamb chops</li></ul></li>
+    <li class="course rv"><p class="lab"><small>Share</small>Ritual 04</p><ul class="dishes"><li class="dish" data-img="assets/r-share.webp">Mixed grill platter</li><li class="dish" data-img="assets/r-share.webp">Pizza for the table</li><li class="dish" data-img="assets/r-share.webp">Fettuccine Alfredo</li></ul></li>
+    <li class="course rv"><p class="lab"><small>Dessert</small>Ritual 05</p><ul class="dishes"><li class="dish" data-img="assets/r-dessert.webp">Kunafa</li><li class="dish" data-img="assets/r-dessert.webp">Tiramisu</li><li class="dish" data-img="assets/r-dessert.webp">Molten lava cake</li></ul></li>
+    <li class="course rv"><p class="lab"><small>Stay</small>Ritual 06</p><ul class="dishes"><li class="dish" data-img="assets/r-stay.webp">Cappuccino</li><li class="dish" data-img="assets/r-stay.webp">Tea</li></ul></li>
+  </ul>
+  <div class="menu-note rv"><span>Ask your host about anything you do not see here</span><a class="btn btn-ghost" href="#reserve">Book your table<svg><use href="#arr"/></svg></a></div>
+  <div class="peek" id="peek" aria-hidden="true"><img alt="" id="peekImg"></div>
+</section>
+
+<section class="room wrap" id="room" data-sky="#2A2622" aria-labelledby="room-title">
+  <div class="room-head">
+    <div class="rv">
+      <p class="lab stamp">After dark</p>
+      <h2 class="disp" id="room-title">Arches · a mural · a deck under the sky</h2>
+    </div>
+    <p class="rv">Six corners of one house · pick where you want to sit when you book</p>
+  </div>
+  <div class="mosaic">
+    <figure class="tile t1 rv"><img src="assets/room-lobby.webp" alt="The JOVIE lobby with terracotta arched walls and the brass logo behind the reception desk" width="1800" height="1008" loading="lazy" decoding="async"><figcaption><b>Lobby</b><span>Terracotta arches and the brass sign</span></figcaption></figure>
+    <figure class="tile t2 rv"><img src="assets/room-dining.webp" alt="The dining hall with a tropical mural and rattan pendant lamps" width="1800" height="1016" loading="lazy" decoding="async"><figcaption><b>Dining hall</b><span>A tropical mural and rattan light</span></figcaption></figure>
+    <figure class="tile t3 rv"><img src="assets/room-private.webp" alt="The private dining room with one long table" width="1800" height="1012" loading="lazy" decoding="async"><figcaption><b>Private dining</b><span>One long table for the family</span></figcaption></figure>
+    <figure class="tile t5 rv"><img src="assets/room-deck.webp" alt="The outdoor deck with tables beside a lit water wall" width="1800" height="1038" loading="lazy" decoding="async"><figcaption><b>Outdoor deck</b><span>A water wall and warm lamps</span></figcaption></figure>
+    <figure class="tile t7 rv"><img src="assets/room-stair.webp" alt="A floating stair rising through a lit garden" width="1800" height="996" loading="lazy" decoding="async"><figcaption><b>Garden stair</b><span>Up through the green</span></figcaption></figure>
+    <figure class="tile t6 rv"><img src="assets/room-terrace.webp" alt="The JOVIE terrace under a timber lattice canopy at night" width="1800" height="1011" loading="lazy" decoding="async"><figcaption><b>The terrace</b><span>A timber canopy over the evening</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="gather wrap" id="gather" data-sky="#231F20" aria-labelledby="gather-title">
+  <img src="assets/gather.webp" srcset="assets/gather-900.webp 900w, assets/gather.webp 1800w, assets/gather-2880.webp 2880w" sizes="100vw" alt="A grandmother and a granddaughter share bread across a full table in the JOVIE dining hall" loading="lazy" id="gImg">
+  <div class="gather-in">
+    <p class="lab stamp rv">Together</p>
+    <h2 class="disp rv" id="gather-title">One long table<br>for the whole family</h2>
+    <p class="rv">Birthdays · family dinners · long lunches<br>the private dining room keeps everyone together</p>
+    <a class="btn btn-ghost rv" href="#reserve" data-occasion="Family gathering">Plan a gathering<svg><use href="#arr"/></svg></a>
+  </div>
+</section>
+
+<section class="reserve wrap" id="reserve" data-sky="#1C1819" aria-labelledby="res-title">
+  <div class="reserve-head">
+    <div>
+      <p class="lab stamp">Reserve</p>
+      <h2 class="disp" id="res-title">Save us<br>a seat</h2>
+    </div>
+    <p>Fill in the blanks · we send your request straight to the JOVIE team</p>
+  </div>
+  <form id="resForm" novalidate>
+    <div class="sentence">
+      <p>A table for <span class="fill"><label class="sr" for="f-guests">Guests</label><select id="f-guests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13+">13 or more</option></select></span> on <span class="fill"><label class="sr" for="f-date">Date</label><input id="f-date" name="date" type="date" required></span></p>
+      <p>at <span class="fill"><label class="sr" for="f-time">Time</label><select id="f-time" name="time"><option value="12:00">12:00 pm</option><option value="12:30">12:30 pm</option><option value="13:00">1:00 pm</option><option value="13:30">1:30 pm</option><option value="14:00">2:00 pm</option><option value="14:30">2:30 pm</option><option value="15:00">3:00 pm</option><option value="15:30">3:30 pm</option><option value="16:00">4:00 pm</option><option value="16:30">4:30 pm</option><option value="17:00">5:00 pm</option><option value="17:30">5:30 pm</option><option value="18:00">6:00 pm</option><option value="18:30">6:30 pm</option><option value="19:00">7:00 pm</option><option value="19:30">7:30 pm</option><option value="20:00" selected>8:00 pm</option><option value="20:30">8:30 pm</option><option value="21:00">9:00 pm</option><option value="21:30">9:30 pm</option><option value="22:00">10:00 pm</option><option value="22:30">10:30 pm</option><option value="23:00">11:00 pm</option></select></span> for <span class="fill"><label class="sr" for="f-occ">Occasion</label><select id="f-occ" name="occasion"><option value="Dinner">dinner</option><option value="Family gathering">a family gathering</option><option value="Birthday">a birthday</option><option value="Private dining">private dining</option><option value="Business">a business meal</option></select></span></p>
+      <p>in <span class="fill"><label class="sr" for="f-seat">Where to sit</label><select id="f-seat" name="seat"><option value="Any table">any corner</option><option value="Dining hall">the dining hall</option><option value="Outdoor deck">the outdoor deck</option><option value="Private room">the private room</option></select></span></p>
+      <p>My name is <span class="fill"><label class="sr" for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="your name" required size="9"></span></p>
+      <p>and my number is <span class="fill"><label class="sr" for="f-phone">Mobile number</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required size="11"></span></p>
+    </div>
+    <p class="notes"><label class="sr" for="f-notes">Anything we should know</label><input id="f-notes" name="notes" placeholder="Anything we should know · allergies · a birthday cake · a high chair"></p>
+    <div class="send">
+      <button class="btn btn-fill" type="submit" id="sendBtn">Send my request<svg><use href="#arr"/></svg></button>
+      <p class="msg" id="msg" aria-live="polite">Open every day · 12 pm to 12 am</p>
+    </div>
+  </form>
+  <div class="done" id="done" tabindex="-1">
+    <h3 class="disp">Request<br>received</h3>
+    <p id="doneSum"></p>
+    <p>The JOVIE team will confirm your table</p>
+    <button class="btn btn-ghost" type="button" id="again">Make another request</button>
+  </div>
+</section>
+
+<section class="visit wrap" id="visit" data-sky="#1C1819" aria-labelledby="visit-title">
+  <p class="lab stamp">12 am</p>
+  <h2 class="disp rv" id="visit-title" style="margin-top:24px">See you<br>tomorrow at noon</h2>
+  <div class="cols">
+    <div class="rv"><p class="lab">Hours</p><p>Open every day<br>12 pm to 12 am</p></div>
+    <div class="rv"><p class="lab">Where</p><p>Karachi<br><a href="https://jovie.pk">jovie.pk</a></p></div>
+    <div class="rv"><p class="lab">Follow</p><ul><li><a href="https://www.instagram.com/joviepk/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/people/Jovie/61596330670564/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.youtube.com/@joviepk" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+    <div class="rv"><p class="lab">Book</p><p><a href="#reserve">Reserve a table</a></p></div>
+  </div>
+  <div class="mega" aria-hidden="true"><svg viewBox="0 0 330 116"><use href="#logo"/></svg></div>
+  <div class="legal"><span>© 2026 JOVIE Dining Rituals · Karachi</span><span>Mediterranean dining over olive wood</span></div>
+</section>
+</main>
+
+<script>
+(()=>{
+const SUBMIT_URL='https://services.leadconnectorhq.com/hooks/FDKcJqDovizVsBdw3aFh/webhook-trigger/687349c0-2108-4b07-8b7a-a60faa460869';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+let vh=innerHeight,vw=innerWidth;
+
+/* Karachi open status */
+function status(){
+  const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Karachi',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+  const h=+p.hour,open=h>=12;
+  $$('[data-status]').forEach(el=>{el.classList.toggle('closed',!open);el.querySelector('span').textContent=open?'Open now · until 12 am':'Closed now · opens at 12 pm';});
+}
+status();setInterval(status,60000);
+
+/* hero video */
+const vid=$('#heroVid');
+if(!RM&&vid){
+  const tall=matchMedia('(max-aspect-ratio: 4/5)').matches;
+  vid.src=tall?'assets/hero-tall.mp4':'assets/hero-wide.mp4';
+  if(tall)vid.poster='assets/hero-poster-tall.webp';
+  vid.preload='auto';
+  vid.addEventListener('playing',()=>{const p=$('.hero .poster');if(p)p.style.opacity=0},{once:true});
+  vid.play().catch(()=>{});
+}
+if(matchMedia('(max-aspect-ratio: 4/5)').matches)$('.hero .poster').src='assets/hero-poster-tall.webp';
+
+/* manifesto words */
+const man=$('#manifesto');
+(function split(el){
+  [...el.childNodes].forEach(n=>{
+    if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(t)}else{const s=document.createElement('span');s.className='w';s.textContent=t;f.append(s)}});n.replaceWith(f)}
+    else if(n.nodeType===1)split(n);
+  });
+})(man);
+const words=$$('#manifesto .w');
+
+/* rituals horizontal */
+const rit=$('#rituals'),track=$('#ritTrack'),rimgs=$$('.rit-img img');
+const hz=()=>!RM&&matchMedia('(min-width: 900px)').matches;
+function sizeRit(){
+  if(hz()){rit.style.height=(track.scrollWidth-vw+vh)+'px'}else{rit.style.height='';track.style.transform=''}
+}
+
+/* sky colours */
+const secs=$$('[data-sky]');
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+let sky=[];
+function measure(){
+  vh=innerHeight;vw=innerWidth;sizeRit();
+  sky=secs.map(s=>{const r=s.getBoundingClientRect();return{top:r.top+scrollY,bot:r.bottom+scrollY,c:hex(s.dataset.sky),el:s}});
+}
+const lum=c=>{const a=c.map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*a[0]+.7152*a[1]+.0722*a[2]};
+let lastDark=null;
+function paint(){
+  const probe=scrollY+vh*.55;let i=sky.findIndex(s=>probe>=s.top&&probe<s.bot);if(i<0)i=probe<sky[0].top?0:sky.length-1;
+  const a=sky[i],b=sky[i+1];let c=a.c;
+  if(b){const span=vh*.4,d=a.bot-probe;if(d<span){let f=1-d/span;f=f*f*(3-2*f);c=a.c.map((v,k)=>Math.round(v+(b.c[k]-v)*f))}}
+  root.style.setProperty('--bg',`rgb(${c})`);
+  const dark=lum(c)<.32;if(dark!==lastDark){root.classList.toggle('dk',dark);lastDark=dark}
+}
+
+/* dial */
+const dial=$('#dial'),hand=$('#hand'),arc=$('#arc'),dt=$('#dialTime');
+function clock(){
+  const max=document.documentElement.scrollHeight-vh;const p=clamp(scrollY/max);
+  const mins=720+Math.round(p*720/5)*5;const h24=Math.floor(mins/60)%24,m=mins%60;
+  const h12=h24%12===0?12:h24%12;dt.textContent=`${h12}:${String(m).padStart(2,'0')} ${h24<12?'am':'pm'}`;
+  hand.style.transform=`rotate(${p*360}deg)`;arc.setAttribute('stroke-dasharray',`${p*100} 100`);
+  dial.classList.toggle('on',scrollY>vh*.7);
+}
+
+/* header */
+const hdr=$('#hdr');
+
+/* fire canvas */
+const cv=$('#fireCv'),ctx=cv.getContext('2d'),fire=$('#fire'),ticker=$('#ticker');
+const N=73,frames=[];let loaded=0,fi=0,fireOn=false,fireT=0;
+function loadFire(){if(frames.length||RM)return;for(let k=0;k<N;k++){const im=new Image();im.decoding='async';im.onload=()=>{loaded++};im.src=`assets/fire/f${String(k).padStart(3,'0')}.webp`;frames.push(im)}}
+function sizeCv(){const d=Math.min(devicePixelRatio||1,1.5);cv.width=Math.round(cv.clientWidth*d);cv.height=Math.round(cv.clientHeight*d)}
+function drawFire(t){
+  if(!fireOn)return;requestAnimationFrame(drawFire);
+  if(t-fireT<41)return;fireT=t;
+  const im=frames[fi];if(!im||!im.complete||!im.naturalWidth){return}
+  const W=cv.width,H=cv.height,s=Math.max(W/im.naturalWidth,H/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;
+  ctx.drawImage(im,(W-w)/2,(H-h)/2,w,h);fi=(fi+1)%N;
+}
+if('IntersectionObserver'in window){
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){loadFire();if(!RM&&!fireOn){fireOn=true;sizeCv();requestAnimationFrame(drawFire)}}else fireOn=false}),{rootMargin:'60% 0px'}).observe(fire);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
+  $$('.rv').forEach(el=>io.observe(el));
+}else $$('.rv').forEach(el=>el.classList.add('in'));
+
+/* menu peek */
+const peek=$('#peek'),pimg=$('#peekImg');let px=0,py=0,tx=0,ty=0,peekLoop=false;
+if(matchMedia('(hover: hover) and (pointer: fine)').matches&&!RM){
+  $$('.dish').forEach(d=>{d.addEventListener('mouseenter',()=>{pimg.src=d.dataset.img;peek.classList.add('on');if(!peekLoop){peekLoop=true;requestAnimationFrame(follow)}});d.addEventListener('mouseleave',()=>peek.classList.remove('on'))});
+  addEventListener('mousemove',e=>{tx=e.clientX+150;ty=e.clientY},{passive:true});
+}
+function follow(){px+=(tx-px)*.14;py+=(ty-py)*.14;peek.style.transform=`translate3d(${px-125}px,${py-155}px,0) scale(${peek.classList.contains('on')?1:.9})`;if(peek.classList.contains('on')||Math.abs(tx-px)>1)requestAnimationFrame(follow);else peekLoop=false}
+
+/* scroll loop */
+const gImg=$('#gImg'),gather=$('#gather');
+let ticking=false;
+function frame(){
+  ticking=false;paint();clock();
+  hdr.classList.toggle('solid',scrollY>vh*.85);
+  // manifesto
+  const r=man.getBoundingClientRect();const mp=clamp((vh*.82-r.top)/(r.height+vh*.25));const on=Math.round(mp*words.length);
+  words.forEach((w,k)=>w.classList.toggle('on',k<on));
+  // rituals
+  if(hz()){
+    const rr=rit.getBoundingClientRect();const p=clamp(-rr.top/(rit.offsetHeight-vh));const dx=track.scrollWidth-vw;
+    track.style.transform=`translate3d(${-p*dx}px,0,0)`;
+    const idx=clamp(Math.floor(p*7.2),1,6);$('#ritNow').textContent='0'+idx;$('#ritBar').style.transform=`scaleX(${p})`;
+    rimgs.forEach(im=>{const b=im.parentNode.getBoundingClientRect();const c=(b.left+b.width/2-vw/2)/vw;im.style.setProperty('--px',`${(-8-c*8).toFixed(2)}%`)});
+  }
+  // fire ticker
+  const fr=fire.getBoundingClientRect();if(fr.bottom>0&&fr.top<vh){const fp=clamp(-fr.top/(fire.offsetHeight-vh||1));ticker.style.transform=`translate3d(${-fp*45}%,-50%,0)`}
+  // gather parallax
+  const gr=gather.getBoundingClientRect();if(gr.bottom>0&&gr.top<vh&&!RM){gImg.style.setProperty('--gy',`${((gr.top/vh)*-60).toFixed(1)}px`)}
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{measure();if(fireOn)sizeCv();frame()},120)});
+addEventListener('load',()=>{measure();frame()});
+document.fonts&&document.fonts.ready.then(()=>{measure();frame()});
+measure();frame();
+
+/* drawer */
+const burger=$('#burger'),drawer=$('#drawer');
+function setDrawer(o){drawer.classList.toggle('open',o);drawer.setAttribute('aria-hidden',!o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':''}
+burger.addEventListener('click',()=>setDrawer(!drawer.classList.contains('open')));
+$$('#drawer a').forEach(a=>a.addEventListener('click',()=>setDrawer(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setDrawer(false)});
+
+/* reservation */
+const form=$('#resForm'),msg=$('#msg'),btn=$('#sendBtn'),resSec=$('#reserve');
+const d=$('#f-date');const today=new Date(Date.now()+5*3600e3).toISOString().slice(0,10);d.min=today;d.value=today;
+$$('[data-occasion]').forEach(a=>a.addEventListener('click',()=>{$('#f-occ').value=a.dataset.occasion;$('#f-occ').dispatchEvent(new Event('change'))}));
+const grow=el=>{if(el.tagName==='INPUT'&&el.type!=='date'){el.size=Math.max(el.placeholder.length*.82|0,el.value.length+1,4)}};
+$$('.fill input').forEach(el=>{grow(el);el.addEventListener('input',()=>{grow(el);el.closest('.fill').classList.remove('bad')})});
+const meas=document.createElement('span');meas.style.cssText='position:absolute;visibility:hidden;white-space:pre;left:-9999px';document.body.append(meas);
+const tw=(el,t)=>{const cs=getComputedStyle(el);meas.style.fontFamily=cs.fontFamily;meas.style.fontSize=cs.fontSize;meas.style.fontWeight=cs.fontWeight;meas.style.letterSpacing=cs.letterSpacing;meas.textContent=t;return meas.getBoundingClientRect().width};
+const fitSel=el=>{const fs=parseFloat(getComputedStyle(el).fontSize);el.style.width=Math.ceil(tw(el,el.selectedOptions[0].text)+fs*.95)+'px'};
+const fitIn=el=>{const fs=parseFloat(getComputedStyle(el).fontSize);el.style.width=Math.min(Math.ceil(tw(el,el.value||el.placeholder)+fs*.4),innerWidth*.86)+'px'};
+const fitAll=()=>{$$('.fill select').forEach(fitSel);$$('.fill input:not([type=date])').forEach(fitIn)};$$('.fill input:not([type=date])').forEach(el=>el.addEventListener('input',()=>fitIn(el)));$$('.fill select').forEach(el=>el.addEventListener('change',()=>fitSel(el)));fitAll();document.fonts&&document.fonts.ready.then(fitAll);addEventListener('resize',fitAll);
+const phoneOK=v=>/^(\+?92|0)?3\d{9}$/.test(v.replace(/[\s-]/g,''));
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const bad=[];
+  if(!d.value||d.value<today)bad.push(d);
+  const nm=$('#f-name'),ph=$('#f-phone');
+  if(nm.value.trim().length<2)bad.push(nm);
+  if(!phoneOK(ph.value))bad.push(ph);
+  $$('.fill').forEach(f=>f.classList.remove('bad'));
+  if(bad.length){bad.forEach(b=>b.closest('.fill').classList.add('bad'));bad[0].focus();msg.classList.add('err');msg.textContent=bad[0]===ph?'Please add a mobile number like 03XX XXXXXXX':bad[0]===nm?'Please add your name':'Please pick today or a later date';return}
+  msg.classList.remove('err');
+  const data=Object.fromEntries(new FormData(form));
+  const parts=data.name.trim().split(/\s+/);data.first_name=parts.shift()||'';data.last_name=parts.join(' ');data.source='jovie.pk website v2';
+  btn.disabled=true;msg.textContent='Sending your request';
+  try{
+    const r=await fetch(SUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!r.ok)throw new Error(r.status);
+    const dd=new Date(data.date+'T00:00:00');
+    $('#doneSum').textContent=`${data.guests} ${data.guests==='1'?'guest':'guests'} · ${dd.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})} · ${$('#f-time').selectedOptions[0].text} · ${data.occasion}`;
+    resSec.classList.add('ok');$('#done').focus();
+  }catch(err){msg.classList.add('err');msg.textContent='We could not send that · please try again in a moment'}
+  finally{btn.disabled=false}
+});
+$('#again').addEventListener('click',()=>{form.reset();d.value=today;$$('.fill input').forEach(grow);fitAll();resSec.classList.remove('ok');msg.textContent='Open every day · 12 pm to 12 am'});
+})();
+</script>
+</body>
+</html>
