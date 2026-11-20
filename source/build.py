@@ -63,7 +63,7 @@ ROOM = [('t1', 'room-lobby', 'Lobby', 'Terracotta arches and the brass sign', 'T
 room = []
 for cls, img, t, d, alt in ROOM:
     w, h = size(img)
-    room.append(f'    <figure class="tile {cls} rv"><img src="assets/{img}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"><figcaption><b>{t}</b><span>{d}</span></figcaption></figure>')
+    room.append(f'    <figure class="tile {cls} clip"><img src="assets/{img}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"><figcaption><b>{t}</b><span>{d}</span></figcaption></figure>')
 
 GUESTS = ''.join(f'<option value="{g}"{" selected" if g == 2 else ""}>{g}</option>' for g in range(1, 13)) + '<option value="13+">13 or more</option>'
 times = []
@@ -75,8 +75,12 @@ OCC = [('Dinner', 'dinner'), ('Family gathering', 'a family gathering'), ('Birth
 SEAT = [('Any table', 'any corner'), ('Dining hall', 'the dining hall'), ('Outdoor deck', 'the outdoor deck'), ('Private room', 'the private room')]
 opt = lambda L: ''.join(f'<option value="{v}">{t}</option>' for v, t in L)
 
+DISH = [d for _, _, ds in M for d in ds]
+BAND = ''.join(f'<span>{d}<svg><use href="#sym"/></svg></span>' for d in DISH[:8])
+BAND2 = ''.join(f'<span>{d}<svg><use href="#sym"/></svg></span>' for d in DISH[8:] + ['Olive wood', 'Noon to midnight'])
 rep = {'SYM_VB': SYM_VB, 'SYM': SYM, 'LOGO_VB': LOGO_VB, 'LOGO': LOGO, 'WORD_VB': '0 0 ' + ' '.join(LOGO_VB.split()[2:]), 'TICKS': TICKS,
        'RITUALS': '\n'.join(rit), 'MENU': '\n'.join(menu), 'ROOM': '\n'.join(room), 'GUESTS': GUESTS,
+       'BAND': BAND, 'BAND2': BAND2,
        'TIMES': ''.join(times), 'OCC': opt(OCC), 'SEAT': opt(SEAT), 'WEBHOOK': WEBHOOK}
 out = src
 for k, v in rep.items():
