@@ -93,11 +93,13 @@ Built with the Creative Experience Engine method (brief supplied by Karim · 21 
 | arrive | Arrive · lobby | 02-lobby | dolly between arches toward the brass sign |
 | starter | Starter · dining hall | 04-dining-hall | dolly along banquette and mural · rattan lamps sway |
 | preparation | Preparation · wood fire | r-preparation outpainted | push-in · flames · cook slides the bread |
-| share | Share · private dining | room-private | push-in to the long table |
+| share | Share · the family table | room-private | push-in to the long table |
 | dessert | Dessert · juice bar | 05-juice-bar | push-in under the great arch · glints on glass |
 | stay | Stay · rooftop terrace | 07-rooftop-terrace | sideways drift · lanterns sway · sea shimmer |
 
-**Delivery** · each clip → H.264 MP4 1280w (desktop) and 720w (mobile) + VP9 WebM · 1.2 s crossfade loop seam · WebP poster from frame 0 · `preload="none"` · plays only while its stage is on screen · paused otherwise · never autoplays under reduced motion
+**Delivery** · each clip → H.264 MP4 and VP9 WebM at 1920×1080 (desktop) and a 540×960 centre crop (mobile) · room loops play forward then reverse so there is no seam · the hero and Preparation play once and hold (water and a cook acting cannot run backwards) · WebP posters · `preload="none"` · plays only while its stage is on screen · a Pause motion button stops every film · never autoplays under reduced motion
+
+**Fixes made in production** · Starter and Preparation re-shot as evening frames so the walk reads as one evening · the lobby sign in the source render read DINING RITUALE and was corrected to DINING RITUALS before re-animating · the juice bar shelves were restyled from spirits-style bottles to fresh juices · fruit and cakes
 
 ---
 
@@ -105,3 +107,31 @@ Built with the Creative Experience Engine method (brief supplied by Karim · 21 
 - Interiors are design renders and dishes are AI concept stills until the real shoot
 - Clips are generated from those renders · they are not footage of the restaurant
 - No address or phone is shown because neither is confirmed yet
+
+---
+
+## 06 · Quality audit · independent critic
+
+Scored by a separate reviewer agent that did not build the site (weighted model from the brief)
+
+| Category | Weight | Round 1 | Round 2 |
+|---|---|---|---|
+| Brand authenticity | 20% | 68 | 82 |
+| Creative originality | 15% | 66 | 76 |
+| UX and information clarity | 15% | 58 | 76 |
+| Visual storytelling | 15% | 64 | 78 |
+| Motion quality | 10% | 60 | 76 |
+| Technical execution | 10% | 74 | 80 |
+| Conversion effectiveness | 10% | 64 | 74 |
+| Accessibility | 5% | 66 | 78 |
+| **Total** | | **64.9** | **77.8** |
+
+Round 1 failed three gates (misspelled sign · spirits bar · ghosting loops · 20-screen page with no menu route · flame links landing on a closed door · no pause control)
+Round 2 passed all five gates · approved with conditions · the five conditions were then fixed (header legibility at section edges · duplicate photo · Share crop and label · hero drift after the film ends · reduced-motion and focus details)
+Not re-scored after the last fixes · the critic estimated 81 to 83
+
+**Still open · needs the client**
+- Sign-off on the restyled juice bar and on the corrected lobby sign render
+- A render or photo of the real private dining room · Share currently uses the dining-hall end of the room
+- WhatsApp number · confirmation time · full menu or price band (none can be invented)
+- Before launch · switch og:image to jovie.pk · remove noindex · test the walk on a mid-range Android phone

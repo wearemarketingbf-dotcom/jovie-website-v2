@@ -21,7 +21,7 @@
 <style>
 :root{
   --t:#A26542;--o:#685C3F;--s:#BC9D81;--d:#56351E;--g:#F6F2EF;--x:#231F20;
-  --g2:#EDE5DD;--night:#2B1A0F;--glow:#E7B48C;--line:rgba(86,53,30,.18);
+  --g2:#EDE5DD;--night:#231F20;--glow:#E7B48C;--line:rgba(86,53,30,.18);
   --serif:'Bellefair','Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Source Sans 3','Source Sans Pro','Helvetica Neue',Arial,sans-serif;
   --open:cubic-bezier(.22,1,.36,1);--slow:cubic-bezier(.65,0,.35,1);
@@ -47,6 +47,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hd{position:fixed;inset:0 0 auto;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
   padding:calc(14px + env(safe-area-inset-top,0px)) max(var(--gut),env(safe-area-inset-right,0px)) 14px max(var(--gut),env(safe-area-inset-left,0px));
   color:var(--g);transition:color .5s var(--open),background-color .5s var(--open),box-shadow .5s var(--open)}
+.hd:not(.light){background:linear-gradient(180deg,rgba(35,31,32,.32),rgba(35,31,32,0))}
 .hd.light{color:var(--d);background:rgba(246,242,239,.94);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hd .brand{justify-self:start;display:block;width:132px;text-decoration:none}
 .hd .brand svg{width:100%;height:auto;fill:currentColor}
@@ -82,6 +83,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .scene video,.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .scene img[data-poster]{transition:opacity .8s}
 .scene.live img[data-poster]{opacity:0}
+.hero .scene.held video{animation:drift 26s var(--slow) infinite alternate}
+@keyframes drift{to{transform:scale(1.045) translate3d(-.6%,-.4%,0)}}
+.still .scene.held video{animation:none}
 .scene::after{content:"";position:absolute;inset:0;pointer-events:none}
 
 /* ---------- hero ---------- */
@@ -129,6 +133,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .room .num .nm{position:absolute;bottom:7vh;left:0;right:0;text-align:center;font:400 clamp(40px,5.4vw,84px)/1 var(--serif)}
 .room .scene{z-index:2}
 .room .scene video,.room .scene img{transform:scale(var(--z,1));transform-origin:50% 55%}
+#r-share .scene video,#r-share .scene img{object-position:60% 72%;transform-origin:60% 72%}
 .room .scene::after{background:linear-gradient(180deg,rgba(35,31,32,.4) 0%,rgba(35,31,32,0) 26%,rgba(35,31,32,0) 42%,rgba(35,31,32,.74) 100%);opacity:var(--shade,1)}
 .room .copy{position:absolute;z-index:3;inset:auto 0 0;color:var(--g);padding-bottom:calc(8vh + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 60px;align-items:end;opacity:var(--cop,1);transform:translateY(calc((1 - var(--cop,1)) * 28px))}
 .room .copy .lab{color:#EBCBAE}
@@ -144,7 +149,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- manifesto ---------- */
 .mani-wrap{background:var(--g);position:relative;overflow:hidden}
 .mani{position:relative;padding-block:clamp(90px,14vh,170px) clamp(80px,12vh,150px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,110px);align-items:center;max-width:1440px;margin:0 auto}
-.mani .win{aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;background:var(--s);max-width:440px;width:100%;justify-self:center;outline:1px solid var(--s);outline-offset:10px}
+.mani .win{aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;background:#E9DCCD;max-width:440px;width:100%;justify-self:center;outline:1px solid var(--s);outline-offset:10px}
 .mani .win img{width:100%;height:100%;object-fit:cover}
 .mani .disp{font-size:clamp(36px,4.6vw,72px);color:var(--d);margin-bottom:.5em}
 .mani ol{list-style:none;margin:0;padding:0;font-family:var(--serif);font-size:clamp(24px,2.3vw,34px);line-height:1.25;color:var(--d)}
@@ -287,8 +292,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   .room .scene video,.room .scene img{transform:none!important}
   .room .copy,.room .tag{opacity:1!important;transform:none!important}
   .js .rv{opacity:1;transform:none}
-  .flick{transform:translate(-50%,0)}
 }
+@media (max-width:860px) and (prefers-reduced-motion:reduce){.flick{transform:translate(-50%,0)}}
 </style>
 </head>
 <body>
@@ -360,7 +365,7 @@ button,input,select,textarea{font:inherit;color:inherit}
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/arrive-m.webp"><img src="assets/v/arrive-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/arrive-d" data-m="assets/v/arrive-m"></video><p class="sr">The JOVIE lobby with terracotta arches and the brass sign behind the reception desk</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 01 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 01 · The lobby</p><h3 class="disp" id="t-arrive">Arrive</h3><p class="line">Come in and be welcome</p><p class="body">A warm hello under the terracotta arches and a cold mint lemonade while the table is set</p></div>
+          <div><p class="lab">Ritual 01 · The lobby</p><h3 class="disp" id="t-arrive" tabindex="-1">Arrive</h3><p class="line">Come in and be welcome</p><p class="body">A warm hello under the terracotta arches and a cold mint lemonade while the table is set</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-arrive.webp" alt="A tall glass of mint lemonade in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>Mint lemonade</figcaption></figure>
         </div>
       </div>
@@ -372,7 +377,7 @@ button,input,select,textarea{font:inherit;color:inherit}
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/starter-m.webp"><img src="assets/v/starter-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/starter-d" data-m="assets/v/starter-m"></video><p class="sr">The dining hall at evening with a hand painted botanical mural and glowing rattan lamps</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 02 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 02 · The dining hall</p><h3 class="disp" id="t-starter">Starter</h3><p class="line">It starts with bread</p><p class="body">Hummus and mezze beside the botanical mural with bread straight from the oven</p></div>
+          <div><p class="lab">Ritual 02 · The dining hall</p><h3 class="disp" id="t-starter" tabindex="-1">Starter</h3><p class="line">It starts with bread</p><p class="body">Hummus and mezze beside the botanical mural with bread straight from the oven</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-starter.webp" alt="Hummus and warm bread in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>Hummus and bread</figcaption></figure>
         </div>
       </div>
@@ -384,19 +389,19 @@ button,input,select,textarea{font:inherit;color:inherit}
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/preparation-m.webp"><img src="assets/v/preparation-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline preload="none" aria-hidden="true" data-d="assets/v/preparation-d" data-m="assets/v/preparation-m"></video><p class="sr">A cook slides bread into the copper wood-fire oven at evening</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 03 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 03 · The wood-fire kitchen</p><h3 class="disp" id="t-preparation">Preparation</h3><p class="line">Good things take time</p><p class="body">Pizza from the wood-fire oven and grills cooked slowly over olive wood</p></div>
+          <div><p class="lab">Ritual 03 · The wood-fire kitchen</p><h3 class="disp" id="t-preparation" tabindex="-1">Preparation</h3><p class="line">Good things take time</p><p class="body">Pizza from the wood-fire oven and grills cooked slowly over olive wood</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-preparation.webp" alt="Sliced beef pepper steak with the wood-fire oven glowing behind" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>Beef pepper steak</figcaption></figure>
         </div>
       </div>
     </article>
-    <article class="room" id="r-share" aria-labelledby="t-share">
+    <article class="room" id="r-share" aria-labelledby="t-share" data-z0="1.22">
       <div class="stick">
         <div class="prev" aria-hidden="true" data-d="assets/v/preparation-d.webp" data-m="assets/v/preparation-m.webp"></div>
-        <div class="num" aria-hidden="true"><span class="lab">Ritual 04 · The private dining room</span><b>04</b><span class="nm">Share</span></div>
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 04 · The family table</span><b>04</b><span class="nm">Share</span></div>
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/share-m.webp"><img src="assets/v/share-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/share-d" data-m="assets/v/share-m"></video><p class="sr">The private dining room with one long table under a curved timber ceiling</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 04 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 04 · The private dining room</p><h3 class="disp" id="t-share">Share</h3><p class="line">Better together</p><p class="body">Platters for the middle of the table · everyone tastes everything</p></div>
+          <div><p class="lab">Ritual 04 · The family table</p><h3 class="disp" id="t-share" tabindex="-1">Share</h3><p class="line">Better together</p><p class="body">Platters for the middle of the table · everyone tastes everything</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-share.webp" alt="Hands sharing a mixed grill platter · pizza · fettuccine and hummus" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>The mixed grill platter</figcaption></figure>
         </div>
       </div>
@@ -408,7 +413,7 @@ button,input,select,textarea{font:inherit;color:inherit}
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/dessert-m.webp"><img src="assets/v/dessert-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/dessert-d" data-m="assets/v/dessert-m"></video><p class="sr">The juice bar under a great terracotta arch with fresh juices · fruit and cakes</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 05 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 05 · The juice bar</p><h3 class="disp" id="t-dessert">Dessert</h3><p class="line">End on something sweet</p><p class="body">Kunafa · tiramisu and a molten lava cake with fresh juice under the great arch</p></div>
+          <div><p class="lab">Ritual 05 · The juice bar</p><h3 class="disp" id="t-dessert" tabindex="-1">Dessert</h3><p class="line">End on something sweet</p><p class="body">Kunafa · tiramisu and a molten lava cake with fresh juice under the great arch</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-dessert.webp" alt="Kunafa with pistachio and a stretch of melted cheese" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>Kunafa</figcaption></figure>
         </div>
       </div>
@@ -420,7 +425,7 @@ button,input,select,textarea{font:inherit;color:inherit}
         <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/stay-m.webp"><img src="assets/v/stay-d.webp" alt="" data-poster width="1600" height="900" decoding="async" loading="lazy"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/stay-d" data-m="assets/v/stay-m"></video><p class="sr">The JOVIE terrace at blue hour with rattan lanterns and the sea beyond</p></div>
         <p class="tag lab" aria-hidden="true">Ritual 06 / 06</p>
         <div class="copy wrap">
-          <div><p class="lab">Ritual 06 · The terrace</p><h3 class="disp" id="t-stay">Stay</h3><p class="line">Stay a little longer</p><p class="body">Cappuccino and tea under the lanterns · nobody rushes the table</p></div>
+          <div><p class="lab">Ritual 06 · The terrace</p><h3 class="disp" id="t-stay" tabindex="-1">Stay</h3><p class="line">Stay a little longer</p><p class="body">Cappuccino and tea under the lanterns · nobody rushes the table</p></div>
           <figure class="inset"><div class="arch"><img src="assets/img/p-stay.webp" alt="A cappuccino and a glass cup of tea in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><figcaption>Cappuccino and tea</figcaption></figure>
         </div>
       </div>
@@ -431,15 +436,15 @@ button,input,select,textarea{font:inherit;color:inherit}
   <section class="mani-wrap wrap" data-tone="light" aria-labelledby="mani-title">
     <svg class="leaves" aria-hidden="true"><use href="#leaves"/></svg>
     <div class="mani">
-      <figure class="win rv" style="margin:0"><img src="assets/img/mani.webp" alt="Hands passing a mixed grill platter · pizza and hummus across one table" width="900" height="1260" loading="lazy" decoding="async"></figure>
+      <figure class="win rv" style="margin:0"><img src="assets/img/mani.webp" alt="A wood-fired Margherita fresh from the oven" width="900" height="1260" loading="lazy" decoding="async"></figure>
       <div>
         <p class="lab rv" style="color:var(--t)">Why rituals</p>
         <h2 class="disp rv" id="mani-title">A ritual is a small thing done with care and repeated until it means something</h2>
         <ol>
-          <li class="rv" style="--i:0"><small>01</small>Bread broken by hand</li>
-          <li class="rv" style="--i:1"><small>02</small>Fire that takes its time</li>
-          <li class="rv" style="--i:2"><small>03</small>Plates passed across the table</li>
-          <li class="rv" style="--i:3"><small>04</small>A sweet that ends the evening slowly</li>
+          <li class="rv" style="--i:0">Bread broken by hand</li>
+          <li class="rv" style="--i:1">Fire that takes its time</li>
+          <li class="rv" style="--i:2">Plates passed across the table</li>
+          <li class="rv" style="--i:3">A sweet that ends the evening slowly</li>
         </ol>
         <p class="keep rv">We do not serve dinner · we keep rituals</p>
       </div>
@@ -464,7 +469,7 @@ button,input,select,textarea{font:inherit;color:inherit}
       <li class="rv"><a href="#r-stay" data-room="5"><svg class="ic" viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg><span class="lab">Ritual 06</span><h3>Stay</h3></a><ul><li>Cappuccino</li><li>Tea</li></ul></li>
     </ul>
     <div class="foot2">
-      <p class="note rv">Food images are concept stills until the JOVIE kitchen is photographed · interiors are design renders and the moving scenes are generated from them</p>
+      <p class="note rv">Food images are concept stills until the JOVIE kitchen is photographed · interiors are design renders with a concept styling of the juice bar and the moving scenes are generated from them</p>
       <a class="cta rv" href="#reserve"><i aria-hidden="true"></i>Reserve a table</a>
     </div>
   </section>
@@ -523,6 +528,7 @@ button,input,select,textarea{font:inherit;color:inherit}
     <div><span class="lab">Hours</span><p>Every day · 12 pm to 12 am</p></div>
     <div><span class="lab">Follow</span><p><a href="https://www.instagram.com/joviepk/" target="_blank" rel="noopener">Instagram @joviepk</a><br><a href="https://www.youtube.com/@joviepk" target="_blank" rel="noopener">YouTube @joviepk</a></p></div>
   </div>
+  <div style="max-width:1440px;margin:34px auto 0"><a class="cta" href="#reserve"><i aria-hidden="true"></i>Reserve a table</a></div>
   <div class="mega" aria-hidden="true"><svg viewBox="0 0 330 116"><use href="#logo"/></svg></div>
   <div class="foot"><span>© JOVIE · Dining Rituals</span><span>Interiors are design renders · moving scenes are generated from them</span></div>
 </footer>
@@ -544,14 +550,14 @@ try{if(localStorage.getItem('jovie-still')==='1')still=true}catch(e){}
 const pauseBtn=$('#pause');
 const vids=$$('video[data-d]');
 function setStill(v){still=v;root.classList.toggle('still',v);pauseBtn.setAttribute('aria-pressed',String(v));pauseBtn.setAttribute('aria-label',v?'Play motion':'Pause motion');
-  if(v)vids.forEach(x=>x.pause());else vids.forEach(x=>{if(x._vis)play(x)});
-  try{localStorage.setItem('jovie-still',v?'1':'0')}catch(e){}}
-pauseBtn.addEventListener('click',()=>setStill(!still));
+  if(v)vids.forEach(x=>x.pause());else vids.forEach(x=>{if(x._vis)play(x)})}
+pauseBtn.addEventListener('click',()=>{setStill(!still);try{localStorage.setItem('jovie-still',still?'1':'0')}catch(e){}});
 
 /* ---------- video · lazy · plays only on screen ---------- */
 const canWebm=document.createElement('video').canPlayType('video/webm; codecs="vp9"')!=='';
 function load(v){if(v.dataset.ok)return;v.src=(MOB?v.dataset.m:v.dataset.d)+(canWebm?'.webm':'.mp4');v.dataset.ok=1;
-  v.addEventListener('playing',()=>v.parentElement.classList.add('live'),{once:true})}
+  v.addEventListener('playing',()=>v.parentElement.classList.add('live'),{once:true});
+  if(!v.loop)v.addEventListener('ended',()=>v.parentElement.classList.add('held'))}
 function play(v){if(still)return;load(v);if(v.ended&&!v.loop)return;const p=v.play();p&&p.catch(()=>{})}
 if('IntersectionObserver' in window){
   const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;v._vis=e.isIntersecting;if(e.isIntersecting)play(v);else v.pause()}),{rootMargin:'20% 0px'});
@@ -595,12 +601,12 @@ function frame(){
     const open=inout(clamp((p-.03)/.42));
     const sc=r._scene,w0=Math.min(Math.max(W*.3,150),330),h0=Math.min(H*.56,w0*1.48);
     sc.style.clipPath=open>=.999?'none':archInset(open,w0,h0);
-    sc.style.setProperty('--z',(1.1-.1*open).toFixed(4));
+    const z0=+(r.dataset.z0||1.1);sc.style.setProperty('--z',(z0-(z0-1)*open).toFixed(4));
     r.style.setProperty('--cop',clamp((p-.45)/.14).toFixed(3));
     sc.style.setProperty('--shade',clamp(.35+(p-.35)*1.8,.35,1).toFixed(3));
   });
   /* header · light only over cream sections */
-  const lt=lights.some(s=>{const b=s.getBoundingClientRect();return b.top<=72&&b.bottom>=72});
+  const m=hd.offsetHeight/2;const lt=lights.some(s=>{const b=s.getBoundingClientRect();return b.top<=m&&b.bottom>=m});
   hd.classList.toggle('light',lt);
   const wb=walk.getBoundingClientRect();
   root.classList.toggle('inwalk',wb.top<H*.5&&wb.bottom>H*.5);
@@ -613,7 +619,8 @@ frame();
 
 /* flame and menu links land on the open room · not on a closed door */
 function goRoom(i,a){const r=rooms[i];const y=RM?r.offsetTop:r.offsetTop+(r.offsetHeight-innerHeight)*.72;
-  scrollTo({top:y,behavior:RM?'auto':'smooth'});history.replaceState(null,'',a.getAttribute('href'))}
+  scrollTo({top:y,behavior:RM?'auto':'smooth'});history.replaceState(null,'',a.getAttribute('href'));
+  const h=r.querySelector('h3');h&&h.focus({preventScroll:true})}
 flick.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();goRoom(i,a)}));
 $$('.board a[data-room]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goRoom(+a.dataset.room,a)}));
 
