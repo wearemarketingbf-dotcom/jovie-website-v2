@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JOVIE · Dining Rituals · Karachi</title>
+<meta name="description" content="JOVIE is a Mediterranean wood-fire restaurant in Karachi · one evening told as six rituals · walk through the rooms and reserve your table">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#56351E">
+<meta property="og:title" content="JOVIE · Dining Rituals">
+<meta property="og:description" content="Joy made ritual · a Mediterranean wood-fire table in Karachi">
+<meta property="og:image" content="assets/img/og.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Source+Sans+3:wght@300;400;600&display=swap">
+<link rel="preload" as="image" href="assets/v/hero-d.webp" media="(min-width:700px)">
+<link rel="preload" as="image" href="assets/v/hero-m.webp" media="(max-width:699px)">
+<style>
+:root{
+  --t:#A26542;--o:#685C3F;--s:#BC9D81;--d:#56351E;--g:#F6F2EF;--x:#231F20;
+  --g2:#EDE5DD;--line:rgba(86,53,30,.18);
+  --serif:'Bellefair','Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Source Sans 3','Source Sans Pro','Helvetica Neue',Arial,sans-serif;
+  --open:cubic-bezier(.22,1,.36,1);--slow:cubic-bezier(.65,0,.35,1);
+  --gut:max(20px,4vw);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--g);color:var(--x);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--t);outline-offset:3px;border-radius:2px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--d);color:var(--g);padding:10px 16px;text-decoration:none;font-size:15px}
+.skip:focus{top:12px}
+.lab{font:600 12px/1.4 var(--sans);letter-spacing:.22em;text-transform:uppercase}
+.disp{font-family:var(--serif);font-weight:400;letter-spacing:.005em;line-height:1;text-wrap:balance;margin:0}
+.wrap{padding-inline:max(var(--gut),env(safe-area-inset-left,0px)) max(var(--gut),env(safe-area-inset-right,0px))}
+
+/* ---------- header ---------- */
+.hd{position:fixed;inset:0 0 auto;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
+  padding:calc(14px + env(safe-area-inset-top,0px)) max(var(--gut),env(safe-area-inset-right,0px)) 14px max(var(--gut),env(safe-area-inset-left,0px));
+  color:var(--g);transition:color .5s var(--open),background-color .5s var(--open),box-shadow .5s var(--open)}
+.hd.light{color:var(--d);background:rgba(246,242,239,.92);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hd .brand{justify-self:start;display:block;width:132px;text-decoration:none}
+.hd .brand svg{width:100%;height:auto;fill:currentColor}
+.hd .res{justify-self:end;display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:12px 18px 12px 12px;border:1px solid currentColor;border-radius:999px;transition:background-color .35s var(--open),color .35s var(--open)}
+.hd .res i{width:22px;height:22px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.hd .res i::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.hd .res:hover{background:var(--g);color:var(--d)}
+.hd.light .res:hover{background:var(--d);color:var(--g)}
+
+/* flicker nav · six flames = six rituals */
+.flick{display:flex;gap:6px;align-items:center}
+.flick a{position:relative;display:grid;place-items:center;width:32px;height:40px;text-decoration:none;opacity:.55;transition:opacity .45s var(--open),transform .45s var(--open)}
+.flick a svg{width:20px;height:auto;fill:currentColor}
+.flick a::after{content:attr(data-name);position:absolute;top:100%;left:50%;transform:translate(-50%,4px);font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .3s,transform .3s var(--open);pointer-events:none}
+.flick a:hover,.flick a:focus-visible{opacity:1}
+.flick a:hover::after,.flick a:focus-visible::after,.flick a.on::after{opacity:1;transform:translate(-50%,0)}
+.flick a.on{opacity:1;transform:translateY(-2px)}
+.flick a.on svg{fill:var(--t)}
+.hd:not(.light) .flick a.on svg{fill:#E7B48C}
+.flick .bar{width:1px;height:18px;background:currentColor;opacity:.25;margin:0 4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:190vh;background:var(--d)}
+.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--g)}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--d)}
+.scene video,.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,31,32,.45) 0%,rgba(35,31,32,0) 30%,rgba(35,31,32,0) 55%,rgba(35,31,32,.62) 100%);pointer-events:none}
+.hero .scene{will-change:clip-path}
+.hero-copy{position:absolute;inset:auto 0 0;z-index:3;color:var(--g);padding-bottom:calc(9vh + env(safe-area-inset-bottom,0px))}
+.hero-copy .lab{opacity:.9}
+.hero h1{font-size:clamp(56px,10.4vw,168px);margin:.12em 0 .14em -.04em}
+.hero h1 span{display:inline-block}
+.hero-row{display:flex;flex-wrap:wrap;gap:18px 40px;align-items:end;justify-content:space-between}
+.hero-row p{margin:0;max-width:36ch;font-size:clamp(17px,1.4vw,20px);opacity:.92}
+.cta{display:inline-flex;align-items:center;gap:14px;text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--d);background:var(--g);padding:18px 26px 18px 18px;border-radius:999px;transition:transform .4s var(--open),background-color .4s var(--open),color .4s var(--open)}
+.cta i{width:26px;height:26px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-style:normal}
+.cta i::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--t)}
+.cta:hover{transform:translateY(-2px);background:var(--t);color:var(--g)}
+.cta:hover i::after{background:var(--g)}
+.cta.ghost{background:transparent;color:inherit;border:1px solid currentColor}
+.cta.ghost:hover{background:var(--g);color:var(--d)}
+.cue{position:absolute;z-index:3;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);color:var(--g);display:grid;justify-items:center;gap:8px;opacity:.8}
+.cue span{width:1px;height:38px;background:linear-gradient(var(--g),transparent);animation:cue 2.4s var(--slow) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.echo{position:absolute;z-index:2;left:50%;top:50%;width:min(64vh,46vw);transform:translate(-50%,-52%);pointer-events:none;opacity:.55}
+.echo path{fill:none;stroke:var(--g);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.6s var(--open) forwards}
+.echo path:nth-child(2){animation-delay:.18s}.echo path:nth-child(3){animation-delay:.36s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.closing{position:absolute;inset:0;z-index:1;display:grid;place-items:center;pointer-events:none}
+.closing p{position:absolute;bottom:9vh;left:0;right:0;text-align:center;color:var(--d);margin:0;opacity:0}
+
+/* ---------- manifesto ---------- */
+.mani{position:relative;padding-block:clamp(90px,14vh,170px) clamp(80px,12vh,150px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,110px);align-items:center;max-width:1440px;margin:0 auto}
+.mani .win{aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;background:var(--g2);max-width:440px;width:100%;justify-self:center}
+.mani .win img{width:100%;height:100%;object-fit:cover}
+.mani .disp{font-size:clamp(36px,4.6vw,72px);color:var(--d);margin-bottom:.5em}
+.mani ol{list-style:none;margin:0;padding:0;font-family:var(--serif);font-size:clamp(24px,2.3vw,34px);line-height:1.25;color:var(--d)}
+.mani li{display:flex;gap:18px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line)}
+.mani li small{font:600 11px/1 var(--sans);letter-spacing:.22em;color:var(--t);min-width:26px}
+.mani .keep{margin-top:34px;font-family:var(--serif);font-size:clamp(22px,2vw,30px);color:var(--t);line-height:1.3}
+.wave{display:block;width:100%;height:28px;color:var(--s)}
+.wave path{fill:none;stroke:currentColor;stroke-width:1}
+
+/* ---------- the walk · six rooms ---------- */
+.walk-intro{text-align:center;padding-block:40px clamp(40px,6vh,80px)}
+.walk-intro .disp{font-size:clamp(38px,5vw,80px);color:var(--d)}
+.walk-intro p{max-width:46ch;margin:18px auto 0;color:#5b4a3e}
+.room{position:relative;height:230vh}
+.room .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.room .num{position:absolute;inset:0;display:grid;place-items:center;z-index:0;pointer-events:none}
+.room .num b{font:400 clamp(120px,24vw,380px)/.8 var(--serif);color:var(--g2);letter-spacing:-.02em}
+.room .num .lab{position:absolute;top:calc(84px + 5vh);left:0;right:0;text-align:center;color:var(--t)}
+.room .num .nm{position:absolute;bottom:7vh;left:0;right:0;text-align:center;font:400 clamp(40px,5.4vw,84px)/1 var(--serif);color:var(--d)}
+.room .scene{z-index:1}
+.room .scene video,.room .scene img{transform:scale(var(--z,1));transform-origin:50% 55%}
+.room .scene::after{background:linear-gradient(180deg,rgba(35,31,32,.38) 0%,rgba(35,31,32,0) 28%,rgba(35,31,32,0) 45%,rgba(35,31,32,.72) 100%);opacity:var(--shade,1)}
+.room .copy{position:absolute;z-index:3;inset:auto 0 0;color:var(--g);padding-bottom:calc(8vh + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 60px;align-items:end;opacity:var(--cop,1);transform:translateY(calc((1 - var(--cop,1)) * 28px))}
+.room .copy .lab{color:#E7C6A8}
+.room .copy h3{font-size:clamp(54px,8vw,128px);margin:.08em 0 .1em -.03em}
+.room .copy .line{font-family:var(--serif);font-size:clamp(24px,2.4vw,36px);line-height:1.2;margin:0}
+.room .copy .body{margin:12px 0 0;max-width:40ch;opacity:.9}
+.room .copy ul{list-style:none;margin:0;padding:0;justify-self:end;min-width:min(100%,300px)}
+.room .copy li{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-top:1px solid rgba(246,242,239,.28);font-size:17px}
+.room .copy li:last-child{border-bottom:1px solid rgba(246,242,239,.28)}
+.room .copy li span{font:600 11px/1.9 var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.room .tag{position:absolute;z-index:3;top:calc(86px + env(safe-area-inset-top,0px));right:max(var(--gut),env(safe-area-inset-right,0px));color:var(--g);opacity:var(--cop,1);text-align:right}
+
+/* ---------- one table ---------- */
+.table{background:var(--d);color:var(--g);padding-block:clamp(90px,13vh,160px)}
+.table .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(40px,6vh,70px)}
+.table .head .disp{font-size:clamp(40px,5.4vw,86px)}
+.table .head p{max-width:40ch;margin:0;color:#E2D3C5}
+.plates{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.6vw,26px)}
+.plate{position:relative}
+.plate .arch{aspect-ratio:3/4.3;border-radius:999px 999px 0 0;overflow:hidden;background:#4a2d19;position:relative}
+.plate .arch img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s var(--open),filter 1.2s var(--open);filter:saturate(.92)}
+.plate:hover .arch img,.plate:focus-within .arch img{transform:scale(1.12);filter:saturate(1.06)}
+.plate .lab{display:block;margin:16px 0 6px;color:#E7B48C}
+.plate h3{font:400 clamp(26px,2.2vw,36px)/1 var(--serif);margin:0 0 10px}
+.plate ul{list-style:none;margin:0;padding:0;font-size:16px;color:#EADDD1}
+.plate li{padding:7px 0;border-top:1px solid rgba(246,242,239,.16)}
+.plate:nth-child(even){margin-top:clamp(0px,5vw,70px)}
+.note{margin:clamp(40px,6vh,64px) 0 0;font-size:14px;color:#CDB8A6}
+
+/* ---------- reserve ---------- */
+.reserve{background:var(--g);padding-block:clamp(90px,13vh,160px)}
+.res-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start;max-width:1320px;margin:0 auto}
+.res-side .disp{font-size:clamp(42px,5.4vw,88px);color:var(--d);margin:.18em 0 .3em}
+.res-side p{color:#5b4a3e;max-width:36ch;margin:0 0 22px}
+.res-side .facts{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--line)}
+.res-side .facts li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
+.res-side .facts span{font:600 11px/1.9 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--t)}
+.card{position:relative;background:#FFFDFB;border:1px solid var(--line);border-radius:999px 999px 18px 18px;padding:clamp(90px,10vw,130px) clamp(22px,4vw,56px) clamp(28px,4vw,48px);box-shadow:0 30px 60px -40px rgba(86,53,30,.45)}
+.card .sym{position:absolute;top:clamp(34px,4vw,48px);left:50%;transform:translateX(-50%);width:40px;color:var(--t)}
+.card .sym svg{fill:currentColor;width:100%;height:auto}
+.card h3{text-align:center;font:400 clamp(28px,2.6vw,40px)/1 var(--serif);color:var(--d);margin:0 0 6px}
+.card .sub{text-align:center;margin:0 0 28px;color:#7a6656;font-size:15px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.f{display:grid;gap:7px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+.f input,.f select,.f textarea{width:100%;min-width:0;background:transparent;border:0;border-bottom:1px solid rgba(86,53,30,.35);padding:10px 2px 11px;font-size:18px;color:var(--x);border-radius:0;transition:border-color .3s}
+.f select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23A26542' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:26px}
+.f textarea{resize:vertical;min-height:70px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-bottom-color:var(--t);box-shadow:0 1px 0 var(--t)}
+.f.bad input{border-bottom-color:#b3261e}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer;position:relative}
+.chips input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none;margin:0}
+.chips span{display:inline-block;padding:9px 14px;border:1px solid rgba(86,53,30,.3);border-radius:999px;font-size:15px;transition:all .3s var(--open)}
+.chips input:checked+span{background:var(--d);color:var(--g);border-color:var(--d)}
+.chips input:focus-visible+span{outline:2px solid var(--t);outline-offset:2px}
+.send{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;justify-content:space-between}
+.send button{border:0;cursor:pointer;background:var(--d);color:var(--g);font:600 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:19px 28px 19px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:14px;transition:background-color .35s var(--open),transform .35s var(--open)}
+.send button i{width:24px;height:24px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center}
+.send button i::after{content:"";width:7px;height:7px;border-radius:50%;background:#E7B48C}
+.send button:hover{background:var(--t);transform:translateY(-1px)}
+.send button[disabled]{opacity:.6;cursor:progress}
+.msg{margin:0;font-size:15px;color:#6f5d50}
+.msg.err{color:#b3261e}
+.done{display:none;text-align:center}
+.card.ok form{display:none}
+.card.ok .done{display:block}
+.done .disp{font-size:clamp(34px,3.6vw,52px);color:var(--d);margin:0 0 10px}
+.done p{margin:0 0 22px;color:#5b4a3e}
+.done button{background:none;border:1px solid var(--d);color:var(--d);border-radius:999px;padding:13px 20px;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+
+/* ---------- visit ---------- */
+.visit{background:var(--t);color:var(--g);padding-block:clamp(80px,12vh,140px) calc(36px + env(safe-area-inset-bottom,0px));overflow:hidden}
+.visit .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;border-top:1px solid rgba(246,242,239,.35);padding-top:28px;max-width:1440px;margin:0 auto}
+.visit .cols .lab{opacity:.8;margin-bottom:8px;display:block}
+.visit .cols p{margin:0;font-family:var(--serif);font-size:clamp(24px,2.2vw,32px);line-height:1.2}
+.visit .cols a{text-decoration:none;border-bottom:1px solid rgba(246,242,239,.5)}
+.visit .cols a:hover{border-bottom-color:var(--g)}
+.mega{margin:clamp(50px,8vh,90px) auto 0;max-width:1440px;color:#C27D57}
+.mega svg{width:100%;height:auto;fill:currentColor}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin:34px auto 0;max-width:1440px;font-size:13px;color:#F2DCCB}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--open),transform .9s var(--open)}
+.js .rv.in{opacity:1;transform:none}
+.js .mani li.rv{transition-delay:calc(var(--i,0) * 80ms)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .plates{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:44px}
+  .plate:nth-child(even){margin-top:0}
+  .plate:nth-child(3n+2){margin-top:40px}
+}
+@media (max-width:860px){
+  .hd{grid-template-columns:auto 1fr auto}
+  .hd .brand{width:104px}
+  .flick{justify-self:center;gap:0}
+  .flick a{width:24px}
+  .flick .bar{display:none}
+  .hd .res{padding:10px;font-size:0;letter-spacing:0;gap:0}
+  .hd .res i{width:24px;height:24px}
+  .mani,.res-grid{grid-template-columns:1fr}
+  .mani .win{max-width:300px}
+  .room{height:200vh}
+  .room .copy{grid-template-columns:1fr;padding-bottom:calc(6vh + env(safe-area-inset-bottom,0px))}
+  .room .copy ul{justify-self:stretch}
+  .room .copy .body{display:none}
+  .room .tag{display:none}
+  .visit .cols{grid-template-columns:1fr}
+  .echo{display:none}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .plates{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
+  .plate:nth-child(3n+2){margin-top:0}
+  .plate:nth-child(even){margin-top:36px}
+  .plate ul{font-size:15px}
+  .fields{grid-template-columns:1fr}
+  .hero-row .cta.ghost{display:none}
+  .card{border-radius:220px 220px 16px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero,.room{height:auto}
+  .hero .stick,.room .stick{position:relative;height:100vh;height:100svh}
+  .scene{clip-path:none!important}
+  .room .scene video,.room .scene img{transform:none!important}
+  .room .copy,.room .tag{opacity:1!important;transform:none!important}
+  .echo path{stroke-dashoffset:0}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sym" viewBox="898 436 124 120"><g><g transform="translate(0 0) scale(1)"><path d="M 972.78125 526.203125 L 973.980469 525.214844 C 978.652344 521.164062 981.527344 515.421875 981.964844 509.253906 C 983.082031 495.09375 972.914062 486.863281 965.871094 476.195312 C 962.09375 470.464844 959.40625 463.578125 959.183594 456.6875 C 959.144531 455.476562 959.300781 454.199219 959.277344 452.980469 L 959.15625 452.855469 C 953.59375 461.066406 950.492188 468.808594 952.3125 479.015625 C 953.875 487.769531 958.964844 493.300781 964.3125 499.964844 C 970.488281 507.652344 973.265625 516.3125 972.78125 526.203125 M 966.320312 440.539062 L 966.535156 440.589844 C 966.550781 440.863281 966.578125 440.796875 966.496094 441.007812 C 965.710938 443.097656 965.007812 445.21875 964.378906 447.363281 C 961.03125 459.253906 965.320312 469.792969 972.757812 478.929688 C 981.742188 489.964844 989.132812 500.714844 984.734375 515.753906 C 982.785156 522.398438 978.257812 527.980469 972.160156 531.253906 C 971.210938 536.335938 968.746094 541.007812 965.089844 544.664062 C 960.265625 549.398438 954.460938 551.167969 947.824219 551.105469 C 950.054688 546.085938 952.664062 547.417969 956.871094 545.472656 C 962.660156 542.792969 965.238281 538.914062 967.429688 533.257812 C 966.417969 533.535156 965.390625 533.761719 964.359375 533.945312 C 950.828125 536.335938 936.875 528.398438 934.5625 514.304688 C 933.183594 505.90625 936.125 498.289062 940.90625 491.480469 C 942.335938 489.480469 943.566406 488.308594 945.324219 486.5625 C 946.214844 492.808594 948.441406 498.964844 953.625 502.820312 C 955.355469 504.152344 957.265625 505.1875 958.976562 506.550781 C 962.027344 508.976562 963.53125 512.894531 960.746094 516.1875 C 958.554688 510.179688 956.257812 509.84375 951.691406 506.472656 C 947.71875 503.597656 944.777344 499.515625 943.304688 494.835938 C 941.976562 497.164062 940.894531 498.839844 939.925781 501.429688 C 937.890625 506.886719 937.4375 512.894531 939.875 518.296875 C 942.1875 523.414062 946.671875 527.1875 951.886719 529.113281 C 957.324219 531.0625 963.304688 530.8125 968.554688 528.417969 C 969.097656 523.011719 968.9375 519.785156 967.519531 514.464844 C 964.410156 502.714844 953.96875 496.816406 949.902344 485.398438 C 944.796875 471.066406 949.554688 456.976562 959.492188 446.15625 C 961.367188 444.117188 963.714844 441.5 966.320312 440.539062 "/><path d="M 973.671875 443.628906 C 977.035156 444.234375 982.902344 446.632812 985.9375 448.222656 C 998.890625 455.023438 1008.609375 466.691406 1012.957031 480.660156 C 1017.222656 494.363281 1015.878906 509.199219 1009.222656 521.910156 C 1002.324219 534.964844 990.535156 544.75 976.4375 549.125 L 974.070312 549.820312 L 974.097656 545.597656 C 978.601562 544.21875 981.730469 543.078125 985.878906 540.660156 C 997.601562 533.859375 1006.167969 522.703125 1009.710938 509.617188 C 1013.148438 496.671875 1011.273438 482.886719 1004.503906 471.324219 C 997.226562 458.953125 986.429688 451.035156 972.613281 447.453125 C 973.003906 446.144531 973.351562 444.960938 973.671875 443.628906 "/><path d="M 947.871094 443.359375 C 947.992188 443.707031 947.914062 446.914062 947.914062 447.4375 C 945.472656 447.878906 941.769531 449.230469 939.5 450.21875 C 926.996094 455.660156 917.191406 465.875 912.261719 478.589844 C 907.5 490.835938 907.75 504.460938 912.953125 516.523438 C 917.589844 527.117188 925.605469 535.875 935.75 541.429688 C 938.421875 542.878906 941.09375 543.917969 943.917969 545.023438 C 943.164062 546.152344 942.453125 547.304688 941.78125 548.480469 L 940.542969 548.054688 C 936.875 546.632812 933.363281 544.835938 930.0625 542.691406 C 917.796875 534.789062 909.15625 522.351562 906.035156 508.097656 C 903.039062 493.976562 905.769531 479.242188 913.628906 467.132812 C 921.464844 455.003906 933.769531 446.460938 947.871094 443.359375 "/></g></g></symbol>
+  <symbol id="logo" viewBox="832 532 330 116"><g><g transform="translate(64.4 163.44) scale(0.86)"><path d="M 972.78125 526.203125 L 973.980469 525.214844 C 978.652344 521.164062 981.527344 515.421875 981.964844 509.253906 C 983.082031 495.09375 972.914062 486.863281 965.871094 476.195312 C 962.09375 470.464844 959.40625 463.578125 959.183594 456.6875 C 959.144531 455.476562 959.300781 454.199219 959.277344 452.980469 L 959.15625 452.855469 C 953.59375 461.066406 950.492188 468.808594 952.3125 479.015625 C 953.875 487.769531 958.964844 493.300781 964.3125 499.964844 C 970.488281 507.652344 973.265625 516.3125 972.78125 526.203125 M 966.320312 440.539062 L 966.535156 440.589844 C 966.550781 440.863281 966.578125 440.796875 966.496094 441.007812 C 965.710938 443.097656 965.007812 445.21875 964.378906 447.363281 C 961.03125 459.253906 965.320312 469.792969 972.757812 478.929688 C 981.742188 489.964844 989.132812 500.714844 984.734375 515.753906 C 982.785156 522.398438 978.257812 527.980469 972.160156 531.253906 C 971.210938 536.335938 968.746094 541.007812 965.089844 544.664062 C 960.265625 549.398438 954.460938 551.167969 947.824219 551.105469 C 950.054688 546.085938 952.664062 547.417969 956.871094 545.472656 C 962.660156 542.792969 965.238281 538.914062 967.429688 533.257812 C 966.417969 533.535156 965.390625 533.761719 964.359375 533.945312 C 950.828125 536.335938 936.875 528.398438 934.5625 514.304688 C 933.183594 505.90625 936.125 498.289062 940.90625 491.480469 C 942.335938 489.480469 943.566406 488.308594 945.324219 486.5625 C 946.214844 492.808594 948.441406 498.964844 953.625 502.820312 C 955.355469 504.152344 957.265625 505.1875 958.976562 506.550781 C 962.027344 508.976562 963.53125 512.894531 960.746094 516.1875 C 958.554688 510.179688 956.257812 509.84375 951.691406 506.472656 C 947.71875 503.597656 944.777344 499.515625 943.304688 494.835938 C 941.976562 497.164062 940.894531 498.839844 939.925781 501.429688 C 937.890625 506.886719 937.4375 512.894531 939.875 518.296875 C 942.1875 523.414062 946.671875 527.1875 951.886719 529.113281 C 957.324219 531.0625 963.304688 530.8125 968.554688 528.417969 C 969.097656 523.011719 968.9375 519.785156 967.519531 514.464844 C 964.410156 502.714844 953.96875 496.816406 949.902344 485.398438 C 944.796875 471.066406 949.554688 456.976562 959.492188 446.15625 C 961.367188 444.117188 963.714844 441.5 966.320312 440.539062 "/><path d="M 973.671875 443.628906 C 977.035156 444.234375 982.902344 446.632812 985.9375 448.222656 C 998.890625 455.023438 1008.609375 466.691406 1012.957031 480.660156 C 1017.222656 494.363281 1015.878906 509.199219 1009.222656 521.910156 C 1002.324219 534.964844 990.535156 544.75 976.4375 549.125 L 974.070312 549.820312 L 974.097656 545.597656 C 978.601562 544.21875 981.730469 543.078125 985.878906 540.660156 C 997.601562 533.859375 1006.167969 522.703125 1009.710938 509.617188 C 1013.148438 496.671875 1011.273438 482.886719 1004.503906 471.324219 C 997.226562 458.953125 986.429688 451.035156 972.613281 447.453125 C 973.003906 446.144531 973.351562 444.960938 973.671875 443.628906 "/><path d="M 947.871094 443.359375 C 947.992188 443.707031 947.914062 446.914062 947.914062 447.4375 C 945.472656 447.878906 941.769531 449.230469 939.5 450.21875 C 926.996094 455.660156 917.191406 465.875 912.261719 478.589844 C 907.5 490.835938 907.75 504.460938 912.953125 516.523438 C 917.589844 527.117188 925.605469 535.875 935.75 541.429688 C 938.421875 542.878906 941.09375 543.917969 943.917969 545.023438 C 943.164062 546.152344 942.453125 547.304688 941.78125 548.480469 L 940.542969 548.054688 C 936.875 546.632812 933.363281 544.835938 930.0625 542.691406 C 917.796875 534.789062 909.15625 522.351562 906.035156 508.097656 C 903.039062 493.976562 905.769531 479.242188 913.628906 467.132812 C 921.464844 455.003906 933.769531 446.460938 947.871094 443.359375 "/></g><g transform="translate(92 -12) scale(1)"><path d="M 919.972656 609.914062 C 922.09375 609.632812 923.707031 609.324219 925.609375 608.257812 C 931.859375 604.742188 933.945312 597.398438 934.023438 590.6875 C 934.152344 579.730469 927.902344 566.609375 915.050781 568.089844 C 894.269531 570.972656 897.398438 608.011719 917.167969 609.886719 C 918.070312 609.972656 919.0625 609.949219 919.972656 609.914062 M 916.574219 565.382812 C 929.621094 564.867188 940.609375 575.03125 941.105469 588.078125 C 941.601562 601.125 931.421875 612.097656 918.375 612.574219 C 905.355469 613.050781 894.410156 602.894531 893.914062 589.878906 C 893.417969 576.859375 903.558594 565.898438 916.574219 565.382812 "/><path d="M 1029.679688 565.960938 C 1038.796875 565.761719 1048.644531 565.949219 1057.820312 565.949219 C 1057.921875 567.460938 1058.695312 572.359375 1058.546875 573.4375 C 1058.125 573.667969 1058.066406 573.722656 1057.570312 573.785156 C 1057.292969 573.378906 1057.050781 572.578125 1056.789062 572.066406 C 1054.800781 568.140625 1050.28125 568.660156 1046.34375 568.671875 L 1038.5625 568.691406 L 1038.558594 586.828125 C 1041.382812 586.726562 1049.476562 587.453125 1051.457031 585.878906 C 1052.378906 585.144531 1052.390625 583.835938 1053.273438 583.125 L 1053.453125 583.164062 C 1053.832031 583.84375 1053.8125 592.195312 1053.652344 593.113281 C 1053.371094 593.363281 1053.265625 593.3125 1052.835938 593.40625 C 1052.753906 593.371094 1052.660156 593.367188 1052.597656 593.304688 C 1052.429688 593.144531 1052.246094 591.234375 1051.40625 590.449219 C 1049.8125 588.957031 1041.121094 589.484375 1038.5625 589.492188 C 1038.605469 591.601562 1038.566406 593.851562 1038.566406 595.976562 C 1038.5625 599.882812 1038.445312 604.792969 1038.664062 608.652344 C 1042.121094 609.242188 1050.195312 609.128906 1053.78125 608.699219 C 1057.597656 608.25 1058.757812 605.902344 1060.65625 603.203125 L 1060.898438 603.160156 C 1061.285156 603.285156 1061.4375 603.296875 1061.710938 603.597656 C 1061.601562 604.484375 1060.949219 606.191406 1060.640625 607.15625 C 1060.160156 608.648438 1059.71875 610.152344 1059.308594 611.667969 C 1056.453125 611.617188 1030.300781 611.824219 1029.738281 611.464844 C 1029.722656 610.417969 1031.929688 609.671875 1032.148438 608.921875 C 1032.941406 606.199219 1032.597656 601.335938 1032.59375 598.621094 L 1032.59375 583.679688 L 1032.605469 575.023438 C 1032.609375 571.652344 1033.328125 568.164062 1029.921875 566.925781 C 1029.609375 566.8125 1029.6875 566.261719 1029.679688 565.960938 "/><path d="M 972.050781 604.144531 C 972.601562 602.148438 974.5 597.664062 975.328125 595.558594 L 981.976562 578.695312 C 983.074219 575.898438 984.246094 573.257812 984.957031 570.324219 C 985.625 567.570312 982.566406 567.40625 983.03125 566.046875 C 984.25 565.898438 990.726562 565.90625 992.117188 566.003906 L 992.242188 566.207031 C 992.132812 567.367188 990.882812 567.402344 989.738281 568.597656 C 988.566406 569.992188 986.878906 574.617188 986.078125 576.582031 L 982.277344 585.925781 L 971.09375 612.886719 L 969.492188 612.882812 C 965.152344 602.753906 960.867188 592.601562 956.636719 582.421875 C 954.847656 578.152344 953.082031 573.453125 951.050781 569.273438 C 950.492188 568.125 949.394531 567.71875 948.410156 567.054688 C 948.050781 566.8125 948.15625 566.34375 948.148438 565.945312 C 949.746094 565.976562 958.894531 565.777344 959.726562 566.074219 C 959.90625 566.957031 958.199219 567.664062 957.953125 568.394531 C 957.457031 569.863281 958.789062 572.316406 959.351562 573.65625 L 961.910156 579.769531 L 968.351562 595.277344 C 969.546875 598.140625 970.960938 601.277344 972.050781 604.144531 "/><path d="M 870.1875 565.960938 L 877.5625 565.945312 C 878.773438 565.945312 880.847656 565.882812 881.988281 566.03125 C 882.246094 566.414062 882.195312 566.210938 882.183594 566.652344 C 881.628906 567.441406 879.746094 567.292969 879.414062 569.5625 C 879.019531 572.277344 879.175781 574.933594 879.179688 577.667969 L 879.179688 594 C 879.1875 596.523438 879.15625 599.234375 879.222656 601.738281 C 879.492188 612.25 872.984375 619.355469 862.167969 616.746094 C 860.390625 616.101562 859.59375 615.761719 858.289062 614.378906 C 858.5625 612.902344 859.546875 609.027344 861.296875 608.921875 L 861.472656 609.128906 C 861.492188 609.460938 861.523438 609.792969 861.570312 610.121094 C 862.054688 613.789062 864.9375 615.265625 868.449219 614.765625 C 871.929688 614.273438 872.640625 610.519531 872.90625 607.617188 C 873.234375 604.035156 873.191406 600.394531 873.195312 596.777344 L 873.199219 582.472656 C 873.199219 578.457031 873.34375 573.519531 872.980469 569.519531 C 872.878906 568.359375 871.371094 567.378906 870.472656 566.945312 C 870.128906 566.777344 870.203125 566.382812 870.1875 565.960938 "/><path d="M 1002.894531 565.949219 C 1004.34375 565.949219 1014.023438 565.824219 1014.652344 566.109375 C 1014.761719 567.0625 1012.46875 567.757812 1012.21875 568.613281 C 1011.386719 571.496094 1011.71875 576.453125 1011.71875 579.410156 L 1011.71875 594.566406 L 1011.714844 602.488281 C 1011.707031 605.742188 1011.042969 609.300781 1014.402344 610.671875 C 1014.738281 610.808594 1014.660156 611.339844 1014.667969 611.660156 C 1013.105469 611.65625 1003.453125 611.824219 1002.933594 611.4375 C 1002.992188 610.488281 1004.996094 609.8125 1005.230469 609.152344 C 1006.121094 606.636719 1005.777344 601.574219 1005.777344 598.996094 L 1005.785156 584.4375 L 1005.789062 575.011719 C 1005.785156 571.777344 1006.445312 568.316406 1003.191406 566.929688 C 1002.855469 566.785156 1002.914062 566.28125 1002.894531 565.949219 "/></g><g transform="translate(92 -12) scale(1)"><path d="M 889.707031 637.523438 C 891.476562 637.523438 892.816406 637.726562 894.261719 636.605469 C 895.074219 635.640625 895.539062 634.644531 895.3125 633.367188 C 894.761719 630.273438 892.109375 630.394531 889.761719 630.410156 C 889.570312 632.128906 889.714844 635.714844 889.707031 637.523438 M 887.84375 628.714844 C 890.570312 628.796875 893.503906 628.164062 895.667969 630.125 C 896.703125 631.070312 897.304688 632.394531 897.335938 633.796875 C 897.382812 635.488281 896.761719 636.664062 895.652344 637.851562 C 893.460938 639.644531 890.578125 639.242188 887.839844 639.21875 Z M 887.84375 628.714844 "/><path d="M 961.0625 633.917969 C 962.496094 633.9375 964.261719 634.136719 965.449219 633.390625 C 967.609375 630.113281 962.839844 630.414062 961.058594 630.429688 Z M 959.214844 628.722656 C 962.257812 628.773438 969.28125 627.648438 967.566406 633.445312 C 967.292969 634.371094 966.246094 634.894531 965.398438 635.222656 C 966.339844 636.53125 967.253906 637.855469 968.148438 639.199219 L 966.613281 639.214844 C 965.488281 639.1875 964.109375 636.582031 963.460938 635.589844 L 961.0625 635.566406 L 961.070312 639.238281 L 959.199219 639.207031 C 959.261719 635.765625 959.210938 632.171875 959.214844 628.722656 "/><path d="M 914.28125 628.71875 L 916.144531 628.722656 C 916.152344 631.832031 916.160156 634.941406 916.160156 638.050781 C 916.160156 638.605469 916.238281 638.914062 915.929688 639.21875 L 914.535156 639.203125 C 912.753906 636.988281 910.316406 633.992188 908.738281 631.703125 C 908.910156 633.789062 908.808594 637.054688 908.804688 639.226562 L 906.921875 639.214844 C 906.980469 635.789062 906.925781 632.1875 906.925781 628.75 L 908.699219 628.746094 C 910.253906 630.757812 912.628906 633.984375 914.277344 635.816406 C 914.296875 633.449219 914.296875 631.085938 914.28125 628.71875 "/><path d="M 933.542969 628.726562 L 935.40625 628.722656 C 935.375 630.160156 935.589844 638.449219 935.324219 639.164062 L 935.035156 639.203125 L 933.742188 639.203125 C 931.972656 636.703125 929.734375 634.226562 928.035156 631.679688 C 928.203125 634.019531 928.125 636.835938 928.125 639.214844 L 926.246094 639.210938 L 926.242188 628.730469 L 927.988281 628.726562 C 929.8125 631.089844 931.667969 633.546875 933.546875 635.855469 Z M 933.542969 628.726562 "/><path d="M 1003.714844 635.078125 L 1005.886719 635.066406 L 1007.355469 635.082031 C 1007.085938 634.464844 1005.773438 631.335938 1005.480469 630.957031 C 1004.890625 632.308594 1004.265625 633.714844 1003.714844 635.078125 M 1004.660156 628.625 L 1006.417969 628.605469 L 1011.125 639.210938 L 1009.140625 639.222656 C 1008.765625 638.460938 1008.378906 637.507812 1008.035156 636.71875 L 1006.316406 636.726562 L 1002.992188 636.734375 C 1002.675781 637.582031 1002.304688 638.394531 1001.941406 639.222656 C 1001.273438 639.21875 1000.59375 639.226562 999.929688 639.230469 C 1001.445312 636.265625 1003.222656 631.769531 1004.660156 628.625 "/><path d="M 943.816406 628.550781 C 945.929688 628.464844 946.816406 628.804688 948.484375 629.980469 L 947.25 631.410156 C 945.097656 629.765625 942.25 629.753906 941.195312 632.589844 C 940.824219 633.582031 940.863281 634.683594 941.308594 635.652344 C 942.453125 638.167969 944.832031 637.949219 946.957031 636.917969 L 946.96875 634.949219 L 944.277344 634.988281 L 944.289062 633.34375 C 945.777344 633.347656 947.265625 633.339844 948.753906 633.316406 L 948.75 637.832031 C 948.007812 638.425781 947.15625 638.871094 946.242188 639.144531 C 938.800781 641.332031 935.480469 630.390625 943.816406 628.550781 "/><path d="M 995.519531 628.730469 C 996.023438 628.71875 996.828125 628.621094 997.230469 628.855469 C 997.496094 629.242188 997.40625 629.65625 997.390625 630.152344 C 997.414062 632.332031 997.789062 637.121094 996.238281 638.171875 C 991.191406 641.589844 987.523438 637.71875 988.367188 632.382812 C 988.472656 631.710938 988.386719 629.363281 988.394531 628.75 L 990.285156 628.746094 C 990.28125 630.148438 989.851562 636.066406 991 636.808594 C 996.679688 640.480469 995.539062 631.6875 995.519531 628.730469 "/><path d="M 1027.773438 628.550781 C 1029.671875 628.492188 1030.621094 628.882812 1032.125 629.890625 L 1031.078125 631.3125 C 1029.773438 630.46875 1028.304688 629.953125 1026.730469 630.632812 C 1026.378906 630.785156 1026.363281 630.992188 1026.292969 631.316406 C 1026.914062 634.035156 1032.417969 632.382812 1032.386719 636.109375 C 1032.363281 638.722656 1030.375 639.34375 1028.152344 639.355469 C 1026.25 639.113281 1025.667969 638.800781 1024.128906 637.703125 L 1025.28125 636.320312 C 1026.097656 636.96875 1026.890625 637.4375 1027.9375 637.632812 C 1028.957031 637.820312 1030.515625 637.5 1030.667969 636.261719 C 1030.03125 634.621094 1024.914062 634.910156 1024.570312 632.257812 C 1024.273438 629.933594 1025.730469 628.960938 1027.773438 628.550781 "/><path d="M 976.714844 628.710938 L 985.277344 628.714844 L 985.277344 630.445312 C 984.183594 630.480469 983.003906 630.4375 981.90625 630.421875 L 981.910156 636.296875 L 981.914062 639.234375 C 981.339844 639.199219 980.636719 639.222656 980.054688 639.230469 C 980.015625 636.324219 980.039062 633.363281 980.03125 630.453125 C 978.917969 630.460938 977.804688 630.453125 976.6875 630.433594 Z M 976.714844 628.710938 "/><path d="M 1014.171875 628.746094 L 1016.054688 628.734375 L 1016.042969 637.53125 C 1017.664062 637.433594 1019.925781 637.503906 1021.59375 637.507812 C 1021.589844 638.085938 1021.691406 638.789062 1021.4375 639.210938 C 1019.039062 639.21875 1016.578125 639.257812 1014.1875 639.1875 Z M 1014.171875 628.746094 "/><path d="M 920.253906 628.710938 L 922.132812 628.714844 C 922.121094 631.011719 922.125 633.3125 922.136719 635.609375 C 922.140625 636.515625 922.1875 638.375 922.054688 639.222656 L 920.238281 639.21875 C 920.296875 635.769531 920.253906 632.171875 920.253906 628.710938 "/><path d="M 900.976562 628.734375 L 902.816406 628.722656 L 902.808594 639.207031 L 900.945312 639.207031 Z M 900.976562 628.734375 "/><path d="M 971.449219 628.71875 L 973.335938 628.730469 C 973.316406 630.015625 973.476562 638.582031 973.226562 639.21875 L 971.460938 639.222656 C 971.480469 635.722656 971.476562 632.21875 971.449219 628.71875 "/></g></g></symbol>
+</svg>
+
+<header class="hd" id="hd">
+  <a class="brand" href="#top" aria-label="JOVIE Dining Rituals · back to the top"><svg viewBox="0 0 330 116" aria-hidden="true"><use href="#logo"/></svg></a>
+  <nav class="flick" aria-label="The six rituals">
+    <a href="#r-arrive" data-name="Arrive" aria-label="Ritual 01 · Arrive"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+    <a href="#r-starter" data-name="Starter" aria-label="Ritual 02 · Starter"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+    <a href="#r-preparation" data-name="Preparation" aria-label="Ritual 03 · Preparation"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+    <span class="bar" aria-hidden="true"></span>
+    <a href="#r-share" data-name="Share" aria-label="Ritual 04 · Share"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+    <a href="#r-dessert" data-name="Dessert" aria-label="Ritual 05 · Dessert"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+    <a href="#r-stay" data-name="Stay" aria-label="Ritual 06 · Stay"><svg viewBox="0 0 124 120" aria-hidden="true"><use href="#sym"/></svg></a>
+  </nav>
+  <a class="res" href="#reserve"><i aria-hidden="true"></i>Reserve</a>
+</header>
+
+<main id="main">
+  <!-- 0 · hero · arrive at dusk -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="stick">
+      <div class="closing" aria-hidden="true"><p class="lab">Step inside · six rooms · one evening</p></div>
+      <div class="scene" id="heroScene"><picture><source media="(max-width:699px)" srcset="assets/v/hero-m.webp"><img src="assets/v/hero-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/hero-d" data-m="assets/v/hero-m"></video><p class="sr">The JOVIE garden stair at dusk with a falling water wall and palms</p></div>
+      <svg class="echo" viewBox="0 0 200 260" aria-hidden="true">
+        <path pathLength="1" d="M10 260V100a90 90 0 0 1 180 0v160"/>
+        <path pathLength="1" d="M26 260V100a74 74 0 0 1 148 0v160"/>
+        <path pathLength="1" d="M42 260V100a58 58 0 0 1 116 0v160"/>
+      </svg>
+      <div class="hero-copy wrap" id="heroCopy">
+        <p class="lab">JOVIE · Dining Rituals · Karachi</p>
+        <h1 class="disp" id="hero-title"><span>Joy made</span> <span>ritual</span></h1>
+        <div class="hero-row">
+          <p>A Mediterranean table cooked over olive wood · one evening told as six rituals · open every day 12 pm to 12 am</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="cta" href="#reserve"><i aria-hidden="true"></i>Reserve a table</a>
+            <a class="cta ghost" href="#walk">Walk through</a>
+          </div>
+        </div>
+      </div>
+      <div class="cue" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <!-- 1 · manifesto -->
+  <section class="wrap" aria-labelledby="mani-title">
+    <div class="mani">
+      <figure class="win rv" style="margin:0"><img src="assets/img/mani.webp" alt="A wood-fired Margherita pizza ready for the table" width="900" height="1260" loading="lazy" decoding="async"></figure>
+      <div>
+        <p class="lab rv" style="color:var(--t)">The idea</p>
+        <h2 class="disp rv" id="mani-title">A ritual is a small thing done with care and repeated until it means something</h2>
+        <ol>
+          <li class="rv" style="--i:0"><small>01</small>Bread broken by hand</li>
+          <li class="rv" style="--i:1"><small>02</small>Fire that takes its time</li>
+          <li class="rv" style="--i:2"><small>03</small>Plates passed across the table</li>
+          <li class="rv" style="--i:3"><small>04</small>A sweet that ends the evening slowly</li>
+        </ol>
+        <p class="keep rv">We do not serve dinner · we keep rituals</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14c50-10 100-10 150 0s100 10 150 0 100-10 150 0 100 10 150 0 100-10 150 0 100 10 150 0 100-10 150 0 100 10 150 0"/></svg>
+
+  <!-- 2–7 · the walk -->
+  <section id="walk" aria-labelledby="walk-title">
+    <div class="walk-intro wrap">
+      <p class="lab rv" style="color:var(--t)">The walk</p>
+      <h2 class="disp rv" id="walk-title">Six rooms · one evening</h2>
+      <p class="rv">Every ritual has its own room at JOVIE · keep scrolling and step through each arch</p>
+    </div>
+    <article class="room" id="r-arrive" aria-labelledby="t-arrive">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 01 · The lobby</span><b>01</b><span class="nm">Arrive</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/arrive-m.webp"><img src="assets/v/arrive-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/arrive-d" data-m="assets/v/arrive-m"></video><p class="sr">The JOVIE lobby with terracotta arches and the brass sign behind the reception desk</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 01 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 01 · The lobby</p><h3 class="disp" id="t-arrive">Arrive</h3><p class="line">Come in and be welcome</p><p class="body">A warm hello under the terracotta arches and a cold mint lemonade while the table is set</p></div>
+          <ul aria-label="Arrive dishes"><li>Mint lemonade<span>01</span></li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="room" id="r-starter" aria-labelledby="t-starter">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 02 · The dining hall</span><b>02</b><span class="nm">Starter</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/starter-m.webp"><img src="assets/v/starter-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/starter-d" data-m="assets/v/starter-m"></video><p class="sr">The dining hall with a hand painted botanical mural and rattan lamps</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 02 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 02 · The dining hall</p><h3 class="disp" id="t-starter">Starter</h3><p class="line">It starts with bread</p><p class="body">Hummus and mezze beside the botanical mural with bread straight from the oven</p></div>
+          <ul aria-label="Starter dishes"><li>Hummus<span>01</span></li><li>Mezze platter<span>02</span></li><li>Bread from the oven<span>03</span></li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="room" id="r-preparation" aria-labelledby="t-preparation">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 03 · The wood-fire kitchen</span><b>03</b><span class="nm">Preparation</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/preparation-m.webp"><img src="assets/v/preparation-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/preparation-d" data-m="assets/v/preparation-m"></video><p class="sr">A cook slides bread into the copper wood-fire oven</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 03 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 03 · The wood-fire kitchen</p><h3 class="disp" id="t-preparation">Preparation</h3><p class="line">Good things take time</p><p class="body">Pizza from the wood-fire oven and grills cooked slowly over olive wood</p></div>
+          <ul aria-label="Preparation dishes"><li>Wood-fired Margherita<span>01</span></li><li>Beef pepper steak<span>02</span></li><li>Shish tawook<span>03</span></li><li>Lamb chops<span>04</span></li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="room" id="r-share" aria-labelledby="t-share">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 04 · The private dining room</span><b>04</b><span class="nm">Share</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/share-m.webp"><img src="assets/v/share-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/share-d" data-m="assets/v/share-m"></video><p class="sr">The private dining room with one long table under a curved timber ceiling</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 04 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 04 · The private dining room</p><h3 class="disp" id="t-share">Share</h3><p class="line">Better together</p><p class="body">Platters for the middle of the table · everyone tastes everything</p></div>
+          <ul aria-label="Share dishes"><li>Mixed grill platter<span>01</span></li><li>Pizza for the table<span>02</span></li><li>Fettuccine Alfredo<span>03</span></li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="room" id="r-dessert" aria-labelledby="t-dessert">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 05 · The juice bar</span><b>05</b><span class="nm">Dessert</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/dessert-m.webp"><img src="assets/v/dessert-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/dessert-d" data-m="assets/v/dessert-m"></video><p class="sr">The juice bar under a great terracotta arch with backlit shelves</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 05 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 05 · The juice bar</p><h3 class="disp" id="t-dessert">Dessert</h3><p class="line">End on something sweet</p><p class="body">Kunafa · tiramisu and a molten lava cake under the great arch</p></div>
+          <ul aria-label="Dessert dishes"><li>Kunafa<span>01</span></li><li>Tiramisu<span>02</span></li><li>Molten lava cake<span>03</span></li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="room" id="r-stay" aria-labelledby="t-stay">
+      <div class="stick">
+        <div class="num" aria-hidden="true"><span class="lab">Ritual 06 · The terrace</span><b>06</b><span class="nm">Stay</span></div>
+        <div class="scene"><picture><source media="(max-width:699px)" srcset="assets/v/stay-m.webp"><img src="assets/v/stay-d.webp" alt="" data-poster width="1600" height="900" decoding="async"></picture><video muted playsinline loop preload="none" aria-hidden="true" data-d="assets/v/stay-d" data-m="assets/v/stay-m"></video><p class="sr">The JOVIE terrace at blue hour with rattan lanterns and the sea beyond</p></div>
+        <p class="tag lab" aria-hidden="true">Ritual 06 / 06</p>
+        <div class="copy wrap">
+          <div><p class="lab">Ritual 06 · The terrace</p><h3 class="disp" id="t-stay">Stay</h3><p class="line">Stay a little longer</p><p class="body">Cappuccino and tea under the lanterns · nobody rushes the table</p></div>
+          <ul aria-label="Stay dishes"><li>Cappuccino<span>01</span></li><li>Tea<span>02</span></li></ul>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 8 · one table -->
+  <section class="table wrap" id="menu" aria-labelledby="menu-title">
+    <div class="head">
+      <div>
+        <p class="lab rv" style="color:#E7B48C">The menu</p>
+        <h2 class="disp rv" id="menu-title">One table · six moments</h2>
+      </div>
+      <p class="rv">Mediterranean dishes cooked over olive wood with Italian classics from the same fire · the whole menu waits at the table</p>
+    </div>
+    <ul class="plates">
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-arrive.webp" alt="A tall glass of mint lemonade in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 01</span><h3>Arrive</h3><ul><li>Mint lemonade</li></ul></li>
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-starter.webp" alt="Hummus and warm bread in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 02</span><h3>Starter</h3><ul><li>Hummus</li><li>Mezze platter</li><li>Bread from the oven</li></ul></li>
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-preparation.webp" alt="Sliced beef pepper steak with the wood-fire oven glowing behind" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 03</span><h3>Preparation</h3><ul><li>Wood-fired Margherita</li><li>Beef pepper steak</li><li>Shish tawook</li><li>Lamb chops</li></ul></li>
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-share.webp" alt="Hands sharing a mixed grill platter · pizza · fettuccine and hummus" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 04</span><h3>Share</h3><ul><li>Mixed grill platter</li><li>Pizza for the table</li><li>Fettuccine Alfredo</li></ul></li>
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-dessert.webp" alt="Kunafa with pistachio and a stretch of melted cheese" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 05</span><h3>Dessert</h3><ul><li>Kunafa</li><li>Tiramisu</li><li>Molten lava cake</li></ul></li>
+      <li class="plate rv"><div class="arch"><img src="assets/img/p-stay.webp" alt="A cappuccino and a glass cup of tea in a terracotta arch niche" width="600" height="860" loading="lazy" decoding="async"></div><span class="lab">Ritual 06</span><h3>Stay</h3><ul><li>Cappuccino</li><li>Tea</li></ul></li>
+    </ul>
+    <p class="note rv">Food images are concept stills until the JOVIE kitchen is photographed · interiors are design renders</p>
+  </section>
+
+  <!-- 9 · reserve -->
+  <section class="reserve wrap" id="reserve" aria-labelledby="res-title">
+    <div class="res-grid">
+      <div class="res-side">
+        <p class="lab rv" style="color:var(--t)">Reservations</p>
+        <h2 class="disp rv" id="res-title">Your table is waiting</h2>
+        <p class="rv">Tell us when · how many and the occasion · the JOVIE team confirms your table with you</p>
+        <ul class="facts rv">
+          <li><span>Hours</span>Every day · 12 pm to 12 am</li>
+          <li><span>Private dining</span>One long table for the family</li>
+          <li><span>City</span>Karachi</li>
+        </ul>
+      </div>
+      <div class="card rv" id="card">
+        <div class="sym" aria-hidden="true"><svg viewBox="0 0 124 120"><use href="#sym"/></svg></div>
+        <form id="form" novalidate>
+          <h3>Arrive</h3>
+          <p class="sub">Ritual 01 begins here</p>
+          <div class="fields">
+            <div class="f"><label for="f-date">Date</label><input id="f-date" name="date" type="date" required></div>
+            <div class="f"><label for="f-time">Time</label><select id="f-time" name="time"><option value="12:00">12:00 pm</option><option value="12:30">12:30 pm</option><option value="13:00">1:00 pm</option><option value="13:30">1:30 pm</option><option value="14:00">2:00 pm</option><option value="14:30">2:30 pm</option><option value="15:00">3:00 pm</option><option value="15:30">3:30 pm</option><option value="16:00">4:00 pm</option><option value="16:30">4:30 pm</option><option value="17:00">5:00 pm</option><option value="17:30">5:30 pm</option><option value="18:00">6:00 pm</option><option value="18:30">6:30 pm</option><option value="19:00">7:00 pm</option><option value="19:30">7:30 pm</option><option value="20:00" selected>8:00 pm</option><option value="20:30">8:30 pm</option><option value="21:00">9:00 pm</option><option value="21:30">9:30 pm</option><option value="22:00">10:00 pm</option><option value="22:30">10:30 pm</option><option value="23:00">11:00 pm</option></select></div>
+            <div class="f"><label for="f-guests">Guests</label><select id="f-guests" name="guests"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7">7 guests</option><option value="8">8 guests</option><option value="9">9 guests</option><option value="10">10 guests</option><option value="11">11 guests</option><option value="12">12 guests</option><option value="13+">13 or more</option></select></div>
+            <div class="f"><label for="f-seat">Where to sit</label><select id="f-seat" name="seat"><option value="Any table">Any table</option><option value="Dining hall">Dining hall</option><option value="Terrace">Terrace</option><option value="Private room">Private room</option></select></div>
+            <fieldset class="f full" style="border:0;margin:0;padding:0"><legend class="sr">Occasion</legend><label id="occ-l" aria-hidden="true">Occasion</label>
+              <div class="chips" role="radiogroup" aria-labelledby="occ-l"><label><input type="radio" name="occasion" value="Dinner" checked><span>Dinner</span></label><label><input type="radio" name="occasion" value="Family gathering"><span>Family gathering</span></label><label><input type="radio" name="occasion" value="Birthday"><span>Birthday</span></label><label><input type="radio" name="occasion" value="Private dining"><span>Private dining</span></label><label><input type="radio" name="occasion" value="Business"><span>Business</span></label></div></fieldset>
+            <div class="f"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
+            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required></div>
+            <div class="f full"><label for="f-notes">Anything we should know · optional</label><textarea id="f-notes" name="notes" rows="2"></textarea></div>
+          </div>
+          <div class="send">
+            <p class="msg" id="msg" role="status" aria-live="polite">Open every day · 12 pm to 12 am</p>
+            <button type="submit" id="btn"><i aria-hidden="true"></i>Request the table</button>
+          </div>
+        </form>
+        <div class="done" id="done" tabindex="-1">
+          <h3 class="disp">Request received</h3>
+          <p id="doneSum"></p>
+          <p>The JOVIE team will confirm your table with you</p>
+          <button type="button" id="again">Make another request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 10 · visit -->
+<footer class="visit wrap" id="visit" aria-labelledby="visit-title">
+  <h2 class="sr" id="visit-title">Visit JOVIE</h2>
+  <div class="cols">
+    <div><span class="lab">Find us</span><p>Karachi</p></div>
+    <div><span class="lab">Hours</span><p>Every day · 12 pm to 12 am</p></div>
+    <div><span class="lab">Follow</span><p><a href="https://www.instagram.com/joviepk/" target="_blank" rel="noopener">Instagram @joviepk</a><br><a href="https://www.youtube.com/@joviepk" target="_blank" rel="noopener">YouTube @joviepk</a></p></div>
+  </div>
+  <div class="mega" aria-hidden="true"><svg viewBox="0 0 330 116"><use href="#logo"/></svg></div>
+  <div class="foot"><span>© JOVIE · Dining Rituals</span><span>Interiors are design renders · moving scenes are generated from them</span></div>
+</footer>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOB=matchMedia('(max-width:699px)').matches;
+document.documentElement.classList.add('js');
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>1-Math.pow(1-t,3);
+const vw=()=>innerWidth,vh=()=>innerHeight;
+
+/* ---------- video: lazy, play only on screen ---------- */
+const vids=$$('video[data-d]');
+const canWebm=document.createElement('video').canPlayType('video/webm; codecs="vp9"')!=='';
+function load(v){if(v.dataset.ok)return;const b=MOB?v.dataset.m:v.dataset.d;v.src=b+(canWebm?'.webm':'.mp4');v.dataset.ok=1;v.addEventListener('playing',()=>v.closest('.scene').classList.add('live'),{once:true})}
+if(!RM&&'IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){load(v);const p=v.play();p&&p.catch(()=>{})}else{v.pause()}}),{rootMargin:'25% 0px'});
+  vids.forEach(v=>io.observe(v));
+}
+/* hide poster once the clip actually plays */
+const css=document.createElement('style');css.textContent='.scene.live img[data-poster]{opacity:0;transition:opacity .8s}';document.head.appendChild(css);
+
+/* ---------- scroll choreography ---------- */
+const hd=$('#hd'),hero=$('.hero'),heroScene=$('#heroScene'),heroCopy=$('#heroCopy'),closingP=$('.closing p'),echo=$('.echo');
+const rooms=$$('.room');
+const flick=$$('.flick a');
+function archInset(p,w0,h0){
+  /* p 0 → small arch in the centre · p 1 → full bleed */
+  const W=vw(),H=vh();
+  const w=w0+(W-w0)*p, h=h0+(H-h0)*p;
+  const x=(W-w)/2, y=(H-h)/2+ (1-p)*H*0.03;
+  const r=(w/2)*(1-clamp((p-.55)/.45));
+  return `inset(${y.toFixed(1)}px ${x.toFixed(1)}px ${(H-y-h).toFixed(1)}px ${x.toFixed(1)}px round ${r.toFixed(1)}px ${r.toFixed(1)}px 0 0)`;
+}
+function frame(){
+  const W=vw(),H=vh(),y=scrollY;
+  /* hero · the scene closes back into a doorway */
+  const hr=hero.getBoundingClientRect();
+  const hp=clamp(-hr.top/(hero.offsetHeight-H));
+  if(!RM){
+    const p=1-ease(hp);
+    const w0=Math.min(W*.34,380),h0=Math.min(H*.62,w0*1.5);
+    heroScene.style.clipPath=hp<=0.001?'none':archInset(p,w0,h0);
+    heroCopy.style.opacity=clamp(1-hp*4);
+    heroCopy.style.transform=`translateY(${(-hp*60).toFixed(1)}px)`;
+    echo.style.opacity=(.55*clamp(1-hp*3)).toFixed(3);
+    closingP.style.opacity=clamp((hp-.55)/.3);
+  }
+  /* rooms · an arch opens into each room */
+  let cur=-1;
+  rooms.forEach((r,i)=>{
+    const b=r.getBoundingClientRect();
+    const total=r.offsetHeight-H;
+    const p=clamp(-b.top/total);
+    const q=clamp((p-.05)/.5),open=q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;
+    r._open=open;
+    if(b.top<H*.5&&b.bottom>H*.5)cur=i;
+    if(RM)return;
+    if(b.bottom<-50||b.top>H+50)return;
+    const sc=r._scene,w0=Math.min(Math.max(W*.3,150),330),h0=Math.min(H*.56,w0*1.48);
+    sc.style.clipPath=open>=.999?'none':archInset(open,w0,h0);
+    sc.style.setProperty('--z',(1.22-.22*open).toFixed(4));
+    r.style.setProperty('--cop',clamp((p-.5)/.16).toFixed(3));
+    sc.style.setProperty('--shade',clamp(.35+(p-.4)*1.6,.35,1).toFixed(3));
+  });
+  /* header theme · dark over film and dark sections */
+  const dark=hp<.62||rooms.some(r=>{const b=r.getBoundingClientRect();return b.top<=40&&b.bottom>=60&&r._open>.93})||isOver('#menu')||isOver('#visit');
+  hd.classList.toggle('light',!dark);
+  flick.forEach((a,i)=>{a.classList.toggle('on',i===cur);if(i===cur)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current')});
+}
+function isOver(sel){const b=$(sel).getBoundingClientRect();return b.top<=40&&b.bottom>=60}
+rooms.forEach(r=>r._scene=r.querySelector('.scene'));
+let tick=false;
+const req=()=>{if(!tick){tick=true;requestAnimationFrame(()=>{tick=false;frame()})}};
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+frame();
+
+/* ---------- reveals ---------- */
+if('IntersectionObserver' in window&&!RM){
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  $$('.rv').forEach(el=>ro.observe(el));
+}else $$('.rv').forEach(el=>el.classList.add('in'));
+
+/* ---------- reservation ---------- */
+const SUBMIT_URL='https://services.leadconnectorhq.com/hooks/FDKcJqDovizVsBdw3aFh/webhook-trigger/687349c0-2108-4b07-8b7a-a60faa460869';
+const form=$('#form'),msg=$('#msg'),btn=$('#btn'),card=$('#card'),d=$('#f-date');
+const pad=n=>String(n).padStart(2,'0');
+const t=new Date(),today=`${t.getFullYear()}-${pad(t.getMonth()+1)}-${pad(t.getDate())}`;
+d.min=today;d.value=today;
+const phoneOK=v=>/^(\+?92|0)?3\d{9}$/.test(v.replace(/[\s-]/g,''));
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const nm=$('#f-name'),ph=$('#f-phone');const bad=[];
+  if(!d.value||d.value<today)bad.push(d);
+  if(nm.value.trim().length<2)bad.push(nm);
+  if(!phoneOK(ph.value))bad.push(ph);
+  $$('.f').forEach(f=>f.classList.remove('bad'));
+  if(bad.length){bad.forEach(b=>b.closest('.f').classList.add('bad'));bad[0].focus();msg.classList.add('err');msg.textContent=bad[0]===ph?'Please add a mobile number like 03XX XXXXXXX':bad[0]===nm?'Please add your name':'Please pick today or a later date';return}
+  msg.classList.remove('err');
+  const data=Object.fromEntries(new FormData(form));
+  const parts=data.name.trim().split(/\s+/);data.first_name=parts.shift()||'';data.last_name=parts.join(' ');data.source='jovie.pk website v3';
+  btn.disabled=true;msg.textContent='Sending your request';
+  try{
+    const r=await fetch(SUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!r.ok)throw new Error(r.status);
+    const dd=new Date(data.date+'T00:00:00');
+    $('#doneSum').textContent=`${data.guests} ${data.guests==='1'?'guest':'guests'} · ${dd.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})} · ${$('#f-time').selectedOptions[0].text} · ${data.occasion}`;
+    card.classList.add('ok');$('#done').focus();
+  }catch(err){msg.classList.add('err');msg.textContent='We could not send that · please try again in a moment'}
+  finally{btn.disabled=false}
+});
+$('#again').addEventListener('click',()=>{form.reset();d.value=today;card.classList.remove('ok');msg.textContent='Open every day · 12 pm to 12 am';$('#f-date').focus()});
+})();
+</script>
+</body>
+</html>
