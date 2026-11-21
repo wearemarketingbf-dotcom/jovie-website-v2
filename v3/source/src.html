@@ -9,7 +9,8 @@
 <meta name="theme-color" content="#56351E">
 <meta property="og:title" content="JOVIE · Dining Rituals">
 <meta property="og:description" content="Joy made ritual · a Mediterranean wood-fire table in Karachi">
-<meta property="og:image" content="assets/img/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{BASE}}assets/img/og.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +21,7 @@
 <style>
 :root{
   --t:#A26542;--o:#685C3F;--s:#BC9D81;--d:#56351E;--g:#F6F2EF;--x:#231F20;
-  --g2:#EDE5DD;--line:rgba(86,53,30,.18);
+  --g2:#EDE5DD;--night:#2B1A0F;--glow:#E7B48C;--line:rgba(86,53,30,.18);
   --serif:'Bellefair','Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'Source Sans 3','Source Sans Pro','Helvetica Neue',Arial,sans-serif;
   --open:cubic-bezier(.22,1,.36,1);--slow:cubic-bezier(.65,0,.35,1);
@@ -28,14 +29,15 @@
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
-body{margin:0;background:var(--g);color:var(--x);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:0}
+body{margin:0;background:var(--night);color:var(--x);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 img,video,svg{display:block;max-width:100%}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--t);outline-offset:3px;border-radius:2px}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px;border-radius:2px}
+.light :focus-visible,.reserve :focus-visible,.mani :focus-visible{outline-color:var(--t)}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--d);color:var(--g);padding:10px 16px;text-decoration:none;font-size:15px}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--g);color:var(--d);padding:10px 16px;text-decoration:none;font-size:15px}
 .skip:focus{top:12px}
 .lab{font:600 12px/1.4 var(--sans);letter-spacing:.22em;text-transform:uppercase}
 .disp{font-family:var(--serif);font-weight:400;letter-spacing:.005em;line-height:1;text-wrap:balance;margin:0}
@@ -45,14 +47,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hd{position:fixed;inset:0 0 auto;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
   padding:calc(14px + env(safe-area-inset-top,0px)) max(var(--gut),env(safe-area-inset-right,0px)) 14px max(var(--gut),env(safe-area-inset-left,0px));
   color:var(--g);transition:color .5s var(--open),background-color .5s var(--open),box-shadow .5s var(--open)}
-.hd.light{color:var(--d);background:rgba(246,242,239,.92);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hd.light{color:var(--d);background:rgba(246,242,239,.94);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hd .brand{justify-self:start;display:block;width:132px;text-decoration:none}
 .hd .brand svg{width:100%;height:auto;fill:currentColor}
-.hd .res{justify-self:end;display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:12px 18px 12px 12px;border:1px solid currentColor;border-radius:999px;transition:background-color .35s var(--open),color .35s var(--open)}
+.hd .right{justify-self:end;display:flex;align-items:center;gap:clamp(10px,1.6vw,22px)}
+.hd .menu{text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:8px 2px;border-bottom:1px solid transparent;transition:border-color .3s}
+.hd .menu:hover{border-bottom-color:currentColor}
+.hd .res{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:11px 18px 11px 11px;border:1px solid currentColor;border-radius:999px;transition:background-color .35s var(--open),color .35s var(--open)}
 .hd .res i{width:22px;height:22px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;font-style:normal}
 .hd .res i::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
 .hd .res:hover{background:var(--g);color:var(--d)}
 .hd.light .res:hover{background:var(--d);color:var(--g)}
+.pause{width:38px;height:38px;border-radius:50%;border:1px solid currentColor;background:transparent;display:grid;place-items:center;cursor:pointer;opacity:.8;transition:opacity .3s}
+.pause:hover{opacity:1}
+.pause svg{width:12px;height:12px;fill:currentColor}
+.pause .pl{display:none}
+.pause[aria-pressed="true"] .pa{display:none}
+.pause[aria-pressed="true"] .pl{display:block}
 
 /* flicker nav · six flames = six rituals */
 .flick{display:flex;gap:6px;align-items:center}
@@ -62,16 +73,21 @@ button,input,select,textarea{font:inherit;color:inherit}
 .flick a:hover,.flick a:focus-visible{opacity:1}
 .flick a:hover::after,.flick a:focus-visible::after,.flick a.on::after{opacity:1;transform:translate(-50%,0)}
 .flick a.on{opacity:1;transform:translateY(-2px)}
-.flick a.on svg{fill:var(--t)}
-.hd:not(.light) .flick a.on svg{fill:#E7B48C}
+.flick a.on svg{fill:var(--glow)}
+.hd.light .flick a.on svg{fill:var(--t)}
 .flick .bar{width:1px;height:18px;background:currentColor;opacity:.25;margin:0 4px}
 
-/* ---------- hero ---------- */
-.hero{position:relative;height:190vh;background:var(--d)}
-.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--g)}
-.scene{position:absolute;inset:0;overflow:hidden;background:var(--d)}
+/* ---------- scenes (film inside an arch) ---------- */
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--night)}
 .scene video,.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,31,32,.45) 0%,rgba(35,31,32,0) 30%,rgba(35,31,32,0) 55%,rgba(35,31,32,.62) 100%);pointer-events:none}
+.scene img[data-poster]{transition:opacity .8s}
+.scene.live img[data-poster]{opacity:0}
+.scene::after{content:"";position:absolute;inset:0;pointer-events:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:180vh}
+.hero .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--night)}
+.hero .scene::after{background:linear-gradient(180deg,rgba(35,31,32,.45) 0%,rgba(35,31,32,0) 30%,rgba(35,31,32,0) 52%,rgba(35,31,32,.66) 100%)}
 .hero .scene{will-change:clip-path}
 .hero-copy{position:absolute;inset:auto 0 0;z-index:3;color:var(--g);padding-bottom:calc(9vh + env(safe-area-inset-bottom,0px))}
 .hero-copy .lab{opacity:.9}
@@ -89,69 +105,77 @@ button,input,select,textarea{font:inherit;color:inherit}
 .cue{position:absolute;z-index:3;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);color:var(--g);display:grid;justify-items:center;gap:8px;opacity:.8}
 .cue span{width:1px;height:38px;background:linear-gradient(var(--g),transparent);animation:cue 2.4s var(--slow) infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.echo{position:absolute;z-index:2;left:50%;top:50%;width:min(64vh,46vw);transform:translate(-50%,-52%);pointer-events:none;opacity:.55}
-.echo path{fill:none;stroke:var(--g);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.6s var(--open) forwards}
-.echo path:nth-child(2){animation-delay:.18s}.echo path:nth-child(3){animation-delay:.36s}
-@keyframes draw{to{stroke-dashoffset:0}}
-.closing{position:absolute;inset:0;z-index:1;display:grid;place-items:center;pointer-events:none}
-.closing p{position:absolute;bottom:9vh;left:0;right:0;text-align:center;color:var(--d);margin:0;opacity:0}
+.closing{position:absolute;inset:0;z-index:1;pointer-events:none}
+.closing p{position:absolute;bottom:8vh;left:0;right:0;text-align:center;color:var(--glow);margin:0;opacity:0}
+
+/* ---------- walk intro ---------- */
+.walk-intro{position:relative;text-align:center;color:var(--g);padding-block:clamp(70px,12vh,140px) clamp(70px,12vh,130px);overflow:hidden}
+.walk-intro .echo{position:absolute;left:50%;top:50%;width:min(520px,80vw);transform:translate(-50%,-46%);opacity:.28;pointer-events:none}
+.walk-intro .echo path{fill:none;stroke:var(--glow);stroke-width:1;vector-effect:non-scaling-stroke}
+.walk-intro .in{position:relative}
+.walk-intro .lab{color:var(--glow)}
+.walk-intro .disp{font-size:clamp(40px,5.6vw,88px);margin-top:.25em}
+.walk-intro p{max-width:44ch;margin:20px auto 0;color:#E5D4C4}
+.walk-intro .skipm{display:inline-block;margin-top:26px;color:var(--glow);text-decoration:none;font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid rgba(231,180,140,.5);padding-bottom:6px}
+.walk-intro .skipm:hover{border-bottom-color:var(--glow)}
+
+/* ---------- the walk · six rooms ---------- */
+.room{position:relative;height:170vh}
+.room .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--night)}
+.room .prev{position:absolute;inset:0;background:var(--night) center/cover no-repeat;filter:brightness(.3) saturate(.85);transform:scale(1.06)}
+.room .num{position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none;color:var(--g)}
+.room .num b{font:400 clamp(120px,24vw,380px)/.8 var(--serif);color:rgba(246,242,239,.07);letter-spacing:-.02em}
+.room .num .lab{position:absolute;top:calc(92px + 4vh);left:0;right:0;text-align:center;color:var(--glow)}
+.room .num .nm{position:absolute;bottom:7vh;left:0;right:0;text-align:center;font:400 clamp(40px,5.4vw,84px)/1 var(--serif)}
+.room .scene{z-index:2}
+.room .scene video,.room .scene img{transform:scale(var(--z,1));transform-origin:50% 55%}
+.room .scene::after{background:linear-gradient(180deg,rgba(35,31,32,.4) 0%,rgba(35,31,32,0) 26%,rgba(35,31,32,0) 42%,rgba(35,31,32,.74) 100%);opacity:var(--shade,1)}
+.room .copy{position:absolute;z-index:3;inset:auto 0 0;color:var(--g);padding-bottom:calc(8vh + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 60px;align-items:end;opacity:var(--cop,1);transform:translateY(calc((1 - var(--cop,1)) * 28px))}
+.room .copy .lab{color:#EBCBAE}
+.room .copy h3{font-size:clamp(54px,8vw,128px);margin:.08em 0 .1em -.03em}
+.room .copy .line{font-family:var(--serif);font-size:clamp(24px,2.4vw,36px);line-height:1.2;margin:0}
+.room .copy .body{margin:12px 0 0;max-width:42ch;opacity:.92}
+.inset{margin:0;width:clamp(150px,15vw,230px);justify-self:end}
+.inset .arch{aspect-ratio:3/4.3;border-radius:999px 999px 0 0;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);outline:1px solid rgba(246,242,239,.35);outline-offset:6px}
+.inset img{width:100%;height:100%;object-fit:cover}
+.inset figcaption{margin-top:14px;font:600 11px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#EBCBAE;text-align:center}
+.room .tag{position:absolute;z-index:3;top:calc(86px + env(safe-area-inset-top,0px));right:max(var(--gut),env(safe-area-inset-right,0px));color:var(--g);opacity:var(--cop,1);text-align:right}
 
 /* ---------- manifesto ---------- */
+.mani-wrap{background:var(--g);position:relative;overflow:hidden}
 .mani{position:relative;padding-block:clamp(90px,14vh,170px) clamp(80px,12vh,150px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,110px);align-items:center;max-width:1440px;margin:0 auto}
-.mani .win{aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;background:var(--g2);max-width:440px;width:100%;justify-self:center}
+.mani .win{aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;background:var(--s);max-width:440px;width:100%;justify-self:center;outline:1px solid var(--s);outline-offset:10px}
 .mani .win img{width:100%;height:100%;object-fit:cover}
 .mani .disp{font-size:clamp(36px,4.6vw,72px);color:var(--d);margin-bottom:.5em}
 .mani ol{list-style:none;margin:0;padding:0;font-family:var(--serif);font-size:clamp(24px,2.3vw,34px);line-height:1.25;color:var(--d)}
 .mani li{display:flex;gap:18px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line)}
 .mani li small{font:600 11px/1 var(--sans);letter-spacing:.22em;color:var(--t);min-width:26px}
 .mani .keep{margin-top:34px;font-family:var(--serif);font-size:clamp(22px,2vw,30px);color:var(--t);line-height:1.3}
-.wave{display:block;width:100%;height:28px;color:var(--s)}
-.wave path{fill:none;stroke:currentColor;stroke-width:1}
+.leaves{position:absolute;pointer-events:none;width:clamp(140px,16vw,260px);height:auto}
+.mani-wrap .leaves{right:-30px;top:40px;transform:rotate(-8deg)}
 
-/* ---------- the walk · six rooms ---------- */
-.walk-intro{text-align:center;padding-block:40px clamp(40px,6vh,80px)}
-.walk-intro .disp{font-size:clamp(38px,5vw,80px);color:var(--d)}
-.walk-intro p{max-width:46ch;margin:18px auto 0;color:#5b4a3e}
-.room{position:relative;height:230vh}
-.room .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.room .num{position:absolute;inset:0;display:grid;place-items:center;z-index:0;pointer-events:none}
-.room .num b{font:400 clamp(120px,24vw,380px)/.8 var(--serif);color:var(--g2);letter-spacing:-.02em}
-.room .num .lab{position:absolute;top:calc(84px + 5vh);left:0;right:0;text-align:center;color:var(--t)}
-.room .num .nm{position:absolute;bottom:7vh;left:0;right:0;text-align:center;font:400 clamp(40px,5.4vw,84px)/1 var(--serif);color:var(--d)}
-.room .scene{z-index:1}
-.room .scene video,.room .scene img{transform:scale(var(--z,1));transform-origin:50% 55%}
-.room .scene::after{background:linear-gradient(180deg,rgba(35,31,32,.38) 0%,rgba(35,31,32,0) 28%,rgba(35,31,32,0) 45%,rgba(35,31,32,.72) 100%);opacity:var(--shade,1)}
-.room .copy{position:absolute;z-index:3;inset:auto 0 0;color:var(--g);padding-bottom:calc(8vh + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px 60px;align-items:end;opacity:var(--cop,1);transform:translateY(calc((1 - var(--cop,1)) * 28px))}
-.room .copy .lab{color:#E7C6A8}
-.room .copy h3{font-size:clamp(54px,8vw,128px);margin:.08em 0 .1em -.03em}
-.room .copy .line{font-family:var(--serif);font-size:clamp(24px,2.4vw,36px);line-height:1.2;margin:0}
-.room .copy .body{margin:12px 0 0;max-width:40ch;opacity:.9}
-.room .copy ul{list-style:none;margin:0;padding:0;justify-self:end;min-width:min(100%,300px)}
-.room .copy li{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-top:1px solid rgba(246,242,239,.28);font-size:17px}
-.room .copy li:last-child{border-bottom:1px solid rgba(246,242,239,.28)}
-.room .copy li span{font:600 11px/1.9 var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.7}
-.room .tag{position:absolute;z-index:3;top:calc(86px + env(safe-area-inset-top,0px));right:max(var(--gut),env(safe-area-inset-right,0px));color:var(--g);opacity:var(--cop,1);text-align:right}
-
-/* ---------- one table ---------- */
+/* ---------- menu board ---------- */
 .table{background:var(--d);color:var(--g);padding-block:clamp(90px,13vh,160px)}
-.table .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(40px,6vh,70px)}
+.table .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin:0 auto clamp(44px,6vh,70px);max-width:1440px}
 .table .head .disp{font-size:clamp(40px,5.4vw,86px)}
 .table .head p{max-width:40ch;margin:0;color:#E2D3C5}
-.plates{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.6vw,26px)}
-.plate{position:relative}
-.plate .arch{aspect-ratio:3/4.3;border-radius:999px 999px 0 0;overflow:hidden;background:#4a2d19;position:relative}
-.plate .arch img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s var(--open),filter 1.2s var(--open);filter:saturate(.92)}
-.plate:hover .arch img,.plate:focus-within .arch img{transform:scale(1.12);filter:saturate(1.06)}
-.plate .lab{display:block;margin:16px 0 6px;color:#E7B48C}
-.plate h3{font:400 clamp(26px,2.2vw,36px)/1 var(--serif);margin:0 0 10px}
-.plate ul{list-style:none;margin:0;padding:0;font-size:16px;color:#EADDD1}
-.plate li{padding:7px 0;border-top:1px solid rgba(246,242,239,.16)}
-.plate:nth-child(even){margin-top:clamp(0px,5vw,70px)}
-.note{margin:clamp(40px,6vh,64px) 0 0;font-size:14px;color:#CDB8A6}
+.board{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));max-width:1440px;border-top:1px solid rgba(246,242,239,.22)}
+.board>li{padding:26px clamp(10px,1.4vw,22px) 8px;border-left:1px solid rgba(246,242,239,.14)}
+.board>li:first-child{border-left:0;padding-left:0}
+.board .ic{width:18px;fill:var(--glow);margin-bottom:16px}
+.board .lab{color:var(--glow);display:block}
+.board h3{font:400 clamp(28px,2.4vw,38px)/1 var(--serif);margin:8px 0 14px}
+.board ul{list-style:none;margin:0;padding:0;font-size:17px;color:#EFE3D8}
+.board ul li{padding:8px 0;border-top:1px solid rgba(246,242,239,.12)}
+.board a{color:inherit;text-decoration:none}
+.board a:hover h3{color:var(--glow)}
+.table .foot2{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin:clamp(44px,6vh,64px) auto 0;max-width:1440px}
+.table .note{margin:0;font-size:14px;color:#CDB8A6;max-width:60ch}
 
 /* ---------- reserve ---------- */
-.reserve{background:var(--g);padding-block:clamp(90px,13vh,160px)}
-.res-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start;max-width:1320px;margin:0 auto}
+.reserve{background:var(--g);padding-block:clamp(90px,13vh,160px);position:relative;overflow:hidden}
+.reserve .leaves{left:-40px;bottom:-30px;transform:scaleX(-1) rotate(6deg);opacity:.9}
+.res-grid{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start;max-width:1320px;margin:0 auto}
 .res-side .disp{font-size:clamp(42px,5.4vw,88px);color:var(--d);margin:.18em 0 .3em}
 .res-side p{color:#5b4a3e;max-width:36ch;margin:0 0 22px}
 .res-side .facts{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--line)}
@@ -165,13 +189,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
 .f{display:grid;gap:7px;min-width:0}
 .f.full{grid-column:1/-1}
-.f label{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+.f label,.f .lbl{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
 .f input,.f select,.f textarea{width:100%;min-width:0;background:transparent;border:0;border-bottom:1px solid rgba(86,53,30,.35);padding:10px 2px 11px;font-size:18px;color:var(--x);border-radius:0;transition:border-color .3s}
 .f select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23A26542' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:26px}
 .f textarea{resize:vertical;min-height:70px}
 .f input:focus,.f select:focus,.f textarea:focus{outline:0;border-bottom-color:var(--t);box-shadow:0 1px 0 var(--t)}
-.f.bad input{border-bottom-color:#b3261e}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
+.f [aria-invalid="true"]{border-bottom-color:#b3261e;box-shadow:0 1px 0 #b3261e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;border:0;margin:0;padding:0}
 .chips label{cursor:pointer;position:relative}
 .chips input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none;margin:0}
 .chips span{display:inline-block;padding:9px 14px;border:1px solid rgba(86,53,30,.3);border-radius:999px;font-size:15px;transition:all .3s var(--open)}
@@ -180,7 +204,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .send{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;justify-content:space-between}
 .send button{border:0;cursor:pointer;background:var(--d);color:var(--g);font:600 13px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:19px 28px 19px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:14px;transition:background-color .35s var(--open),transform .35s var(--open)}
 .send button i{width:24px;height:24px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center}
-.send button i::after{content:"";width:7px;height:7px;border-radius:50%;background:#E7B48C}
+.send button i::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--glow)}
 .send button:hover{background:var(--t);transform:translateY(-1px)}
 .send button[disabled]{opacity:.6;cursor:progress}
 .msg{margin:0;font-size:15px;color:#6f5d50}
@@ -195,52 +219,65 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- visit ---------- */
 .visit{background:var(--t);color:var(--g);padding-block:clamp(80px,12vh,140px) calc(36px + env(safe-area-inset-bottom,0px));overflow:hidden}
 .visit .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;border-top:1px solid rgba(246,242,239,.35);padding-top:28px;max-width:1440px;margin:0 auto}
-.visit .cols .lab{opacity:.8;margin-bottom:8px;display:block}
+.visit .cols .lab{opacity:.85;margin-bottom:8px;display:block}
 .visit .cols p{margin:0;font-family:var(--serif);font-size:clamp(24px,2.2vw,32px);line-height:1.2}
 .visit .cols a{text-decoration:none;border-bottom:1px solid rgba(246,242,239,.5)}
 .visit .cols a:hover{border-bottom-color:var(--g)}
 .mega{margin:clamp(50px,8vh,90px) auto 0;max-width:1440px;color:#C27D57}
 .mega svg{width:100%;height:auto;fill:currentColor}
-.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin:34px auto 0;max-width:1440px;font-size:13px;color:#F2DCCB}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin:34px auto 0;max-width:1440px;font-size:13px;color:#F7E4D5}
 
 /* ---------- reveal ---------- */
 .js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--open),transform .9s var(--open)}
 .js .rv.in{opacity:1;transform:none}
 .js .mani li.rv{transition-delay:calc(var(--i,0) * 80ms)}
 
+/* ---------- still mode (pause motion) ---------- */
+.still .cue span{animation:none}
+
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
-  .plates{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:44px}
-  .plate:nth-child(even){margin-top:0}
-  .plate:nth-child(3n+2){margin-top:40px}
+  .board{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .board>li:nth-child(4){border-left:0;padding-left:0}
+  .board>li:nth-child(n+4){border-top:1px solid rgba(246,242,239,.22)}
 }
 @media (max-width:860px){
-  .hd{grid-template-columns:auto 1fr auto}
+  .hd{grid-template-columns:auto 1fr auto;gap:10px}
   .hd .brand{width:104px}
-  .flick{justify-self:center;gap:0}
-  .flick a{width:24px}
+  .hd.light{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(246,242,239,.97)}
+  .hd .menu{display:none}
+  .hd .res{padding:9px 14px 9px 9px;font-size:12px;letter-spacing:.14em;gap:8px}
+  .hd .res i{width:20px;height:20px}
+  .pause{width:34px;height:34px}
+  /* flames move to a bottom pill that shows only during the walk */
+  .flick{position:fixed;z-index:99;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:rgba(43,26,15,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--g);border-radius:999px;padding:4px 10px 4px;gap:0;transition:transform .5s var(--open);box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+  .inwalk .flick{transform:translate(-50%,0)}
+  .flick a{width:34px;height:42px}
+  .flick a::after{display:none}
   .flick .bar{display:none}
-  .hd .res{padding:10px;font-size:0;letter-spacing:0;gap:0}
-  .hd .res i{width:24px;height:24px}
+  .hd.light .flick a.on svg{fill:var(--glow)}
   .mani,.res-grid{grid-template-columns:1fr}
   .mani .win{max-width:300px}
-  .room{height:200vh}
-  .room .copy{grid-template-columns:1fr;padding-bottom:calc(6vh + env(safe-area-inset-bottom,0px))}
-  .room .copy ul{justify-self:stretch}
+  .room{height:150vh}
+  .room .copy{grid-template-columns:minmax(0,1fr) auto;gap:16px;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .room .copy .body{display:none}
+  .inset{width:96px}
+  .inset figcaption{display:none}
+  .inset .arch{outline-offset:4px}
   .room .tag{display:none}
+  .board{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .board>li:nth-child(odd){border-left:0;padding-left:0}
+  .board>li:nth-child(4){border-left:1px solid rgba(246,242,239,.14);padding-left:clamp(10px,1.4vw,22px)}
+  .board>li:nth-child(n+3){border-top:1px solid rgba(246,242,239,.22)}
   .visit .cols{grid-template-columns:1fr}
-  .echo{display:none}
 }
 @media (max-width:560px){
   body{font-size:17px}
-  .plates{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
-  .plate:nth-child(3n+2){margin-top:0}
-  .plate:nth-child(even){margin-top:36px}
-  .plate ul{font-size:15px}
   .fields{grid-template-columns:1fr}
   .hero-row .cta.ghost{display:none}
   .card{border-radius:220px 220px 16px 16px}
+  .board ul{font-size:15px}
+  .leaves{width:120px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -249,8 +286,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   .scene{clip-path:none!important}
   .room .scene video,.room .scene img{transform:none!important}
   .room .copy,.room .tag{opacity:1!important;transform:none!important}
-  .echo path{stroke-dashoffset:0}
   .js .rv{opacity:1;transform:none}
+  .flick{transform:translate(-50%,0)}
 }
 </style>
 </head>
@@ -259,6 +296,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="sym" viewBox="{{SYM_VB}}">{{SYM}}</symbol>
   <symbol id="logo" viewBox="{{LOGO_VB}}">{{LOGO}}</symbol>
+  <symbol id="leaves" viewBox="0 0 600 700">{{LEAVES}}</symbol>
 </svg>
 
 <header class="hd" id="hd">
@@ -266,7 +304,11 @@ button,input,select,textarea{font:inherit;color:inherit}
   <nav class="flick" aria-label="The six rituals">
 {{FLICK}}
   </nav>
-  <a class="res" href="#reserve"><i aria-hidden="true"></i>Reserve</a>
+  <div class="right">
+    <a class="menu" href="#menu">Menu</a>
+    <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="Pause motion"><svg class="pa" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><svg class="pl" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1l8 5-8 5z"/></svg></button>
+    <a class="res" href="#reserve"><i aria-hidden="true"></i>Reserve</a>
+  </div>
 </header>
 
 <main id="main">
@@ -275,11 +317,6 @@ button,input,select,textarea{font:inherit;color:inherit}
     <div class="stick">
       <div class="closing" aria-hidden="true"><p class="lab">Step inside · six rooms · one evening</p></div>
       {{HERO_SCENE}}
-      <svg class="echo" viewBox="0 0 200 260" aria-hidden="true">
-        <path pathLength="1" d="M10 260V100a90 90 0 0 1 180 0v160"/>
-        <path pathLength="1" d="M26 260V100a74 74 0 0 1 148 0v160"/>
-        <path pathLength="1" d="M42 260V100a58 58 0 0 1 116 0v160"/>
-      </svg>
       <div class="hero-copy wrap" id="heroCopy">
         <p class="lab">JOVIE · Dining Rituals · Karachi</p>
         <h1 class="disp" id="hero-title"><span>Joy made</span> <span>ritual</span></h1>
@@ -295,12 +332,31 @@ button,input,select,textarea{font:inherit;color:inherit}
     </div>
   </section>
 
-  <!-- 1 · manifesto -->
-  <section class="wrap" aria-labelledby="mani-title">
+  <!-- 1–6 · the walk -->
+  <section id="walk" aria-labelledby="walk-title">
+    <div class="walk-intro wrap">
+      <svg class="echo" viewBox="0 0 200 240" aria-hidden="true">
+        <path d="M10 240V100a90 90 0 0 1 180 0v140"/>
+        <path d="M28 240V100a72 72 0 0 1 144 0v140"/>
+        <path d="M46 240V100a54 54 0 0 1 108 0v140"/>
+      </svg>
+      <div class="in">
+        <p class="lab rv">The walk</p>
+        <h2 class="disp rv" id="walk-title">Six rooms · one evening</h2>
+        <p class="rv">Every ritual has its own room at JOVIE · keep scrolling and step through each arch</p>
+        <a class="skipm rv" href="#menu">Skip to the menu</a>
+      </div>
+    </div>
+{{ROOMS}}
+  </section>
+
+  <!-- 7 · manifesto -->
+  <section class="mani-wrap wrap" data-tone="light" aria-labelledby="mani-title">
+    <svg class="leaves" aria-hidden="true"><use href="#leaves"/></svg>
     <div class="mani">
-      <figure class="win rv" style="margin:0"><img src="assets/img/mani.webp" alt="A wood-fired Margherita pizza ready for the table" width="900" height="1260" loading="lazy" decoding="async"></figure>
+      <figure class="win rv" style="margin:0"><img src="assets/img/mani.webp" alt="Hands passing a mixed grill platter · pizza and hummus across one table" width="900" height="1260" loading="lazy" decoding="async"></figure>
       <div>
-        <p class="lab rv" style="color:var(--t)">The idea</p>
+        <p class="lab rv" style="color:var(--t)">Why rituals</p>
         <h2 class="disp rv" id="mani-title">A ritual is a small thing done with care and repeated until it means something</h2>
         <ol>
           <li class="rv" style="--i:0"><small>01</small>Bread broken by hand</li>
@@ -313,35 +369,27 @@ button,input,select,textarea{font:inherit;color:inherit}
     </div>
   </section>
 
-  <svg class="wave" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14c50-10 100-10 150 0s100 10 150 0 100-10 150 0 100 10 150 0 100-10 150 0 100 10 150 0 100-10 150 0 100 10 150 0"/></svg>
-
-  <!-- 2–7 · the walk -->
-  <section id="walk" aria-labelledby="walk-title">
-    <div class="walk-intro wrap">
-      <p class="lab rv" style="color:var(--t)">The walk</p>
-      <h2 class="disp rv" id="walk-title">Six rooms · one evening</h2>
-      <p class="rv">Every ritual has its own room at JOVIE · keep scrolling and step through each arch</p>
-    </div>
-{{ROOMS}}
-  </section>
-
-  <!-- 8 · one table -->
+  <!-- 8 · menu board -->
   <section class="table wrap" id="menu" aria-labelledby="menu-title">
     <div class="head">
       <div>
-        <p class="lab rv" style="color:#E7B48C">The menu</p>
+        <p class="lab rv" style="color:var(--glow)">The menu</p>
         <h2 class="disp rv" id="menu-title">One table · six moments</h2>
       </div>
       <p class="rv">Mediterranean dishes cooked over olive wood with Italian classics from the same fire · the whole menu waits at the table</p>
     </div>
-    <ul class="plates">
-{{PLATES}}
+    <ul class="board">
+{{BOARD}}
     </ul>
-    <p class="note rv">Food images are concept stills until the JOVIE kitchen is photographed · interiors are design renders</p>
+    <div class="foot2">
+      <p class="note rv">Food images are concept stills until the JOVIE kitchen is photographed · interiors are design renders and the moving scenes are generated from them</p>
+      <a class="cta rv" href="#reserve"><i aria-hidden="true"></i>Reserve a table</a>
+    </div>
   </section>
 
   <!-- 9 · reserve -->
-  <section class="reserve wrap" id="reserve" aria-labelledby="res-title">
+  <section class="reserve wrap" id="reserve" data-tone="light" aria-labelledby="res-title">
+    <svg class="leaves" aria-hidden="true"><use href="#leaves"/></svg>
     <div class="res-grid">
       <div class="res-side">
         <p class="lab rv" style="color:var(--t)">Reservations</p>
@@ -359,14 +407,14 @@ button,input,select,textarea{font:inherit;color:inherit}
           <h3>Arrive</h3>
           <p class="sub">Ritual 01 begins here</p>
           <div class="fields">
-            <div class="f"><label for="f-date">Date</label><input id="f-date" name="date" type="date" required></div>
+            <div class="f"><label for="f-date">Date</label><input id="f-date" name="date" type="date" required aria-describedby="msg"></div>
             <div class="f"><label for="f-time">Time</label><select id="f-time" name="time">{{TIMES}}</select></div>
             <div class="f"><label for="f-guests">Guests</label><select id="f-guests" name="guests">{{GUESTS}}</select></div>
             <div class="f"><label for="f-seat">Where to sit</label><select id="f-seat" name="seat">{{SEAT}}</select></div>
-            <fieldset class="f full" style="border:0;margin:0;padding:0"><legend class="sr">Occasion</legend><label id="occ-l" aria-hidden="true">Occasion</label>
-              <div class="chips" role="radiogroup" aria-labelledby="occ-l">{{OCC}}</div></fieldset>
-            <div class="f"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
-            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required></div>
+            <fieldset class="f full chips-wrap" style="border:0;margin:0;padding:0"><legend class="lbl" style="padding:0;margin-bottom:7px">Occasion</legend>
+              <div class="chips">{{OCC}}</div></fieldset>
+            <div class="f"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="msg"></div>
+            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="03XX XXXXXXX" required aria-describedby="msg"></div>
             <div class="f full"><label for="f-notes">Anything we should know · optional</label><textarea id="f-notes" name="notes" rows="2"></textarea></div>
           </div>
           <div class="send">
@@ -400,78 +448,92 @@ button,input,select,textarea{font:inherit;color:inherit}
 <script>
 (()=>{
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOB=matchMedia('(max-width:699px)').matches;
-document.documentElement.classList.add('js');
+root.classList.add('js');
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 const ease=t=>1-Math.pow(1-t,3);
-const vw=()=>innerWidth,vh=()=>innerHeight;
+const inout=q=>q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;
 
-/* ---------- video: lazy, play only on screen ---------- */
+/* ---------- motion preference · pause button ---------- */
+let still=RM;
+try{if(localStorage.getItem('jovie-still')==='1')still=true}catch(e){}
+const pauseBtn=$('#pause');
 const vids=$$('video[data-d]');
+function setStill(v){still=v;root.classList.toggle('still',v);pauseBtn.setAttribute('aria-pressed',String(v));pauseBtn.setAttribute('aria-label',v?'Play motion':'Pause motion');
+  if(v)vids.forEach(x=>x.pause());else vids.forEach(x=>{if(x._vis)play(x)});
+  try{localStorage.setItem('jovie-still',v?'1':'0')}catch(e){}}
+pauseBtn.addEventListener('click',()=>setStill(!still));
+
+/* ---------- video · lazy · plays only on screen ---------- */
 const canWebm=document.createElement('video').canPlayType('video/webm; codecs="vp9"')!=='';
-function load(v){if(v.dataset.ok)return;const b=MOB?v.dataset.m:v.dataset.d;v.src=b+(canWebm?'.webm':'.mp4');v.dataset.ok=1;v.addEventListener('playing',()=>v.closest('.scene').classList.add('live'),{once:true})}
-if(!RM&&'IntersectionObserver' in window){
-  const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){load(v);const p=v.play();p&&p.catch(()=>{})}else{v.pause()}}),{rootMargin:'25% 0px'});
+function load(v){if(v.dataset.ok)return;v.src=(MOB?v.dataset.m:v.dataset.d)+(canWebm?'.webm':'.mp4');v.dataset.ok=1;
+  v.addEventListener('playing',()=>v.parentElement.classList.add('live'),{once:true})}
+function play(v){if(still)return;load(v);if(v.ended&&!v.loop)return;const p=v.play();p&&p.catch(()=>{})}
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;v._vis=e.isIntersecting;if(e.isIntersecting)play(v);else v.pause()}),{rootMargin:'20% 0px'});
   vids.forEach(v=>io.observe(v));
+  /* the previous room glows behind each closed door · loaded only when near */
+  const po=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.style.backgroundImage=`url(${MOB?el.dataset.m:el.dataset.d})`;po.unobserve(el)}}),{rootMargin:'100% 0px'});
+  $$('.prev').forEach(el=>po.observe(el));
 }
-/* hide poster once the clip actually plays */
-const css=document.createElement('style');css.textContent='.scene.live img[data-poster]{opacity:0;transition:opacity .8s}';document.head.appendChild(css);
+setStill(still);
 
 /* ---------- scroll choreography ---------- */
-const hd=$('#hd'),hero=$('.hero'),heroScene=$('#heroScene'),heroCopy=$('#heroCopy'),closingP=$('.closing p'),echo=$('.echo');
-const rooms=$$('.room');
-const flick=$$('.flick a');
+const hd=$('#hd'),hero=$('.hero'),heroScene=$('#heroScene'),heroCopy=$('#heroCopy'),closingP=$('.closing p');
+const rooms=$$('.room'),flick=$$('.flick a'),walk=$('#walk');
+const lights=$$('[data-tone="light"]');
+rooms.forEach(r=>r._scene=r.querySelector('.scene'));
 function archInset(p,w0,h0){
-  /* p 0 → small arch in the centre · p 1 → full bleed */
-  const W=vw(),H=vh();
-  const w=w0+(W-w0)*p, h=h0+(H-h0)*p;
-  const x=(W-w)/2, y=(H-h)/2+ (1-p)*H*0.03;
+  const W=innerWidth,H=innerHeight;
+  const w=w0+(W-w0)*p,h=h0+(H-h0)*p;
+  const x=(W-w)/2,y=(H-h)/2+(1-p)*H*.03;
   const r=(w/2)*(1-clamp((p-.55)/.45));
   return `inset(${y.toFixed(1)}px ${x.toFixed(1)}px ${(H-y-h).toFixed(1)}px ${x.toFixed(1)}px round ${r.toFixed(1)}px ${r.toFixed(1)}px 0 0)`;
 }
 function frame(){
-  const W=vw(),H=vh(),y=scrollY;
-  /* hero · the scene closes back into a doorway */
+  const W=innerWidth,H=innerHeight;
   const hr=hero.getBoundingClientRect();
   const hp=clamp(-hr.top/(hero.offsetHeight-H));
   if(!RM){
     const p=1-ease(hp);
-    const w0=Math.min(W*.34,380),h0=Math.min(H*.62,w0*1.5);
-    heroScene.style.clipPath=hp<=0.001?'none':archInset(p,w0,h0);
+    const w0=Math.min(Math.max(W*.3,150),360),h0=Math.min(H*.6,w0*1.48);
+    heroScene.style.clipPath=hp<=.001?'none':archInset(p,w0,h0);
     heroCopy.style.opacity=clamp(1-hp*4);
     heroCopy.style.transform=`translateY(${(-hp*60).toFixed(1)}px)`;
-    echo.style.opacity=(.55*clamp(1-hp*3)).toFixed(3);
-    closingP.style.opacity=clamp((hp-.55)/.3);
+    closingP.style.opacity=clamp((hp-.5)/.3);
   }
-  /* rooms · an arch opens into each room */
   let cur=-1;
   rooms.forEach((r,i)=>{
     const b=r.getBoundingClientRect();
-    const total=r.offsetHeight-H;
-    const p=clamp(-b.top/total);
-    const q=clamp((p-.05)/.5),open=q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;
-    r._open=open;
+    const p=clamp(-b.top/(r.offsetHeight-H));
     if(b.top<H*.5&&b.bottom>H*.5)cur=i;
-    if(RM)return;
-    if(b.bottom<-50||b.top>H+50)return;
+    if(RM||b.bottom<-50||b.top>H+50)return;
+    const open=inout(clamp((p-.03)/.42));
     const sc=r._scene,w0=Math.min(Math.max(W*.3,150),330),h0=Math.min(H*.56,w0*1.48);
     sc.style.clipPath=open>=.999?'none':archInset(open,w0,h0);
-    sc.style.setProperty('--z',(1.22-.22*open).toFixed(4));
-    r.style.setProperty('--cop',clamp((p-.5)/.16).toFixed(3));
-    sc.style.setProperty('--shade',clamp(.35+(p-.4)*1.6,.35,1).toFixed(3));
+    sc.style.setProperty('--z',(1.1-.1*open).toFixed(4));
+    r.style.setProperty('--cop',clamp((p-.45)/.14).toFixed(3));
+    sc.style.setProperty('--shade',clamp(.35+(p-.35)*1.8,.35,1).toFixed(3));
   });
-  /* header theme · dark over film and dark sections */
-  const dark=hp<.62||rooms.some(r=>{const b=r.getBoundingClientRect();return b.top<=40&&b.bottom>=60&&r._open>.93})||isOver('#menu')||isOver('#visit');
-  hd.classList.toggle('light',!dark);
+  /* header · light only over cream sections */
+  const lt=lights.some(s=>{const b=s.getBoundingClientRect();return b.top<=72&&b.bottom>=72});
+  hd.classList.toggle('light',lt);
+  const wb=walk.getBoundingClientRect();
+  root.classList.toggle('inwalk',wb.top<H*.5&&wb.bottom>H*.5);
   flick.forEach((a,i)=>{a.classList.toggle('on',i===cur);if(i===cur)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current')});
 }
-function isOver(sel){const b=$(sel).getBoundingClientRect();return b.top<=40&&b.bottom>=60}
-rooms.forEach(r=>r._scene=r.querySelector('.scene'));
 let tick=false;
 const req=()=>{if(!tick){tick=true;requestAnimationFrame(()=>{tick=false;frame()})}};
 addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
 frame();
+
+/* flame and menu links land on the open room · not on a closed door */
+function goRoom(i,a){const r=rooms[i];const y=RM?r.offsetTop:r.offsetTop+(r.offsetHeight-innerHeight)*.72;
+  scrollTo({top:y,behavior:RM?'auto':'smooth'});history.replaceState(null,'',a.getAttribute('href'))}
+flick.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();goRoom(i,a)}));
+$$('.board a[data-room]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goRoom(+a.dataset.room,a)}));
 
 /* ---------- reveals ---------- */
 if('IntersectionObserver' in window&&!RM){
@@ -485,15 +547,16 @@ const form=$('#form'),msg=$('#msg'),btn=$('#btn'),card=$('#card'),d=$('#f-date')
 const pad=n=>String(n).padStart(2,'0');
 const t=new Date(),today=`${t.getFullYear()}-${pad(t.getMonth()+1)}-${pad(t.getDate())}`;
 d.min=today;d.value=today;
-const phoneOK=v=>/^(\+?92|0)?3\d{9}$/.test(v.replace(/[\s-]/g,''));
+const phoneOK=v=>{const s=v.replace(/[\s()-]/g,'');return /^(\+?92|0)?3\d{9}$/.test(s)||/^(\+|00)[1-9]\d{7,14}$/.test(s)};
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 form.addEventListener('submit',async e=>{
   e.preventDefault();
   const nm=$('#f-name'),ph=$('#f-phone');const bad=[];
   if(!d.value||d.value<today)bad.push(d);
   if(nm.value.trim().length<2)bad.push(nm);
   if(!phoneOK(ph.value))bad.push(ph);
-  $$('.f').forEach(f=>f.classList.remove('bad'));
-  if(bad.length){bad.forEach(b=>b.closest('.f').classList.add('bad'));bad[0].focus();msg.classList.add('err');msg.textContent=bad[0]===ph?'Please add a mobile number like 03XX XXXXXXX':bad[0]===nm?'Please add your name':'Please pick today or a later date';return}
+  [d,nm,ph].forEach(x=>x.removeAttribute('aria-invalid'));
+  if(bad.length){bad.forEach(b=>b.setAttribute('aria-invalid','true'));bad[0].focus();msg.classList.add('err');msg.textContent=bad[0]===ph?'Please add a mobile number like 03XX XXXXXXX or +country code':bad[0]===nm?'Please add your name':'Please pick today or a later date';return}
   msg.classList.remove('err');
   const data=Object.fromEntries(new FormData(form));
   const parts=data.name.trim().split(/\s+/);data.first_name=parts.shift()||'';data.last_name=parts.join(' ');data.source='jovie.pk website v3';
@@ -501,8 +564,8 @@ form.addEventListener('submit',async e=>{
   try{
     const r=await fetch(SUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     if(!r.ok)throw new Error(r.status);
-    const dd=new Date(data.date+'T00:00:00');
-    $('#doneSum').textContent=`${data.guests} ${data.guests==='1'?'guest':'guests'} · ${dd.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})} · ${$('#f-time').selectedOptions[0].text} · ${data.occasion}`;
+    const [Y,M,D]=data.date.split('-').map(Number),dd=new Date(Y,M-1,D);
+    $('#doneSum').textContent=`${data.guests} ${data.guests==='1'?'guest':'guests'} · ${DAYS[dd.getDay()]} ${D} ${MONTHS[M-1]} · ${$('#f-time').selectedOptions[0].text} · ${data.occasion}`;
     card.classList.add('ok');$('#done').focus();
   }catch(err){msg.classList.add('err');msg.textContent='We could not send that · please try again in a moment'}
   finally{btn.disabled=false}
